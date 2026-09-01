@@ -1,0 +1,17 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-certification-scenario/v1alpha1",
+  "kind": "IndustryCertificationScenario",
+  "id": "white-goods.certification.scenario.regulated-openshift",
+  "stage": "evidence-and-acceptance",
+  "synthetic": true,
+  "profileSlug": "regulated-openshift",
+  "bindings": {
+    "businessAnswers": {"path": "fixtures/answers/accepted-pilot.json", "sha256": "b76421c1f0cfa258c97f159a48f0f8f53782ec6415384b9fed3acc57119da052"},
+    "dataReadiness": {"path": "fixtures/readiness/pass.json", "sha256": "9f91f09cdd33d37d94cf4d92f340fa9445bbd0bc376a4abc5e13ddccbdad329f"},
+    "governanceDecision": {"path": "fixtures/governance/ready-reversible-write.json", "sha256": "2b2e241262a7031703cdbd86d6744d4b8259b1b43911e4d3693b44b57d41eabc"},
+    "providerDemand": {"path": "fixtures/demands/regulated-openshift.json", "sha256": "6e3df92e67f4c962ee42f245179098a549179fc4aaa5a9f5db0f9d60bde3f4d5"},
+    "providerGolden": {"path": "fixtures/expected/regulated-openshift.json", "sha256": "7b1ebb01c56c37882d8180bc323d5a4e71db61e5fce7f415268e8012c10d87b4"}
+  },
+  "expectedOutcome": "SOURCE_CONTRACT_READY",
+  "evidenceBoundary": {"source": true, "candidate": false, "ci": false, "merge": false, "artifact": false, "publication": false, "deployment": false, "runtime": false, "assurance": false, "crossRepositoryConformance": false, "tenantAcceptance": false}
+}

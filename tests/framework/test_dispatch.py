@@ -42,6 +42,7 @@ def test_real_descriptor_inventory_is_closed() -> None:
         ("IND-WG-002", "data-readiness"),
         ("IND-WG-003", "governance-integrations"),
         ("IND-WG-004", "provider-profiles"),
+        ("IND-WG-005", "certification-fixtures"),
     }
 
 

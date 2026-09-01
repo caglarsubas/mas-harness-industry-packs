@@ -431,7 +431,7 @@ def main(argv: list[str] | None = None) -> int:
 
     pack = load_pack(PACK_ROOT, common_root=COMMON_ROOT)
     common = load_pack(COMMON_ROOT)
-    if pack.manifest["metadata"]["version"] != "0.4.0" or pack.manifest["compatibility"]["frameworkVersion"] != "0.1.0":
+    if pack.manifest["metadata"]["version"] != "0.5.0" or pack.manifest["compatibility"]["frameworkVersion"] != "0.1.0":
         raise SystemExit("white-goods version or framework compatibility differs")
     if pack.files["contracts.lock.json"] != common.files["contracts.lock.json"] or pack.files["journey.yaml"] != common.files["journey.yaml"]:
         raise SystemExit("common predecessor files changed")
@@ -469,7 +469,7 @@ def main(argv: list[str] | None = None) -> int:
         raise SystemExit("white-goods index or archive is not byte reproducible")
     if first_index["evidence"] != {"published": False, "runtimeEvidence": False, "assuranceEvidence": False, "tenantAcceptance": False}:
         raise SystemExit("pack index asserted unavailable evidence")
-    if len(pack.files) != 64 or len(pack.resource_ids) != 61:
+    if len(pack.files) != 72 or len(pack.resource_ids) != 69:
         raise SystemExit("white-goods file or resource inventory differs")
 
     print(

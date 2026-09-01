@@ -529,13 +529,13 @@ def validate_golden(slug: str, profile: dict[str, Any], envelope: dict[str, Any]
 
 
 def validate_pack_contract(pack: ValidatedPack, common: ValidatedPack) -> None:
-    if pack.manifest["metadata"]["version"] != "0.4.0":
+    if pack.manifest["metadata"]["version"] != "0.5.0":
         raise ValueError("white-goods pack version differs")
     if pack.manifest["compatibility"]["frameworkVersion"] != "0.1.0":
         raise ValueError("pack format compatibility differs")
     if common.manifest["metadata"]["version"] != "1.0.0" or pack.manifest["extends"]["packDigest"] != common.digest:
         raise ValueError("common foundation binding differs")
-    if len(pack.files) != 64 or len(pack.resource_ids) != 61:
+    if len(pack.files) != 72 or len(pack.resource_ids) != 69:
         raise ValueError("white-goods file or resource inventory differs")
     for path, digest in NEW_FILE_SHA256.items():
         if _sha256(pack.files[path]) != digest:

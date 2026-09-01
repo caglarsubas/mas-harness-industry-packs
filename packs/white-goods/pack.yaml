@@ -2,8 +2,8 @@ apiVersion: harness.planeon.ai/industry-pack/v1alpha1
 kind: IndustryPack
 metadata:
   id: white-goods.manufacturing
-  version: 0.4.0
-  title: White-goods business, data, governance, integration, and provider-profile foundation
+  version: 0.5.0
+  title: White-goods business, data, governance, provider-profile, and source-certification foundation
   industry: white-goods
   license: Apache-2.0
   packKind: SECTOR
@@ -211,3 +211,27 @@ content:
     - id: white-goods.providers.golden.silo
       stage: evidence-and-acceptance
       path: fixtures/expected/silo.json
+    - id: white-goods.certification.scenario.air-gap
+      stage: evidence-and-acceptance
+      path: fixtures/e2e/air-gap.json
+    - id: white-goods.certification.scenario.minimal-amd64
+      stage: evidence-and-acceptance
+      path: fixtures/e2e/minimal-amd64.json
+    - id: white-goods.certification.scenario.minimal-arm64
+      stage: evidence-and-acceptance
+      path: fixtures/e2e/minimal-arm64.json
+    - id: white-goods.certification.scenario.regulated-openshift
+      stage: evidence-and-acceptance
+      path: fixtures/e2e/regulated-openshift.json
+    - id: white-goods.certification.scenario.silo
+      stage: evidence-and-acceptance
+      path: fixtures/e2e/silo.json
+    - id: white-goods.certification.tamper-vectors
+      stage: evidence-and-acceptance
+      path: fixtures/e2e/tamper-vectors.json
+    - id: white-goods.certification.pack-lock
+      stage: evidence-and-acceptance
+      path: pack.lock.json
+    - id: white-goods.certification.artifact-manifest
+      stage: evidence-and-acceptance
+      path: manifest.json

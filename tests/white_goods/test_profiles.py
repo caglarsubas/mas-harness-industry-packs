@@ -104,7 +104,7 @@ def test_handler_reports_separate_evidence_axes_and_reproducible_pack() -> None:
         text=True,
     )
     output = json.loads(completed.stdout)
-    assert output["packVersion"] == "0.4.0"
+    assert output["packVersion"] == "0.5.0"
     assert output["profileCount"] == 5
     assert output["retainedArtifacts"] is False
     assert output["evidence"] == HANDLER.EVIDENCE_BOUNDARY

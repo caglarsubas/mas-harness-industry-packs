@@ -1,0 +1,29 @@
+{
+  "apiVersion": "harness.planeon.ai/governance-fixture/v1alpha1",
+  "kind": "GovernanceFixture",
+  "id": "white-goods.governance.fixture.ready-read-only",
+  "stage": "governance-and-regulation",
+  "synthetic": true,
+  "evaluationTime": "2026-01-15T12:00:00Z",
+  "demand": {
+    "demandId": "white-goods.demand.synthetic-read",
+    "organizationId": "white-goods.synthetic-tenant",
+    "scopeId": "white-goods.scope.synthetic-pilot",
+    "requiredControlId": "white-goods.control.accountability",
+    "actionCategory": "READ_ONLY",
+    "autonomyLevel": "OBSERVE",
+    "integrationDeclarationId": "white-goods.integration.postgresql-read",
+    "policyReferenceId": null,
+    "accessCredentialReferenceId": "white-goods.access.synthetic-read",
+    "accessScopeApproved": true,
+    "receiptRequirementId": null,
+    "idempotencyRequirementId": null,
+    "compensationMode": "NOT_APPLICABLE",
+    "compensationReferenceId": null,
+    "outcomeReviewReferenceId": null
+  },
+  "approvalRequest": null,
+  "waiverRecord": null,
+  "evidence": {"source": false, "candidate": false, "ci": false, "merge": false, "artifact": false, "published": false, "deployment": false, "runtime": false, "assurance": false, "tenantAcceptance": false},
+  "expectedDecision": {"status": "READY", "reasonCodes": []}
+}

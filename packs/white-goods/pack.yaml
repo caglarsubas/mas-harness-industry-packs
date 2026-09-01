@@ -2,8 +2,8 @@ apiVersion: harness.planeon.ai/industry-pack/v1alpha1
 kind: IndustryPack
 metadata:
   id: white-goods.manufacturing
-  version: 0.2.0
-  title: White-goods business, domain, and data-readiness foundation
+  version: 0.3.0
+  title: White-goods business, data-readiness, governance, and integration foundation
   industry: white-goods
   license: Apache-2.0
   packKind: SECTOR
@@ -37,10 +37,25 @@ content:
     - id: white-goods.data.sources
       stage: data-readiness
       path: questions/data/sources.yaml
+    - id: white-goods.governance.applicability
+      stage: governance-and-regulation
+      path: questions/governance/applicability.yaml
+    - id: white-goods.governance.autonomy
+      stage: governance-and-regulation
+      path: questions/governance/autonomy.yaml
+    - id: white-goods.governance.waivers
+      stage: governance-and-regulation
+      path: questions/governance/waivers.yaml
+    - id: white-goods.integrations.declarations
+      stage: integration-readiness
+      path: questions/integrations/declarations.yaml
   rules:
     - id: white-goods.data.block-unready
       stage: data-readiness
       path: rules/data-readiness.json
+    - id: white-goods.governance.block-unsafe-action
+      stage: governance-and-regulation
+      path: rules/governance.json
   readiness:
     - id: white-goods.data.contract-binding
       stage: data-readiness
@@ -58,7 +73,19 @@ content:
     - id: white-goods.domain.shapes
       stage: evidence-and-acceptance
       path: ontology/white-goods.shacl.ttl
-  controls: []
+  controls:
+    - id: white-goods.governance.contract-binding
+      stage: governance-and-regulation
+      path: controls/contract-binding.json
+    - id: white-goods.governance.control-requirements
+      stage: governance-and-regulation
+      path: controls/control-requirements.json
+    - id: white-goods.integrations.declaration-records
+      stage: integration-readiness
+      path: controls/integration-declarations.json
+    - id: white-goods.governance.waiver-policy
+      stage: governance-and-regulation
+      path: controls/waiver-policy.json
   providerPreferences: []
   fixtures:
     - id: white-goods.answers.accepted-pilot
@@ -115,3 +142,36 @@ content:
     - id: white-goods.readiness.warn-freshness
       stage: data-readiness
       path: fixtures/readiness/warn-freshness.json
+    - id: white-goods.governance.fixture.ready-read-only
+      stage: governance-and-regulation
+      path: fixtures/governance/ready-read-only.json
+    - id: white-goods.governance.fixture.ready-reversible-write
+      stage: governance-and-regulation
+      path: fixtures/governance/ready-reversible-write.json
+    - id: white-goods.governance.fixture.missing-policy
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-missing-policy.json
+    - id: white-goods.governance.fixture.missing-approval
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-missing-approval.json
+    - id: white-goods.governance.fixture.missing-receipt
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-missing-receipt.json
+    - id: white-goods.governance.fixture.missing-compensation
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-missing-compensation.json
+    - id: white-goods.governance.fixture.unknown-side-effect
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-unknown-side-effect.json
+    - id: white-goods.governance.fixture.self-approval
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-self-approval.json
+    - id: white-goods.governance.fixture.active-waiver
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-active-waiver-promotion-blocked.json
+    - id: white-goods.governance.fixture.expired-waiver
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-expired-waiver.json
+    - id: white-goods.governance.fixture.invalid-waiver
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-waiver-missing-compensating-control.json

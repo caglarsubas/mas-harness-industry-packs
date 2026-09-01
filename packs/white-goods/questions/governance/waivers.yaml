@@ -1,0 +1,34 @@
+apiVersion: harness.planeon.ai/questionnaire/v1alpha1
+kind: Questionnaire
+id: white-goods.governance.waivers
+stage: governance-and-regulation
+title: White-goods waiver declaration
+questions:
+  - id: waiver-control-id
+    prompt: Provide the exact required control identifier for the documented exception.
+    responseType: string
+    required: false
+  - id: waiver-scope-id
+    prompt: Provide the exact demand scope identifier for the documented exception.
+    responseType: string
+    required: false
+  - id: waiver-approval-reference-id
+    prompt: Provide the stable WAIVER ApprovalRequest identifier.
+    responseType: string
+    required: false
+  - id: waiver-justification-evidence-refs
+    prompt: Provide stable local identifiers for exception justification evidence.
+    responseType: string
+    required: false
+  - id: waiver-compensating-control-id
+    prompt: Provide the stable compensating-control identifier.
+    responseType: string
+    required: false
+  - id: waiver-expiry-time
+    prompt: State the non-renewable waiver expiry as an explicit UTC timestamp.
+    responseType: string
+    required: false
+  - id: waiver-does-not-satisfy-promotion-confirmed
+    prompt: Confirm that a waiver documents an exception and cannot satisfy production promotion.
+    responseType: boolean
+    required: true

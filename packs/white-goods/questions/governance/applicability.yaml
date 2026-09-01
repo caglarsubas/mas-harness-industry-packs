@@ -1,0 +1,28 @@
+apiVersion: harness.planeon.ai/questionnaire/v1alpha1
+kind: Questionnaire
+id: white-goods.governance.applicability
+stage: governance-and-regulation
+title: White-goods regulatory applicability evidence
+questions:
+  - id: governance-applicability-owner-role
+    prompt: Name the tenant role accountable for confirming regulatory applicability.
+    responseType: string
+    required: true
+  - id: jurisdiction-market-scope
+    prompt: State the tenant-approved jurisdiction and market scope without drawing a legal conclusion.
+    responseType: string
+    required: true
+  - id: governance-applicability-themes
+    prompt: Select each candidate governance theme that tenant authority must assess.
+    responseType: choice
+    required: true
+    choices: [product-safety, data-protection, cybersecurity, quality-management, environmental-energy]
+    multiple: true
+  - id: governance-applicability-evidence-refs
+    prompt: Provide stable local evidence identifiers for the tenant applicability determination.
+    responseType: string
+    required: true
+  - id: tenant-authority-review-complete
+    prompt: Confirm that an authorized tenant role completed the applicability review.
+    responseType: boolean
+    required: true

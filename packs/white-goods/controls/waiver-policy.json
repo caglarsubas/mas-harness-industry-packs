@@ -1,0 +1,18 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-waiver-policy/v1alpha1",
+  "kind": "IndustryWaiverPolicy",
+  "id": "white-goods.governance.waiver-policy",
+  "stage": "governance-and-regulation",
+  "illustrative": true,
+  "tenantReplacementRequired": true,
+  "requiredFields": ["controlId", "scopeId", "approvalRequest", "justificationEvidenceIds", "compensatingControlId", "expiresAt", "renewable"],
+  "approvalType": "WAIVER",
+  "sameControlRequired": true,
+  "sameCompleteScopeRequired": true,
+  "compensatingControlRequired": true,
+  "unexpiredApprovalRequired": true,
+  "renewable": false,
+  "waiverEffect": "DOCUMENT_EXCEPTION_ONLY_PROMOTION_REMAINS_BLOCKED",
+  "waiverSatisfiesPromotion": false,
+  "requiredPromotionEvidence": "FRESH_PASS_FOR_EVERY_REQUIRED_CONTROL"
+}

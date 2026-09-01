@@ -1,0 +1,48 @@
+apiVersion: harness.planeon.ai/questionnaire/v1alpha1
+kind: Questionnaire
+id: white-goods.integrations.declarations
+stage: integration-readiness
+title: White-goods integration declaration
+questions:
+  - id: integration-class-scope
+    prompt: Select each integration class required by the accepted scope.
+    responseType: choice
+    required: true
+    choices: [api, postgresql, files, events]
+    multiple: true
+  - id: integration-operation-class
+    prompt: Select the maximum operation class requested.
+    responseType: choice
+    required: true
+    choices: [READ, WRITE]
+    multiple: false
+  - id: integration-side-effect-class
+    prompt: Select the declared side-effect class.
+    responseType: choice
+    required: true
+    choices: [NONE, REVERSIBLE, IRREVERSIBLE, UNKNOWN]
+    multiple: false
+  - id: integration-owner-role
+    prompt: Name the accountable tenant owner role for the integration.
+    responseType: string
+    required: true
+  - id: integration-custodian-role
+    prompt: Name the tenant role responsible for integration custody.
+    responseType: string
+    required: true
+  - id: access-credential-reference-id
+    prompt: Provide only a stable scoped credential reference identifier, never a credential value.
+    responseType: string
+    required: true
+  - id: scoped-access-approved
+    prompt: Confirm that tenant authority approved the declared access scope.
+    responseType: boolean
+    required: true
+  - id: integration-data-classification-scope
+    prompt: State the approved data classification scope without including tenant records.
+    responseType: string
+    required: true
+  - id: integration-evidence-refs
+    prompt: Provide stable local identifiers for integration inspection evidence.
+    responseType: string
+    required: true

@@ -1,0 +1,17 @@
+{
+  "apiVersion": "harness.planeon.ai/pack-rule/v1alpha1",
+  "kind": "PackRule",
+  "id": "white-goods.governance.block-unsafe-action",
+  "stage": "governance-and-regulation",
+  "when": {
+    "all": [
+      {"in": ["answers.action-category", ["REVERSIBLE_WRITE", "IRREVERSIBLE_WRITE", "UNKNOWN_SIDE_EFFECT"]]},
+      {"eq": ["answers.governance-evidence-complete", false]}
+    ]
+  },
+  "action": {
+    "type": "BLOCK_READINESS",
+    "target": "white-goods.governance.write-evidence",
+    "message": "Write-capable or unknown-side-effect demand requires complete tenant governance evidence."
+  }
+}

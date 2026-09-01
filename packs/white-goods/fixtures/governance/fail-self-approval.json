@@ -1,0 +1,13 @@
+{
+  "apiVersion": "harness.planeon.ai/governance-fixture/v1alpha1",
+  "kind": "GovernanceFixture",
+  "id": "white-goods.governance.fixture.self-approval",
+  "stage": "governance-and-regulation",
+  "synthetic": true,
+  "evaluationTime": "2026-01-15T12:00:00Z",
+  "demand": {"demandId": "white-goods.demand.synthetic-write", "organizationId": "white-goods.synthetic-tenant", "scopeId": "white-goods.scope.synthetic-pilot", "requiredControlId": "white-goods.control.mutation-approval", "actionCategory": "REVERSIBLE_WRITE", "autonomyLevel": "APPROVAL_REQUIRED", "integrationDeclarationId": "white-goods.integration.api-reversible-write", "policyReferenceId": "white-goods.policy.synthetic-write", "accessCredentialReferenceId": "white-goods.access.synthetic-write", "accessScopeApproved": true, "receiptRequirementId": "white-goods.receipt.synthetic-write", "idempotencyRequirementId": "white-goods.idempotency.synthetic-write", "compensationMode": "COMPENSATE", "compensationReferenceId": "white-goods.compensation.synthetic-write", "outcomeReviewReferenceId": null},
+  "approvalRequest": {"apiVersion": "harness.planeon.ai/v1alpha1", "kind": "ApprovalRequest", "metadata": {"id": "white-goods.approval.synthetic-mutation", "version": "0.3.0"}, "spec": {"organizationId": "white-goods.synthetic-tenant", "approvalType": "MUTATION", "state": "APPROVED", "subject": {"kind": "industry-action-demand", "id": "white-goods.demand.synthetic-write", "digest": "1111111111111111111111111111111111111111111111111111111111111111"}, "policyRef": {"kind": "policy-bundle", "id": "white-goods.policy.synthetic-write", "digest": "2222222222222222222222222222222222222222222222222222222222222222"}, "requiredDecisions": 2, "requestedBy": {"type": "HUMAN", "id": "white-goods.actor.requester"}, "requestedAt": "2026-01-15T10:00:00Z", "expiresAt": "2026-01-15T13:00:00Z", "decisions": [{"actor": {"type": "HUMAN", "id": "white-goods.actor.requester"}, "decision": "APPROVE", "decidedAt": "2026-01-15T10:30:00Z", "reasonCode": "SYNTHETIC_SCOPE_APPROVED"}, {"actor": {"type": "HUMAN", "id": "white-goods.actor.approver-b"}, "decision": "APPROVE", "decidedAt": "2026-01-15T10:31:00Z", "reasonCode": "SYNTHETIC_SCOPE_APPROVED"}], "reasonCode": null}},
+  "waiverRecord": null,
+  "evidence": {"source": false, "candidate": false, "ci": false, "merge": false, "artifact": false, "published": false, "deployment": false, "runtime": false, "assurance": false, "tenantAcceptance": false},
+  "expectedDecision": {"status": "BLOCKED", "reasonCodes": ["SELF_APPROVAL_FORBIDDEN"]}
+}

@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "harness.planeon.ai/make-target-descriptor/v1alpha1",
+  "packetId": "IND-001",
+  "targets": [
+    {"name": "build-reproducible", "acceptedVariables": {}, "argvTemplate": [["python3", "ci/build_reproducible.py"]]},
+    {"name": "help", "acceptedVariables": {}, "argvTemplate": [["python3", "ci/handlers/help.py"]]},
+    {"name": "pack-framework-test", "acceptedVariables": {}, "argvTemplate": [["python3", "-m", "pytest", "tests/framework"], ["python3", "ci/validate_porting.py", "PORTING.yaml"]]},
+    {"name": "prefetch", "acceptedVariables": {}, "argvTemplate": [["python3", "ci/handlers/prefetch.py"]]},
+    {"name": "zero-bill", "acceptedVariables": {}, "argvTemplate": [["python3", "ci/zero_bill_scan.py", "."]]}
+  ]
+}
+

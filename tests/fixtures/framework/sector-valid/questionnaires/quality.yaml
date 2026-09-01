@@ -1,0 +1,10 @@
+apiVersion: harness.planeon.ai/questionnaire/v1alpha1
+kind: Questionnaire
+id: manufacturing.quality.objective
+stage: domain-and-outcomes
+title: Manufacturing quality objective
+questions:
+  - id: quality-objective
+    prompt: State the measurable quality outcome for this sector scenario.
+    responseType: string
+    required: true

@@ -1,0 +1,14 @@
+apiVersion: harness.planeon.ai/questionnaire/v1alpha1
+kind: Questionnaire
+id: common.business-context.owner
+stage: business-context
+title: Accountable business ownership
+questions:
+  - id: business-owner
+    prompt: Name the accountable business role for this harness initiative.
+    responseType: string
+    required: true
+  - id: intended-outcome
+    prompt: State the measurable business outcome and the boundary of use.
+    responseType: string
+    required: true

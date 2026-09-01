@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "harness.planeon.ai/make-target-descriptor/v1alpha1",
+  "packetId": "IND-WG-002",
+  "targets": [
+    {
+      "name": "data-readiness",
+      "acceptedVariables": {"PACK": {"const": "white-goods"}},
+      "argvTemplate": [["python3", "ci/handlers/ind_wg_002.py", {"variable": "PACK"}]]
+    }
+  ]
+}

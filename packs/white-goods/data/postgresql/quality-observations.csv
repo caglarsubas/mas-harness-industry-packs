@@ -1,0 +1,5 @@
+record_id,product_family,quality_characteristic,result,observed_at
+pg-001,refrigeration,temperature-stability,conforming,2026-01-15T11:49:00Z
+pg-002,laundry,vibration-performance,conforming,2026-01-15T11:50:00Z
+pg-003,dish-care,water-containment,conforming,2026-01-15T11:51:00Z
+pg-004,cooking,electrical-test-result,review,2026-01-15T11:52:00Z

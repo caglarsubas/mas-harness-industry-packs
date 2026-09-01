@@ -1,0 +1,4 @@
+{"eventId":"event-001","productFamily":"refrigeration","qualityCharacteristic":"sealed-system-integrity","result":"conforming","observedAt":"2026-01-15T11:48:00Z"}
+{"eventId":"event-002","productFamily":"laundry","qualityCharacteristic":"vibration-performance","result":"conforming","observedAt":"2026-01-15T11:49:00Z"}
+{"eventId":"event-003","productFamily":"dish-care","qualityCharacteristic":"water-containment","result":"review","observedAt":"2026-01-15T11:50:00Z"}
+{"eventId":"event-004","productFamily":"cooking","qualityCharacteristic":"electrical-test-result","result":"conforming","observedAt":"2026-01-15T11:51:00Z"}

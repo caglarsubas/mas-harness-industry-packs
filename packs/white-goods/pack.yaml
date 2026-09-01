@@ -2,8 +2,8 @@ apiVersion: harness.planeon.ai/industry-pack/v1alpha1
 kind: IndustryPack
 metadata:
   id: white-goods.manufacturing
-  version: 0.1.0
-  title: White-goods business and domain foundation
+  version: 0.2.0
+  title: White-goods business, domain, and data-readiness foundation
   industry: white-goods
   license: Apache-2.0
   packKind: SECTOR
@@ -31,8 +31,26 @@ content:
     - id: white-goods.business.roles
       stage: business-context
       path: questions/business/roles.yaml
-  rules: []
-  readiness: []
+    - id: white-goods.data.readiness-evidence
+      stage: data-readiness
+      path: questions/data/readiness.yaml
+    - id: white-goods.data.sources
+      stage: data-readiness
+      path: questions/data/sources.yaml
+  rules:
+    - id: white-goods.data.block-unready
+      stage: data-readiness
+      path: rules/data-readiness.json
+  readiness:
+    - id: white-goods.data.contract-binding
+      stage: data-readiness
+      path: data/contract-binding.json
+    - id: white-goods.data.dataset-lock
+      stage: data-readiness
+      path: data/dataset.lock.json
+    - id: white-goods.data.readiness-policy
+      stage: data-readiness
+      path: data/readiness-policy.json
   ontologies:
     - id: white-goods.domain.ontology
       stage: domain-and-outcomes
@@ -61,3 +79,39 @@ content:
     - id: white-goods.answers.unverified-plant-claim
       stage: evidence-and-acceptance
       path: fixtures/answers/unverified-plant-claim.json
+    - id: white-goods.data.api-observations
+      stage: data-readiness
+      path: data/api/service-observations.json
+    - id: white-goods.data.event-observations
+      stage: data-readiness
+      path: data/events/telemetry.jsonl
+    - id: white-goods.data.file-inspection
+      stage: data-readiness
+      path: data/files/inspection-evidence.md
+    - id: white-goods.data.postgresql-observations
+      stage: data-readiness
+      path: data/postgresql/quality-observations.csv
+    - id: white-goods.data.source-inventory
+      stage: data-readiness
+      path: fixtures/sources/source-inventory.json
+    - id: white-goods.readiness.fail-duplicate
+      stage: data-readiness
+      path: fixtures/readiness/fail-duplicate.json
+    - id: white-goods.readiness.fail-missing
+      stage: data-readiness
+      path: fixtures/readiness/fail-missing.json
+    - id: white-goods.readiness.fail-stale
+      stage: data-readiness
+      path: fixtures/readiness/fail-stale.json
+    - id: white-goods.readiness.fail-unclassified
+      stage: data-readiness
+      path: fixtures/readiness/fail-unclassified.json
+    - id: white-goods.readiness.fail-unprovenanced
+      stage: data-readiness
+      path: fixtures/readiness/fail-unprovenanced.json
+    - id: white-goods.readiness.pass
+      stage: data-readiness
+      path: fixtures/readiness/pass.json
+    - id: white-goods.readiness.warn-freshness
+      stage: data-readiness
+      path: fixtures/readiness/warn-freshness.json

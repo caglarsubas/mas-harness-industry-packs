@@ -1,0 +1,18 @@
+{
+  "apiVersion": "harness.planeon.ai/data-readiness-policy/v1alpha1",
+  "kind": "DataReadinessPolicy",
+  "id": "white-goods.data.readiness-policy",
+  "stage": "data-readiness",
+  "version": "0.2.0",
+  "illustrative": true,
+  "tenantReplacementRequired": true,
+  "decisionPrecedence": ["FAIL", "WARN", "PASS"],
+  "missingDataReasonCode": "MISSING_DATA",
+  "metrics": {
+    "completeness": {"passMinimum": "0.98", "warnMinimum": "0.95"},
+    "freshnessMinutes": {"passMaximum": "15", "warnMaximum": "60"},
+    "duplicateRate": {"passMaximum": "0.01", "warnMaximum": "0.02"},
+    "classificationCoverage": {"passMinimum": "1.00", "warnMinimum": "0.98"},
+    "provenanceCoverage": {"passMinimum": "1.00", "warnMinimum": "0.98"}
+  }
+}

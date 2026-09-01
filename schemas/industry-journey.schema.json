@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://harness.planeon.ai/schemas/industry-journey/v1alpha1",
+  "title": "IndustryJourney v1alpha1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["apiVersion", "kind", "stages"],
+  "properties": {
+    "apiVersion": {"const": "harness.planeon.ai/industry-journey/v1alpha1"},
+    "kind": {"const": "IndustryJourney"},
+    "stages": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "prefixItems": [
+        {"$ref": "#/$defs/business"},
+        {"$ref": "#/$defs/domain"},
+        {"$ref": "#/$defs/data"},
+        {"$ref": "#/$defs/governance"},
+        {"$ref": "#/$defs/integration"},
+        {"$ref": "#/$defs/demand"},
+        {"$ref": "#/$defs/environment"},
+        {"$ref": "#/$defs/evidence"}
+      ],
+      "items": false
+    }
+  },
+  "$defs": {
+    "stage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "ordinal", "title", "purpose"],
+      "properties": {
+        "id": {"type": "string"},
+        "ordinal": {"type": "integer", "minimum": 1, "maximum": 8},
+        "title": {"type": "string", "minLength": 1, "maxLength": 120},
+        "purpose": {"type": "string", "minLength": 1, "maxLength": 500}
+      }
+    },
+    "business": {"allOf": [{"$ref": "#/$defs/stage"}, {"properties": {"id": {"const": "business-context"}, "ordinal": {"const": 1}}}]},
+    "domain": {"allOf": [{"$ref": "#/$defs/stage"}, {"properties": {"id": {"const": "domain-and-outcomes"}, "ordinal": {"const": 2}}}]},
+    "data": {"allOf": [{"$ref": "#/$defs/stage"}, {"properties": {"id": {"const": "data-readiness"}, "ordinal": {"const": 3}}}]},
+    "governance": {"allOf": [{"$ref": "#/$defs/stage"}, {"properties": {"id": {"const": "governance-and-regulation"}, "ordinal": {"const": 4}}}]},
+    "integration": {"allOf": [{"$ref": "#/$defs/stage"}, {"properties": {"id": {"const": "integration-readiness"}, "ordinal": {"const": 5}}}]},
+    "demand": {"allOf": [{"$ref": "#/$defs/stage"}, {"properties": {"id": {"const": "harness-demand"}, "ordinal": {"const": 6}}}]},
+    "environment": {"allOf": [{"$ref": "#/$defs/stage"}, {"properties": {"id": {"const": "environment-and-provider-fit"}, "ordinal": {"const": 7}}}]},
+    "evidence": {"allOf": [{"$ref": "#/$defs/stage"}, {"properties": {"id": {"const": "evidence-and-acceptance"}, "ordinal": {"const": 8}}}]}
+  }
+}
+

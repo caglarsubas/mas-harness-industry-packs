@@ -1,0 +1,36 @@
+apiVersion: harness.planeon.ai/industry-pack/v1alpha1
+kind: IndustryPack
+metadata:
+  id: manufacturing.example
+  version: 0.1.0
+  title: Synthetic manufacturing example
+  industry: manufacturing
+  license: Apache-2.0
+  packKind: SECTOR
+compatibility:
+  frameworkVersion: 0.1.0
+  contractsLock:
+    path: contracts.lock.json
+    sha256: 81d7470e28b452cbf8de2e4903b47b5335709b09cf6375f78481057973d75c91
+journey:
+  path: journey.yaml
+  sha256: 950a6d21c68a35117a3cd36d67491cde85274ef911d78ff8585e1be8671db2fb
+overlayMode: APPEND_ONLY
+extends:
+  id: common.foundation
+  version: 1.0.0
+  packDigest: 3cfea19e6e0a4a653d63622e250f40001b4f8221ebab18fa5bfc1601b8eddea3
+content:
+  questionnaires:
+    - id: manufacturing.quality.objective
+      stage: domain-and-outcomes
+      path: questionnaires/quality.yaml
+  rules:
+    - id: manufacturing.quality.require-evidence
+      stage: data-readiness
+      path: rules/require-evidence.yaml
+  readiness: []
+  ontologies: []
+  controls: []
+  providerPreferences: []
+  fixtures: []

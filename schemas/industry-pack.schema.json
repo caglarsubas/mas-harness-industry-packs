@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://harness.planeon.ai/schemas/industry-pack/v1alpha1",
+  "title": "IndustryPack v1alpha1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["apiVersion", "kind", "metadata", "compatibility", "journey", "overlayMode", "extends", "content"],
+  "properties": {
+    "apiVersion": {"const": "harness.planeon.ai/industry-pack/v1alpha1"},
+    "kind": {"const": "IndustryPack"},
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "title", "industry", "license", "packKind"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "version": {"type": "string", "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"},
+        "title": {"type": "string", "minLength": 1, "maxLength": 160},
+        "industry": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$", "maxLength": 80},
+        "license": {"enum": ["Apache-2.0", "BSD-2-Clause", "BSD-3-Clause", "MIT"]},
+        "packKind": {"enum": ["COMMON", "SECTOR"]}
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["frameworkVersion", "contractsLock"],
+      "properties": {
+        "frameworkVersion": {"const": "0.1.0"},
+        "contractsLock": {"$ref": "#/$defs/fileBinding"}
+      }
+    },
+    "journey": {"$ref": "#/$defs/fileBinding"},
+    "overlayMode": {"const": "APPEND_ONLY"},
+    "extends": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "version", "packDigest"],
+          "properties": {
+            "id": {"const": "common.foundation"},
+            "version": {"const": "1.0.0"},
+            "packDigest": {"$ref": "#/$defs/sha"}
+          }
+        }
+      ]
+    },
+    "content": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["questionnaires", "rules", "readiness", "ontologies", "controls", "providerPreferences", "fixtures"],
+      "properties": {
+        "questionnaires": {"$ref": "#/$defs/resources"},
+        "rules": {"$ref": "#/$defs/resources"},
+        "readiness": {"$ref": "#/$defs/resources"},
+        "ontologies": {"$ref": "#/$defs/resources"},
+        "controls": {"$ref": "#/$defs/resources"},
+        "providerPreferences": {"$ref": "#/$defs/resources"},
+        "fixtures": {"$ref": "#/$defs/resources"}
+      }
+    }
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[a-z][a-z0-9]*(?:[.-][a-z0-9]+)*$", "maxLength": 160},
+    "sha": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "path": {"type": "string", "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))[a-zA-Z0-9][a-zA-Z0-9._/-]*$", "maxLength": 240},
+    "stage": {"enum": ["business-context", "domain-and-outcomes", "data-readiness", "governance-and-regulation", "integration-readiness", "harness-demand", "environment-and-provider-fit", "evidence-and-acceptance"]},
+    "fileBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {"path": {"$ref": "#/$defs/path"}, "sha256": {"$ref": "#/$defs/sha"}}
+    },
+    "resource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "stage", "path"],
+      "properties": {"id": {"$ref": "#/$defs/id"}, "stage": {"$ref": "#/$defs/stage"}, "path": {"$ref": "#/$defs/path"}}
+    },
+    "resources": {"type": "array", "items": {"$ref": "#/$defs/resource"}}
+  }
+}
+

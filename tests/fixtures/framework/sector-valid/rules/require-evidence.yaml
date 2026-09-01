@@ -1,0 +1,14 @@
+apiVersion: harness.planeon.ai/pack-rule/v1alpha1
+kind: PackRule
+id: manufacturing.quality.require-evidence
+stage: data-readiness
+when:
+  all:
+    - exists: answers.quality-objective
+    - gte:
+        - answers.data.provenance-coverage
+        - 0.95
+action:
+  type: REQUIRE_EVIDENCE
+  target: manufacturing.quality.provenance
+  message: Provide provenance coverage evidence before readiness can advance.

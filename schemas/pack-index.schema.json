@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://harness.planeon.ai/schemas/pack-index/v1alpha1",
+  "title": "PackIndex v1alpha1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["apiVersion", "kind", "pack", "files", "packDigest", "indexDigest", "evidence"],
+  "properties": {
+    "apiVersion": {"const": "harness.planeon.ai/pack-index/v1alpha1"},
+    "kind": {"const": "PackIndex"},
+    "pack": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {"id": {"type": "string"}, "version": {"type": "string"}}
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "mediaType", "size", "sha256"],
+        "properties": {
+          "path": {"type": "string"},
+          "mediaType": {"type": "string"},
+          "size": {"type": "integer", "minimum": 0},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    },
+    "packDigest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "indexDigest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["published", "runtimeEvidence", "assuranceEvidence", "tenantAcceptance"],
+      "properties": {
+        "published": {"const": false},
+        "runtimeEvidence": {"const": false},
+        "assuranceEvidence": {"const": false},
+        "tenantAcceptance": {"const": false}
+      }
+    }
+  }
+}
+

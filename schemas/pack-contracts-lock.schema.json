@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://harness.planeon.ai/schemas/pack-contracts-lock/v1alpha1",
+  "title": "PackContractsLock v1alpha1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["apiVersion", "kind", "repository", "commit", "releaseManifestSha256", "catalogDigest", "schemas"],
+  "properties": {
+    "apiVersion": {"const": "harness.planeon.ai/pack-contracts-lock/v1alpha1"},
+    "kind": {"const": "PackContractsLock"},
+    "repository": {"const": "caglarsubas/mas-harness-contracts"},
+    "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "releaseManifestSha256": {"$ref": "#/$defs/sha"},
+    "catalogDigest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "schemas": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256"],
+        "properties": {
+          "path": {"type": "string", "pattern": "^schemas/v1alpha1/guidance/[a-z][a-z0-9.-]*\\.schema\\.json$"},
+          "sha256": {"$ref": "#/$defs/sha"}
+        }
+      }
+    }
+  },
+  "$defs": {"sha": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+}
+

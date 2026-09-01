@@ -1,0 +1,6 @@
+apiVersion: harness.planeon.ai/porting-ledger/v1alpha1
+kind: PortingLedger
+status: NO_AUTHORIZATION
+authorizations: []
+appliedPorts: []
+

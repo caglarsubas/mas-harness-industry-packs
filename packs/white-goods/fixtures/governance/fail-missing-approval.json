@@ -1,0 +1,13 @@
+{
+  "apiVersion": "harness.planeon.ai/governance-fixture/v1alpha1",
+  "kind": "GovernanceFixture",
+  "id": "white-goods.governance.fixture.missing-approval",
+  "stage": "governance-and-regulation",
+  "synthetic": true,
+  "evaluationTime": "2026-01-15T12:00:00Z",
+  "demand": {"demandId": "white-goods.demand.synthetic-write", "organizationId": "white-goods.synthetic-tenant", "scopeId": "white-goods.scope.synthetic-pilot", "requiredControlId": "white-goods.control.mutation-approval", "actionCategory": "REVERSIBLE_WRITE", "autonomyLevel": "APPROVAL_REQUIRED", "integrationDeclarationId": "white-goods.integration.api-reversible-write", "policyReferenceId": "white-goods.policy.synthetic-write", "accessCredentialReferenceId": "white-goods.access.synthetic-write", "accessScopeApproved": true, "receiptRequirementId": "white-goods.receipt.synthetic-write", "idempotencyRequirementId": "white-goods.idempotency.synthetic-write", "compensationMode": "COMPENSATE", "compensationReferenceId": "white-goods.compensation.synthetic-write", "outcomeReviewReferenceId": null},
+  "approvalRequest": null,
+  "waiverRecord": null,
+  "evidence": {"source": false, "candidate": false, "ci": false, "merge": false, "artifact": false, "published": false, "deployment": false, "runtime": false, "assurance": false, "tenantAcceptance": false},
+  "expectedDecision": {"status": "BLOCKED", "reasonCodes": ["MISSING_MUTATION_APPROVAL"]}
+}

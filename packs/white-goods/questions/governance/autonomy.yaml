@@ -1,0 +1,64 @@
+apiVersion: harness.planeon.ai/questionnaire/v1alpha1
+kind: Questionnaire
+id: white-goods.governance.autonomy
+stage: governance-and-regulation
+title: White-goods action and autonomy boundary
+questions:
+  - id: action-category
+    prompt: Select the highest action category requested for this scope.
+    responseType: choice
+    required: true
+    choices: [READ_ONLY, REVERSIBLE_WRITE, IRREVERSIBLE_WRITE, UNKNOWN_SIDE_EFFECT]
+    multiple: false
+  - id: autonomy-level
+    prompt: Select the maximum requested autonomy level.
+    responseType: choice
+    required: true
+    choices: [OBSERVE, RECOMMEND, APPROVAL_REQUIRED, BOUNDED_AUTONOMOUS]
+    multiple: false
+  - id: accountable-operator-role
+    prompt: Name the accountable tenant operator role for actions in this scope.
+    responseType: string
+    required: true
+  - id: policy-reference-id
+    prompt: Provide the stable local policy reference identifier for write-capable actions.
+    responseType: string
+    required: false
+  - id: mutation-approval-reference-id
+    prompt: Provide the stable ApprovalRequest identifier for write-capable actions.
+    responseType: string
+    required: false
+  - id: approval-separation-required
+    prompt: Confirm whether requester and approver identities must be distinct.
+    responseType: boolean
+    required: true
+  - id: required-approval-quorum
+    prompt: State the tenant-approved decision quorum for write-capable actions.
+    responseType: number
+    required: true
+  - id: durable-receipt-requirement-id
+    prompt: Provide the stable local requirement identifier for a durable action receipt.
+    responseType: string
+    required: false
+  - id: idempotency-requirement-id
+    prompt: Provide the stable local idempotency requirement identifier for writes.
+    responseType: string
+    required: false
+  - id: compensation-mode
+    prompt: Select how a write is compensated or independently outcome-reviewed.
+    responseType: choice
+    required: true
+    choices: [NOT_APPLICABLE, COMPENSATE, OUTCOME_REVIEW_ONLY]
+    multiple: false
+  - id: compensation-reference-id
+    prompt: Provide the stable compensation reference identifier when compensation is selected.
+    responseType: string
+    required: false
+  - id: outcome-review-reference-id
+    prompt: Provide the stable independent outcome-review reference identifier when required.
+    responseType: string
+    required: false
+  - id: governance-evidence-complete
+    prompt: Confirm that every required governance answer is backed by tenant evidence.
+    responseType: boolean
+    required: true

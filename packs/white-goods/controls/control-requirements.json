@@ -1,0 +1,87 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-control-requirements/v1alpha1",
+  "kind": "IndustryControlRequirementRecordSet",
+  "id": "white-goods.governance.control-requirements",
+  "stage": "governance-and-regulation",
+  "contractStatus": "PACK_LOCAL_DATA_ONLY",
+  "tenantPolicyRequired": true,
+  "requirements": [
+    {
+      "id": "white-goods.control.regulatory-applicability",
+      "title": "Tenant authority determines regulatory applicability",
+      "ownerRole": "governance-owner",
+      "applicabilityQuestionIds": ["governance-applicability-themes", "jurisdiction-market-scope"],
+      "requiredEvidenceKinds": ["tenant-authority-decision", "scope-evidence"],
+      "appliesToActionCategories": ["READ_ONLY", "REVERSIBLE_WRITE", "IRREVERSIBLE_WRITE", "UNKNOWN_SIDE_EFFECT"],
+      "waiverEligible": false,
+      "freshnessRequirement": "TENANT_POLICY_DEFINED",
+      "promotionDisposition": "FRESH_PASS_REQUIRED"
+    },
+    {
+      "id": "white-goods.control.accountability",
+      "title": "Every action scope has an accountable operator",
+      "ownerRole": "business-owner",
+      "applicabilityQuestionIds": ["accountable-operator-role"],
+      "requiredEvidenceKinds": ["role-assignment"],
+      "appliesToActionCategories": ["READ_ONLY", "REVERSIBLE_WRITE", "IRREVERSIBLE_WRITE", "UNKNOWN_SIDE_EFFECT"],
+      "waiverEligible": false,
+      "freshnessRequirement": "CURRENT_SCOPE",
+      "promotionDisposition": "FRESH_PASS_REQUIRED"
+    },
+    {
+      "id": "white-goods.control.mutation-policy",
+      "title": "Write-capable actions bind an approved policy",
+      "ownerRole": "governance-owner",
+      "applicabilityQuestionIds": ["policy-reference-id"],
+      "requiredEvidenceKinds": ["policy-reference"],
+      "appliesToActionCategories": ["REVERSIBLE_WRITE", "IRREVERSIBLE_WRITE"],
+      "waiverEligible": false,
+      "freshnessRequirement": "CURRENT_SCOPE",
+      "promotionDisposition": "FRESH_PASS_REQUIRED"
+    },
+    {
+      "id": "white-goods.control.mutation-approval",
+      "title": "Write-capable actions have distinct unexpired approval quorum",
+      "ownerRole": "evidence-approver",
+      "applicabilityQuestionIds": ["approval-separation-required", "mutation-approval-reference-id", "required-approval-quorum"],
+      "requiredEvidenceKinds": ["approval-request", "decision-quorum"],
+      "appliesToActionCategories": ["REVERSIBLE_WRITE", "IRREVERSIBLE_WRITE"],
+      "waiverEligible": true,
+      "freshnessRequirement": "UNEXPIRED_AT_DECISION",
+      "promotionDisposition": "FRESH_PASS_REQUIRED"
+    },
+    {
+      "id": "white-goods.control.durable-receipt",
+      "title": "Write-capable actions declare durable receipt and idempotency",
+      "ownerRole": "technical-owner",
+      "applicabilityQuestionIds": ["durable-receipt-requirement-id", "idempotency-requirement-id"],
+      "requiredEvidenceKinds": ["receipt-requirement", "idempotency-requirement"],
+      "appliesToActionCategories": ["REVERSIBLE_WRITE", "IRREVERSIBLE_WRITE"],
+      "waiverEligible": false,
+      "freshnessRequirement": "CURRENT_ACTION_CONTRACT",
+      "promotionDisposition": "FRESH_PASS_REQUIRED"
+    },
+    {
+      "id": "white-goods.control.compensation-review",
+      "title": "Writes declare compensation or independent outcome review",
+      "ownerRole": "operational-owner",
+      "applicabilityQuestionIds": ["compensation-mode", "compensation-reference-id", "outcome-review-reference-id"],
+      "requiredEvidenceKinds": ["compensation-plan-or-outcome-review"],
+      "appliesToActionCategories": ["REVERSIBLE_WRITE", "IRREVERSIBLE_WRITE"],
+      "waiverEligible": true,
+      "freshnessRequirement": "CURRENT_ACTION_CONTRACT",
+      "promotionDisposition": "FRESH_PASS_REQUIRED"
+    },
+    {
+      "id": "white-goods.control.scoped-access",
+      "title": "Integrations use approved scoped credential references only",
+      "ownerRole": "security-owner",
+      "applicabilityQuestionIds": ["access-credential-reference-id", "scoped-access-approved"],
+      "requiredEvidenceKinds": ["credential-reference", "access-scope-approval"],
+      "appliesToActionCategories": ["READ_ONLY", "REVERSIBLE_WRITE", "IRREVERSIBLE_WRITE"],
+      "waiverEligible": false,
+      "freshnessRequirement": "CURRENT_INTEGRATION_SCOPE",
+      "promotionDisposition": "FRESH_PASS_REQUIRED"
+    }
+  ]
+}

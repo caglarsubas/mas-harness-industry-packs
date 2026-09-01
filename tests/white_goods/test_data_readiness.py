@@ -47,13 +47,13 @@ def test_sector_pack_advances_only_the_data_slice() -> None:
     report = validate_pack(PACK_ROOT, common_root=COMMON)
     pack = load_pack(PACK_ROOT, common_root=COMMON)
     common = load_pack(COMMON)
-    assert report.accepted and report.pack_version == "0.2.0"
+    assert report.accepted and report.pack_version == "0.3.0"
     assert pack.manifest["compatibility"]["frameworkVersion"] == "0.1.0"
     assert pack.manifest["extends"]["packDigest"] == "3cfea19e6e0a4a653d63622e250f40001b4f8221ebab18fa5bfc1601b8eddea3"
     assert pack.files["contracts.lock.json"] == common.files["contracts.lock.json"]
     assert pack.files["journey.yaml"] == common.files["journey.yaml"]
-    assert len(pack.files) == 32
-    assert len(pack.resource_ids) == 29
+    assert len(pack.files) == 52
+    assert len(pack.resource_ids) == 49
     assert not (pack.resource_ids & common.resource_ids)
 
 
@@ -210,10 +210,10 @@ def test_sector_index_archive_and_handler_are_reproducible(capsys: pytest.Captur
     first_archive, second_archive = archive_bytes(PACK_ROOT), archive_bytes(PACK_ROOT)
     assert canonical_json_bytes(first_index) == canonical_json_bytes(second_index)
     assert first_archive == second_archive
-    assert first_archive[0] == "white-goods.manufacturing-0.2.0.tar.gz"
+    assert first_archive[0] == "white-goods.manufacturing-0.3.0.tar.gz"
     assert main(["white-goods"]) == 0
     output = json.loads(capsys.readouterr().out)
-    assert output["packVersion"] == "0.2.0"
+    assert output["packVersion"] == "0.3.0"
     assert output["frameworkVersion"] == "0.1.1"
     assert output["evidence"] == READINESS_EVIDENCE
     assert output["retainedArtifacts"] is False

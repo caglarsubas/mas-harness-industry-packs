@@ -1,0 +1,16 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-integration-declarations/v1alpha1",
+  "kind": "IndustryIntegrationDeclarationRecordSet",
+  "id": "white-goods.integrations.declaration-records",
+  "stage": "integration-readiness",
+  "contractStatus": "PACK_LOCAL_DATA_ONLY",
+  "synthetic": true,
+  "declarations": [
+    {"id": "white-goods.integration.api-read", "integrationClass": "api", "operationClass": "READ", "actionCategory": "READ_ONLY", "sideEffectClass": "NONE", "ownerRole": "technical-owner", "custodianRole": "integration-custodian", "accessCredentialReferenceRequired": true, "scopedAccessApprovalRequired": true, "durableReceiptRequired": false, "idempotencyRequired": false, "compensationMode": "NOT_APPLICABLE"},
+    {"id": "white-goods.integration.api-reversible-write", "integrationClass": "api", "operationClass": "WRITE", "actionCategory": "REVERSIBLE_WRITE", "sideEffectClass": "REVERSIBLE", "ownerRole": "technical-owner", "custodianRole": "integration-custodian", "accessCredentialReferenceRequired": true, "scopedAccessApprovalRequired": true, "durableReceiptRequired": true, "idempotencyRequired": true, "compensationMode": "COMPENSATE"},
+    {"id": "white-goods.integration.postgresql-read", "integrationClass": "postgresql", "operationClass": "READ", "actionCategory": "READ_ONLY", "sideEffectClass": "NONE", "ownerRole": "data-owner", "custodianRole": "data-steward", "accessCredentialReferenceRequired": true, "scopedAccessApprovalRequired": true, "durableReceiptRequired": false, "idempotencyRequired": false, "compensationMode": "NOT_APPLICABLE"},
+    {"id": "white-goods.integration.postgresql-reversible-write", "integrationClass": "postgresql", "operationClass": "WRITE", "actionCategory": "REVERSIBLE_WRITE", "sideEffectClass": "REVERSIBLE", "ownerRole": "data-owner", "custodianRole": "data-steward", "accessCredentialReferenceRequired": true, "scopedAccessApprovalRequired": true, "durableReceiptRequired": true, "idempotencyRequired": true, "compensationMode": "COMPENSATE"},
+    {"id": "white-goods.integration.files-read", "integrationClass": "files", "operationClass": "READ", "actionCategory": "READ_ONLY", "sideEffectClass": "NONE", "ownerRole": "quality-owner", "custodianRole": "data-steward", "accessCredentialReferenceRequired": true, "scopedAccessApprovalRequired": true, "durableReceiptRequired": false, "idempotencyRequired": false, "compensationMode": "NOT_APPLICABLE"},
+    {"id": "white-goods.integration.events-read", "integrationClass": "events", "operationClass": "READ", "actionCategory": "READ_ONLY", "sideEffectClass": "NONE", "ownerRole": "operational-owner", "custodianRole": "integration-custodian", "accessCredentialReferenceRequired": true, "scopedAccessApprovalRequired": true, "durableReceiptRequired": false, "idempotencyRequired": false, "compensationMode": "NOT_APPLICABLE"}
+  ]
+}

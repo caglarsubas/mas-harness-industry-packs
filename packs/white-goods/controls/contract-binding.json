@@ -1,0 +1,32 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-governance-contract-binding/v1alpha1",
+  "kind": "IndustryGovernanceContractBinding",
+  "id": "white-goods.governance.contract-binding",
+  "stage": "governance-and-regulation",
+  "repository": "caglarsubas/mas-harness-contracts",
+  "commit": "2146278a95344cd2a8e22596b2f315b46edffc88",
+  "releaseManifestSha256": "c5dd4c39d1c69d07f8d8de3d1a09584bb906172fee2d5ac20ad25ff344b0db79",
+  "approvalRequestSchema": {
+    "path": "schemas/v1alpha1/lifecycle/approval-request.schema.json",
+    "sha256": "4fe8d214a920690008a4390919acebf797b0ab4e6c649a7a88e0882f3b2a1b27",
+    "status": "AVAILABLE"
+  },
+  "lifecycleCommonSchema": {
+    "path": "schemas/v1alpha1/lifecycle/common.schema.json",
+    "sha256": "dce5d8030eea3a19694511eb26513614dcc720ef4e0d650772131b14ed58f075"
+  },
+  "compositionCommonSchema": {
+    "path": "schemas/v1alpha1/composition/common.schema.json",
+    "sha256": "11b55d3eafa8d87a90956345da0919f67478a7738d5ca118025904f8ff58b5f0"
+  },
+  "unavailablePublicKinds": [
+    {"kindName": "ControlRequirement", "status": "NOT_AVAILABLE_IN_BOUND_RELEASE"},
+    {"kindName": "IntegrationDeclaration", "status": "NOT_AVAILABLE_IN_BOUND_RELEASE"}
+  ],
+  "packLocalDataKinds": [
+    "IndustryControlRequirementRecordSet",
+    "IndustryIntegrationDeclarationRecordSet"
+  ],
+  "schemaBytesCopied": false,
+  "publicConformanceClaimed": false
+}

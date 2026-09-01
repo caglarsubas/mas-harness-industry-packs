@@ -1,0 +1,599 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-provider-profile-catalog/v1alpha1",
+  "id": "white-goods.providers.profiles",
+  "implicitFallbackAllowed": false,
+  "kind": "IndustryProviderProfileCatalog",
+  "profiles": [
+    {
+      "acceptedPrerequisiteHarnessIds": [
+        "trust.observability-finops",
+        "trust.security-safety"
+      ],
+      "acceptedSelections": [
+        {
+          "groupId": "group.infrastructure-provider",
+          "providerId": "provider.runtime.infrastructure.k3s",
+          "selectorCapability": "platform.provider.k3s"
+        },
+        {
+          "groupId": "group.model-backend",
+          "providerId": "provider.planeon.llamacpp",
+          "selectorCapability": "provider.planeon.llamacpp"
+        }
+      ],
+      "demandPath": "fixtures/demands/minimal-arm64.json",
+      "displayName": "Minimal ARM64",
+      "disposition": "PROPOSED_SELECTOR_ONLY",
+      "environment": {
+        "architecture": "arm64",
+        "capabilities": [
+          "architecture.arm64-available",
+          "connectivity.connected",
+          "tenant.namespace-isolation"
+        ],
+        "deploymentMode": "self-managed",
+        "kubernetesDistribution": "k3s",
+        "operatingSystem": "linux",
+        "tenantId": "tenant.white-goods-minimal-arm64"
+      },
+      "exclusions": [
+        "AUTOMATIC_SELECTOR_ACCEPTANCE",
+        "CLOUD_PROVISIONING",
+        "EXTERNAL_TELEMETRY",
+        "FABRICATED_ARTIFACT_DIGEST",
+        "PAID_PROVIDER",
+        "RUNTIME_DOWNLOAD"
+      ],
+      "executionBudget": {
+        "maxConcurrentTasks": 1,
+        "maxModelTokens": 32768,
+        "maxRetries": 1,
+        "maxTaskSeconds": 300,
+        "maxToolCalls": 12
+      },
+      "expectedOutputEnvelopePath": "fixtures/expected/minimal-arm64.json",
+      "expectedSelectedHarnessIds": [
+        "runtime.infrastructure",
+        "runtime.model-inference",
+        "trust.observability-finops",
+        "trust.security-safety"
+      ],
+      "expectedSelectedModuleIds": [
+        "module.runtime.infrastructure.core",
+        "module.runtime.model-inference.core",
+        "module.trust.observability-finops.core",
+        "module.trust.security-safety.core"
+      ],
+      "expectedSelectedProviderIds": [
+        "provider.planeon.llamacpp",
+        "provider.runtime.infrastructure.k3s"
+      ],
+      "explanation": "Small ARM64 K3s planning profile for a tenant-owned local CPU model footprint.",
+      "id": "white-goods.providers.profile.minimal-arm64",
+      "isolationRequirements": {
+        "artifactSource": "TENANT_SUPPLIED_DIGEST_PINNED",
+        "boundary": "TENANT_NAMESPACE",
+        "externalTelemetryAllowed": false,
+        "networkPolicy": "DENY_BY_DEFAULT_TENANT_LOCAL_ALLOWLIST",
+        "runtimeDownloadsAllowed": false
+      },
+      "posture": "MINIMAL_LOCAL",
+      "profileId": "profile.white-goods-minimal-arm64",
+      "recommendations": [
+        {
+          "disposition": "PROPOSED_SELECTOR_ONLY",
+          "externalTelemetry": false,
+          "groupId": "group.infrastructure-provider",
+          "providerCredentialsRequired": false,
+          "providerId": "provider.runtime.infrastructure.k3s",
+          "releaseStatus": "PLANNED",
+          "runtimeDownloadsAllowed": false,
+          "selectorCapability": "platform.provider.k3s"
+        },
+        {
+          "disposition": "PROPOSED_SELECTOR_ONLY",
+          "externalTelemetry": false,
+          "groupId": "group.model-backend",
+          "providerCredentialsRequired": false,
+          "providerId": "provider.planeon.llamacpp",
+          "releaseStatus": "PLANNED",
+          "runtimeDownloadsAllowed": false,
+          "selectorCapability": "provider.planeon.llamacpp"
+        }
+      ],
+      "requestedCapabilities": [
+        "model.local-cpu",
+        "platform.k3s",
+        "platform.provider.k3s",
+        "provider.planeon.llamacpp"
+      ],
+      "resourceEnvelope": {
+        "capacityAttestationRequired": true,
+        "cpuMillicores": 2000,
+        "ephemeralStorageMiB": 8192,
+        "memoryMiB": 4096,
+        "modelStorageMiB": 8192,
+        "planningClass": "SMALL"
+      }
+    },
+    {
+      "acceptedPrerequisiteHarnessIds": [
+        "trust.observability-finops",
+        "trust.security-safety"
+      ],
+      "acceptedSelections": [
+        {
+          "groupId": "group.infrastructure-provider",
+          "providerId": "provider.runtime.infrastructure.kubernetes-upstream",
+          "selectorCapability": "platform.provider.kubernetes-upstream"
+        },
+        {
+          "groupId": "group.model-backend",
+          "providerId": "provider.planeon.llamacpp",
+          "selectorCapability": "provider.planeon.llamacpp"
+        }
+      ],
+      "demandPath": "fixtures/demands/minimal-amd64.json",
+      "displayName": "Minimal AMD64",
+      "disposition": "PROPOSED_SELECTOR_ONLY",
+      "environment": {
+        "architecture": "amd64",
+        "capabilities": [
+          "architecture.amd64-available",
+          "connectivity.connected",
+          "tenant.namespace-isolation"
+        ],
+        "deploymentMode": "self-managed",
+        "kubernetesDistribution": "upstream",
+        "operatingSystem": "linux",
+        "tenantId": "tenant.white-goods-minimal-amd64"
+      },
+      "exclusions": [
+        "AUTOMATIC_SELECTOR_ACCEPTANCE",
+        "CLOUD_PROVISIONING",
+        "EXTERNAL_TELEMETRY",
+        "FABRICATED_ARTIFACT_DIGEST",
+        "PAID_PROVIDER",
+        "RUNTIME_DOWNLOAD"
+      ],
+      "executionBudget": {
+        "maxConcurrentTasks": 2,
+        "maxModelTokens": 65536,
+        "maxRetries": 1,
+        "maxTaskSeconds": 300,
+        "maxToolCalls": 16
+      },
+      "expectedOutputEnvelopePath": "fixtures/expected/minimal-amd64.json",
+      "expectedSelectedHarnessIds": [
+        "runtime.infrastructure",
+        "runtime.model-inference",
+        "trust.observability-finops",
+        "trust.security-safety"
+      ],
+      "expectedSelectedModuleIds": [
+        "module.runtime.infrastructure.core",
+        "module.runtime.model-inference.core",
+        "module.trust.observability-finops.core",
+        "module.trust.security-safety.core"
+      ],
+      "expectedSelectedProviderIds": [
+        "provider.planeon.llamacpp",
+        "provider.runtime.infrastructure.kubernetes-upstream"
+      ],
+      "explanation": "Small AMD64 upstream-Kubernetes planning profile for tenant-owned local CPU inference.",
+      "id": "white-goods.providers.profile.minimal-amd64",
+      "isolationRequirements": {
+        "artifactSource": "TENANT_SUPPLIED_DIGEST_PINNED",
+        "boundary": "TENANT_NAMESPACE",
+        "externalTelemetryAllowed": false,
+        "networkPolicy": "DENY_BY_DEFAULT_TENANT_LOCAL_ALLOWLIST",
+        "runtimeDownloadsAllowed": false
+      },
+      "posture": "MINIMAL_LOCAL",
+      "profileId": "profile.white-goods-minimal-amd64",
+      "recommendations": [
+        {
+          "disposition": "PROPOSED_SELECTOR_ONLY",
+          "externalTelemetry": false,
+          "groupId": "group.infrastructure-provider",
+          "providerCredentialsRequired": false,
+          "providerId": "provider.runtime.infrastructure.kubernetes-upstream",
+          "releaseStatus": "PLANNED",
+          "runtimeDownloadsAllowed": false,
+          "selectorCapability": "platform.provider.kubernetes-upstream"
+        },
+        {
+          "disposition": "PROPOSED_SELECTOR_ONLY",
+          "externalTelemetry": false,
+          "groupId": "group.model-backend",
+          "providerCredentialsRequired": false,
+          "providerId": "provider.planeon.llamacpp",
+          "releaseStatus": "PLANNED",
+          "runtimeDownloadsAllowed": false,
+          "selectorCapability": "provider.planeon.llamacpp"
+        }
+      ],
+      "requestedCapabilities": [
+        "deployment.kubernetes",
+        "model.local-cpu",
+        "platform.provider.kubernetes-upstream",
+        "provider.planeon.llamacpp"
+      ],
+      "resourceEnvelope": {
+        "capacityAttestationRequired": true,
+        "cpuMillicores": 4000,
+        "ephemeralStorageMiB": 16384,
+        "memoryMiB": 8192,
+        "modelStorageMiB": 16384,
+        "planningClass": "SMALL"
+      }
+    },
+    {
+      "acceptedPrerequisiteHarnessIds": [
+        "trust.governance-agentops",
+        "trust.observability-finops",
+        "trust.security-safety"
+      ],
+      "acceptedSelections": [
+        {
+          "groupId": "group.infrastructure-provider",
+          "providerId": "provider.runtime.infrastructure.openshift",
+          "selectorCapability": "platform.provider.openshift"
+        },
+        {
+          "groupId": "group.model-backend",
+          "providerId": "provider.planeon.llamacpp",
+          "selectorCapability": "provider.planeon.llamacpp"
+        }
+      ],
+      "demandPath": "fixtures/demands/regulated-openshift.json",
+      "displayName": "Regulated OpenShift",
+      "disposition": "PROPOSED_SELECTOR_ONLY",
+      "environment": {
+        "architecture": "amd64",
+        "capabilities": [
+          "architecture.amd64-available",
+          "connectivity.connected",
+          "platform.openshift.arbitrary-uid",
+          "tenant.namespace-isolation"
+        ],
+        "deploymentMode": "self-managed",
+        "kubernetesDistribution": "openshift",
+        "operatingSystem": "linux",
+        "tenantId": "tenant.white-goods-regulated-openshift"
+      },
+      "exclusions": [
+        "AUTOMATIC_SELECTOR_ACCEPTANCE",
+        "CLOUD_PROVISIONING",
+        "EXTERNAL_TELEMETRY",
+        "FABRICATED_ARTIFACT_DIGEST",
+        "PAID_PROVIDER",
+        "RUNTIME_DOWNLOAD"
+      ],
+      "executionBudget": {
+        "maxConcurrentTasks": 4,
+        "maxModelTokens": 131072,
+        "maxRetries": 1,
+        "maxTaskSeconds": 600,
+        "maxToolCalls": 24
+      },
+      "expectedOutputEnvelopePath": "fixtures/expected/regulated-openshift.json",
+      "expectedSelectedHarnessIds": [
+        "runtime.ai-gateway",
+        "runtime.infrastructure",
+        "runtime.model-inference",
+        "trust.evaluation-assurance",
+        "trust.governance-agentops",
+        "trust.observability-finops",
+        "trust.security-safety"
+      ],
+      "expectedSelectedModuleIds": [
+        "module.runtime.ai-gateway.core",
+        "module.runtime.infrastructure.core",
+        "module.runtime.model-inference.core",
+        "module.trust.evaluation-assurance.core",
+        "module.trust.governance-agentops.core",
+        "module.trust.observability-finops.core",
+        "module.trust.security-safety.core"
+      ],
+      "expectedSelectedProviderIds": [
+        "provider.planeon.llamacpp",
+        "provider.runtime.infrastructure.openshift"
+      ],
+      "explanation": "OpenShift planning profile with governed action and assurance harnesses; regulated is a tenant-policy posture, not a compliance conclusion.",
+      "id": "white-goods.providers.profile.regulated-openshift",
+      "isolationRequirements": {
+        "artifactSource": "TENANT_SUPPLIED_DIGEST_PINNED",
+        "boundary": "TENANT_NAMESPACE_ARBITRARY_UID",
+        "externalTelemetryAllowed": false,
+        "networkPolicy": "DENY_ALL_EXCEPT_TENANT_APPROVED_CLUSTER_LOCAL",
+        "runtimeDownloadsAllowed": false
+      },
+      "posture": "REGULATED_POLICY",
+      "profileId": "profile.white-goods-regulated-openshift",
+      "recommendations": [
+        {
+          "disposition": "PROPOSED_SELECTOR_ONLY",
+          "externalTelemetry": false,
+          "groupId": "group.infrastructure-provider",
+          "providerCredentialsRequired": false,
+          "providerId": "provider.runtime.infrastructure.openshift",
+          "releaseStatus": "PLANNED",
+          "runtimeDownloadsAllowed": false,
+          "selectorCapability": "platform.provider.openshift"
+        },
+        {
+          "disposition": "PROPOSED_SELECTOR_ONLY",
+          "externalTelemetry": false,
+          "groupId": "group.model-backend",
+          "providerCredentialsRequired": false,
+          "providerId": "provider.planeon.llamacpp",
+          "releaseStatus": "PLANNED",
+          "runtimeDownloadsAllowed": false,
+          "selectorCapability": "provider.planeon.llamacpp"
+        }
+      ],
+      "requestedCapabilities": [
+        "agent.governed-action",
+        "assurance.required",
+        "model.local-cpu",
+        "platform.openshift",
+        "platform.provider.openshift",
+        "provider.planeon.llamacpp"
+      ],
+      "resourceEnvelope": {
+        "capacityAttestationRequired": true,
+        "cpuMillicores": 8000,
+        "ephemeralStorageMiB": 32768,
+        "memoryMiB": 16384,
+        "modelStorageMiB": 32768,
+        "planningClass": "MEDIUM"
+      }
+    },
+    {
+      "acceptedPrerequisiteHarnessIds": [
+        "knowledge.data-integration",
+        "knowledge.domain-semantic",
+        "trust.governance-agentops",
+        "trust.observability-finops",
+        "trust.security-safety"
+      ],
+      "acceptedSelections": [
+        {
+          "groupId": "group.infrastructure-provider",
+          "providerId": "provider.runtime.infrastructure.kubernetes-upstream",
+          "selectorCapability": "platform.provider.kubernetes-upstream"
+        },
+        {
+          "groupId": "group.model-backend",
+          "providerId": "provider.planeon.llamacpp",
+          "selectorCapability": "provider.planeon.llamacpp"
+        }
+      ],
+      "demandPath": "fixtures/demands/silo.json",
+      "displayName": "Silo",
+      "disposition": "PROPOSED_SELECTOR_ONLY",
+      "environment": {
+        "architecture": "amd64",
+        "capabilities": [
+          "architecture.amd64-available",
+          "connectivity.connected",
+          "connectivity.silo",
+          "tenant.namespace-isolation"
+        ],
+        "deploymentMode": "self-managed",
+        "kubernetesDistribution": "upstream",
+        "operatingSystem": "linux",
+        "tenantId": "tenant.white-goods-silo"
+      },
+      "exclusions": [
+        "AUTOMATIC_SELECTOR_ACCEPTANCE",
+        "CLOUD_PROVISIONING",
+        "EXTERNAL_TELEMETRY",
+        "FABRICATED_ARTIFACT_DIGEST",
+        "PAID_PROVIDER",
+        "RUNTIME_DOWNLOAD"
+      ],
+      "executionBudget": {
+        "maxConcurrentTasks": 4,
+        "maxModelTokens": 131072,
+        "maxRetries": 2,
+        "maxTaskSeconds": 600,
+        "maxToolCalls": 24
+      },
+      "expectedOutputEnvelopePath": "fixtures/expected/silo.json",
+      "expectedSelectedHarnessIds": [
+        "knowledge.data-integration",
+        "knowledge.domain-semantic",
+        "knowledge.retrieval-context",
+        "runtime.ai-gateway",
+        "runtime.infrastructure",
+        "runtime.model-inference",
+        "trust.governance-agentops",
+        "trust.observability-finops",
+        "trust.security-safety"
+      ],
+      "expectedSelectedModuleIds": [
+        "module.knowledge.data-integration.core",
+        "module.knowledge.domain-semantic.core",
+        "module.knowledge.retrieval-context.core",
+        "module.runtime.ai-gateway.core",
+        "module.runtime.infrastructure.core",
+        "module.runtime.model-inference.core",
+        "module.trust.governance-agentops.core",
+        "module.trust.observability-finops.core",
+        "module.trust.security-safety.core"
+      ],
+      "expectedSelectedProviderIds": [
+        "provider.planeon.llamacpp",
+        "provider.runtime.infrastructure.kubernetes-upstream"
+      ],
+      "explanation": "Read-only cited-retrieval profile confined to tenant-silo connectivity; connected is the compiler non-air-gap fact and silo is the narrower locality fact.",
+      "id": "white-goods.providers.profile.silo",
+      "isolationRequirements": {
+        "artifactSource": "TENANT_SUPPLIED_DIGEST_PINNED",
+        "boundary": "TENANT_NAMESPACE",
+        "externalTelemetryAllowed": false,
+        "networkPolicy": "TENANT_SILO_ALLOWLIST_ONLY",
+        "runtimeDownloadsAllowed": false
+      },
+      "posture": "TENANT_SILO",
+      "profileId": "profile.white-goods-silo",
+      "recommendations": [
+        {
+          "disposition": "PROPOSED_SELECTOR_ONLY",
+          "externalTelemetry": false,
+          "groupId": "group.infrastructure-provider",
+          "providerCredentialsRequired": false,
+          "providerId": "provider.runtime.infrastructure.kubernetes-upstream",
+          "releaseStatus": "PLANNED",
+          "runtimeDownloadsAllowed": false,
+          "selectorCapability": "platform.provider.kubernetes-upstream"
+        },
+        {
+          "disposition": "PROPOSED_SELECTOR_ONLY",
+          "externalTelemetry": false,
+          "groupId": "group.model-backend",
+          "providerCredentialsRequired": false,
+          "providerId": "provider.planeon.llamacpp",
+          "releaseStatus": "PLANNED",
+          "runtimeDownloadsAllowed": false,
+          "selectorCapability": "provider.planeon.llamacpp"
+        }
+      ],
+      "requestedCapabilities": [
+        "agent.read-only",
+        "deployment.kubernetes",
+        "model.local-cpu",
+        "platform.provider.kubernetes-upstream",
+        "provider.planeon.llamacpp",
+        "retrieval.cited"
+      ],
+      "resourceEnvelope": {
+        "capacityAttestationRequired": true,
+        "cpuMillicores": 8000,
+        "ephemeralStorageMiB": 32768,
+        "memoryMiB": 16384,
+        "modelStorageMiB": 32768,
+        "planningClass": "MEDIUM"
+      }
+    },
+    {
+      "acceptedPrerequisiteHarnessIds": [
+        "trust.observability-finops",
+        "trust.security-safety"
+      ],
+      "acceptedSelections": [
+        {
+          "groupId": "group.infrastructure-provider",
+          "providerId": "provider.runtime.infrastructure.k3s",
+          "selectorCapability": "platform.provider.k3s"
+        },
+        {
+          "groupId": "group.model-backend",
+          "providerId": "provider.planeon.llamacpp",
+          "selectorCapability": "provider.planeon.llamacpp"
+        }
+      ],
+      "demandPath": "fixtures/demands/air-gap.json",
+      "displayName": "Air gap",
+      "disposition": "PROPOSED_SELECTOR_ONLY",
+      "environment": {
+        "architecture": "amd64",
+        "capabilities": [
+          "architecture.amd64-available",
+          "connectivity.airgap",
+          "tenant.namespace-isolation"
+        ],
+        "deploymentMode": "air-gapped",
+        "kubernetesDistribution": "k3s",
+        "operatingSystem": "linux",
+        "tenantId": "tenant.white-goods-air-gap"
+      },
+      "exclusions": [
+        "AUTOMATIC_SELECTOR_ACCEPTANCE",
+        "CLOUD_PROVISIONING",
+        "EXTERNAL_TELEMETRY",
+        "FABRICATED_ARTIFACT_DIGEST",
+        "PAID_PROVIDER",
+        "RUNTIME_DOWNLOAD"
+      ],
+      "executionBudget": {
+        "maxConcurrentTasks": 2,
+        "maxModelTokens": 65536,
+        "maxRetries": 1,
+        "maxTaskSeconds": 600,
+        "maxToolCalls": 16
+      },
+      "expectedOutputEnvelopePath": "fixtures/expected/air-gap.json",
+      "expectedSelectedHarnessIds": [
+        "runtime.infrastructure",
+        "runtime.model-inference",
+        "trust.observability-finops",
+        "trust.security-safety"
+      ],
+      "expectedSelectedModuleIds": [
+        "module.runtime.infrastructure.core",
+        "module.runtime.model-inference.core",
+        "module.trust.observability-finops.core",
+        "module.trust.security-safety.core"
+      ],
+      "expectedSelectedProviderIds": [
+        "provider.planeon.llamacpp",
+        "provider.runtime.infrastructure.k3s"
+      ],
+      "explanation": "Air-gapped K3s planning profile with deny-all outbound and tenant-local digest-pinned artifact transfer.",
+      "id": "white-goods.providers.profile.air-gap",
+      "isolationRequirements": {
+        "artifactSource": "TENANT_LOCAL_OCI_LAYOUT_OR_REGISTRY_DIGEST_PINNED",
+        "boundary": "TENANT_NAMESPACE",
+        "externalTelemetryAllowed": false,
+        "networkPolicy": "DENY_ALL_OUTBOUND",
+        "runtimeDownloadsAllowed": false
+      },
+      "posture": "AIR_GAPPED",
+      "profileId": "profile.white-goods-air-gap",
+      "recommendations": [
+        {
+          "disposition": "PROPOSED_SELECTOR_ONLY",
+          "externalTelemetry": false,
+          "groupId": "group.infrastructure-provider",
+          "providerCredentialsRequired": false,
+          "providerId": "provider.runtime.infrastructure.k3s",
+          "releaseStatus": "PLANNED",
+          "runtimeDownloadsAllowed": false,
+          "selectorCapability": "platform.provider.k3s"
+        },
+        {
+          "disposition": "PROPOSED_SELECTOR_ONLY",
+          "externalTelemetry": false,
+          "groupId": "group.model-backend",
+          "providerCredentialsRequired": false,
+          "providerId": "provider.planeon.llamacpp",
+          "releaseStatus": "PLANNED",
+          "runtimeDownloadsAllowed": false,
+          "selectorCapability": "provider.planeon.llamacpp"
+        }
+      ],
+      "requestedCapabilities": [
+        "deployment.airgap",
+        "model.local-cpu",
+        "platform.k3s",
+        "platform.provider.k3s",
+        "provider.planeon.llamacpp"
+      ],
+      "resourceEnvelope": {
+        "capacityAttestationRequired": true,
+        "cpuMillicores": 4000,
+        "ephemeralStorageMiB": 32768,
+        "memoryMiB": 8192,
+        "modelStorageMiB": 32768,
+        "planningClass": "MEDIUM"
+      }
+    }
+  ],
+  "recommendationDisposition": "PROPOSED_SELECTOR_ONLY",
+  "stage": "environment-and-provider-fit",
+  "tenantExplicitAcceptanceRequired": true,
+  "version": "0.4.0"
+}

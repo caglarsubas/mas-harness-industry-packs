@@ -709,7 +709,7 @@ def evaluate_fixture(value: dict[str, Any], declarations: dict[str, dict[str, An
 
 
 def validate_pack_contract(pack: ValidatedPack, common: ValidatedPack) -> None:
-    if pack.manifest["metadata"]["version"] != "0.3.0":
+    if pack.manifest["metadata"]["version"] != "0.4.0":
         raise ValueError("white-goods pack version differs")
     if pack.manifest["compatibility"]["frameworkVersion"] != "0.1.0":
         raise ValueError("pack framework compatibility differs")
@@ -720,7 +720,7 @@ def validate_pack_contract(pack: ValidatedPack, common: ValidatedPack) -> None:
     for path, digest in PREDECESSOR_FILE_DIGESTS.items():
         if _sha256(pack.files[path]) != digest:
             raise ValueError(f"predecessor content changed: {path}")
-    if len(pack.files) != 52 or len(pack.resource_ids) != 49:
+    if len(pack.files) != 64 or len(pack.resource_ids) != 61:
         raise ValueError("white-goods file or resource inventory differs")
 
 

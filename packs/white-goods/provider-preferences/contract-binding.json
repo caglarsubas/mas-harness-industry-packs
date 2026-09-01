@@ -1,0 +1,87 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-provider-contract-binding/v1alpha1",
+  "catalog": {
+    "catalogDigest": "sha256:26d442c4e90a19d767d32e80ef9df3d154b3146d3238dc0eecf29ee773913a26",
+    "entryDigests": {
+      "harnesses/harnesses.json": "sha256:27db4d3aa8b28b54ab9c6be26db9a29eb5a22edcfc26340184b5f6bb015dd45e",
+      "providers/frameworks.json": "sha256:c48ecc5d98f1eb5393052f4ad51851be3039dcbcd0ca656278a0afca816cb6cf",
+      "providers/modules.json": "sha256:3d1ebbcded6e8d68ca624819c12424a6e6c2552d09aec366e1fdad72df7d2793"
+    },
+    "lockPath": "contracts/catalog.lock.json",
+    "lockSha256": "25461717732b423a4923bc0faf7ae034033801ce4cc1398cf56b601715ab9877"
+  },
+  "catalogBytesCopied": false,
+  "commit": "2146278a95344cd2a8e22596b2f315b46edffc88",
+  "compiler": {
+    "canonicalization": "SORTED_UTF8_JSON_V1",
+    "outputNames": [
+      "profile.json",
+      "bom.json",
+      "install-plan.json",
+      "evidence-plan.json",
+      "explanation.md",
+      "profile.sha256"
+    ],
+    "path": "src/planeon_harness_contracts/compiler.py",
+    "sha256": "0b0960c87bc1214e795144968db3976bd548c80e6002b03bc3f6e292303a764b"
+  },
+  "compilerBytesCopied": false,
+  "crossRepositoryConformanceClaimed": false,
+  "id": "white-goods.providers.contract-binding",
+  "kind": "IndustryProviderContractBinding",
+  "releaseManifestSha256": "c5dd4c39d1c69d07f8d8de3d1a09584bb906172fee2d5ac20ad25ff344b0db79",
+  "repository": "caglarsubas/mas-harness-contracts",
+  "schemaBytesCopied": false,
+  "schemas": {
+    "billOfMaterials": {
+      "path": "schemas/v1alpha1/composition/bill-of-materials.schema.json",
+      "sha256": "03b2f6b27851f45133aa68b0cd8536e677eeb84ef07303582d6cdcc93b27d744"
+    },
+    "common": {
+      "path": "schemas/v1alpha1/composition/common.schema.json",
+      "sha256": "11b55d3eafa8d87a90956345da0919f67478a7738d5ca118025904f8ff58b5f0"
+    },
+    "compileRequest": {
+      "path": "schemas/v1alpha1/composition/compile-request.schema.json",
+      "sha256": "559951b883d9762a8f47db0d3e4bc7fbb4ec22dca0b2a2de9a677ff2d668bfcb"
+    },
+    "compiledProfileDocument": {
+      "path": "schemas/v1alpha1/composition/compiled-profile-document.schema.json",
+      "sha256": "2b3b3d70a7fe00ca5667634622b0fafa22562f0a33f363663e27757aaa57bfcb"
+    },
+    "dataReadinessAssessment": {
+      "path": "schemas/v1alpha1/readiness/data-readiness-assessment.schema.json",
+      "sha256": "ffe003a1a7ec0773f49d8f394ac3dd6281114bd4335ff05c87d223412faf92a5"
+    },
+    "evidencePlan": {
+      "path": "schemas/v1alpha1/composition/evidence-plan.schema.json",
+      "sha256": "7f9985fb5293d417e41dbe59d53f6cf407351ff85c6c6893b0efd90b8f2106eb"
+    },
+    "executionBudget": {
+      "path": "schemas/v1alpha1/composition/execution-budget.schema.json",
+      "sha256": "3d605bcdf1180c9a2c9ab0c56dd3da2fe821c66c7cf33ba3fb576dfb98c5c7d7"
+    },
+    "guidanceCommon": {
+      "path": "schemas/v1alpha1/guidance/common.schema.json",
+      "sha256": "4d77297073d4c2e559f1131fbada566b499197f87113f7e28b136f0b4ae5f429"
+    },
+    "harnessProfile": {
+      "path": "schemas/v1alpha1/composition/harness-profile.schema.json",
+      "sha256": "08936914f52b8c3b611e47ffa35f668dd177718f613907687a67b448877c39a6"
+    },
+    "installPlan": {
+      "path": "schemas/v1alpha1/composition/install-plan.schema.json",
+      "sha256": "fb67904b7853fd209b156c045197ae88f940ec5f9f0df5b000ad3aa1158a0547"
+    },
+    "questionnaireAnswerSet": {
+      "path": "schemas/v1alpha1/guidance/questionnaire-answer-set.schema.json",
+      "sha256": "cceebb735554d91f82395032f3ddcf475fc05ea897dfdff36165bcd71edaf828"
+    },
+    "tenantDemand": {
+      "path": "schemas/v1alpha1/composition/tenant-demand.schema.json",
+      "sha256": "c43620c47e3afee6b2be09b1cc80c6b9ef9d851d1930f57531aa1e56a98373f2"
+    }
+  },
+  "stage": "environment-and-provider-fit",
+  "upstreamPathRequiredAtAcceptance": false
+}

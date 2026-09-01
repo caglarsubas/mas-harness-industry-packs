@@ -2,8 +2,8 @@ apiVersion: harness.planeon.ai/industry-pack/v1alpha1
 kind: IndustryPack
 metadata:
   id: white-goods.manufacturing
-  version: 0.3.0
-  title: White-goods business, data-readiness, governance, and integration foundation
+  version: 0.4.0
+  title: White-goods business, data, governance, integration, and provider-profile foundation
   industry: white-goods
   license: Apache-2.0
   packKind: SECTOR
@@ -86,7 +86,13 @@ content:
     - id: white-goods.governance.waiver-policy
       stage: governance-and-regulation
       path: controls/waiver-policy.json
-  providerPreferences: []
+  providerPreferences:
+    - id: white-goods.providers.contract-binding
+      stage: environment-and-provider-fit
+      path: provider-preferences/contract-binding.json
+    - id: white-goods.providers.profiles
+      stage: environment-and-provider-fit
+      path: provider-preferences/profiles.json
   fixtures:
     - id: white-goods.answers.accepted-pilot
       stage: evidence-and-acceptance
@@ -175,3 +181,33 @@ content:
     - id: white-goods.governance.fixture.invalid-waiver
       stage: governance-and-regulation
       path: fixtures/governance/fail-waiver-missing-compensating-control.json
+    - id: white-goods.providers.demand.air-gap
+      stage: environment-and-provider-fit
+      path: fixtures/demands/air-gap.json
+    - id: white-goods.providers.demand.minimal-amd64
+      stage: environment-and-provider-fit
+      path: fixtures/demands/minimal-amd64.json
+    - id: white-goods.providers.demand.minimal-arm64
+      stage: environment-and-provider-fit
+      path: fixtures/demands/minimal-arm64.json
+    - id: white-goods.providers.demand.regulated-openshift
+      stage: environment-and-provider-fit
+      path: fixtures/demands/regulated-openshift.json
+    - id: white-goods.providers.demand.silo
+      stage: environment-and-provider-fit
+      path: fixtures/demands/silo.json
+    - id: white-goods.providers.golden.air-gap
+      stage: evidence-and-acceptance
+      path: fixtures/expected/air-gap.json
+    - id: white-goods.providers.golden.minimal-amd64
+      stage: evidence-and-acceptance
+      path: fixtures/expected/minimal-amd64.json
+    - id: white-goods.providers.golden.minimal-arm64
+      stage: evidence-and-acceptance
+      path: fixtures/expected/minimal-arm64.json
+    - id: white-goods.providers.golden.regulated-openshift
+      stage: evidence-and-acceptance
+      path: fixtures/expected/regulated-openshift.json
+    - id: white-goods.providers.golden.silo
+      stage: evidence-and-acceptance
+      path: fixtures/expected/silo.json

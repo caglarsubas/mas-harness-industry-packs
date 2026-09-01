@@ -1,0 +1,601 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-provider-golden-output-envelope/v1alpha1",
+  "canonicalization": "SORTED_UTF8_JSON_V1",
+  "catalogDigest": "sha256:26d442c4e90a19d767d32e80ef9df3d154b3146d3238dc0eecf29ee773913a26",
+  "compileRequestPath": "fixtures/demands/silo.json",
+  "compilerSha256": "0b0960c87bc1214e795144968db3976bd548c80e6002b03bc3f6e292303a764b",
+  "contractsCommit": "2146278a95344cd2a8e22596b2f315b46edffc88",
+  "evidenceBoundary": {
+    "artifact": false,
+    "assurance": false,
+    "candidate": false,
+    "ci": false,
+    "crossRepositoryConformance": false,
+    "deployment": false,
+    "merge": false,
+    "publication": false,
+    "runtime": false,
+    "sourceContract": true,
+    "tenantAcceptance": false
+  },
+  "id": "white-goods.providers.golden.silo",
+  "kind": "IndustryProviderGoldenOutputEnvelope",
+  "outputNames": [
+    "profile.json",
+    "bom.json",
+    "install-plan.json",
+    "evidence-plan.json",
+    "explanation.md",
+    "profile.sha256"
+  ],
+  "outputs": {
+    "bom.json": {
+      "mediaType": "application/json",
+      "sha256": "sha256:d1b1e5eef9bea575a2be5e68ba3796f220ad70661e4bbb4e89c2d7c9051449ec",
+      "value": {
+        "apiVersion": "harness.planeon.ai/v1alpha1",
+        "kind": "BillOfMaterials",
+        "metadata": {
+          "id": "bom.white-goods-silo",
+          "version": "0.4.0"
+        },
+        "spec": {
+          "catalogDigest": "sha256:26d442c4e90a19d767d32e80ef9df3d154b3146d3238dc0eecf29ee773913a26",
+          "entries": [
+            {
+              "harnessId": "knowledge.data-integration",
+              "installUnits": [
+                {
+                  "artifactName": "planeon.knowledge.data-integration.core",
+                  "digest": null,
+                  "digestStatus": "MISSING_PLANNED",
+                  "id": "install.knowledge.data-integration.core",
+                  "type": "OCI_IMAGE"
+                }
+              ],
+              "resourceId": "module.knowledge.data-integration.core",
+              "resourceKind": "MODULE",
+              "sourceVersion": "0.1.0"
+            },
+            {
+              "harnessId": "knowledge.domain-semantic",
+              "installUnits": [
+                {
+                  "artifactName": "planeon.knowledge.domain-semantic.core",
+                  "digest": null,
+                  "digestStatus": "MISSING_PLANNED",
+                  "id": "install.knowledge.domain-semantic.core",
+                  "type": "OCI_IMAGE"
+                }
+              ],
+              "resourceId": "module.knowledge.domain-semantic.core",
+              "resourceKind": "MODULE",
+              "sourceVersion": "0.1.0"
+            },
+            {
+              "harnessId": "knowledge.retrieval-context",
+              "installUnits": [
+                {
+                  "artifactName": "planeon.knowledge.retrieval-context.core",
+                  "digest": null,
+                  "digestStatus": "MISSING_PLANNED",
+                  "id": "install.knowledge.retrieval-context.core",
+                  "type": "OCI_IMAGE"
+                }
+              ],
+              "resourceId": "module.knowledge.retrieval-context.core",
+              "resourceKind": "MODULE",
+              "sourceVersion": "0.1.0"
+            },
+            {
+              "harnessId": "runtime.ai-gateway",
+              "installUnits": [
+                {
+                  "artifactName": "planeon.runtime.ai-gateway.core",
+                  "digest": null,
+                  "digestStatus": "MISSING_PLANNED",
+                  "id": "install.runtime.ai-gateway.core",
+                  "type": "OCI_IMAGE"
+                }
+              ],
+              "resourceId": "module.runtime.ai-gateway.core",
+              "resourceKind": "MODULE",
+              "sourceVersion": "0.1.0"
+            },
+            {
+              "harnessId": "runtime.infrastructure",
+              "installUnits": [
+                {
+                  "artifactName": "planeon.runtime.infrastructure.core",
+                  "digest": null,
+                  "digestStatus": "MISSING_PLANNED",
+                  "id": "install.runtime.infrastructure.core",
+                  "type": "OCI_ARTIFACT"
+                }
+              ],
+              "resourceId": "module.runtime.infrastructure.core",
+              "resourceKind": "MODULE",
+              "sourceVersion": "0.1.0"
+            },
+            {
+              "harnessId": "runtime.model-inference",
+              "installUnits": [
+                {
+                  "artifactName": "planeon.runtime.model-inference.core",
+                  "digest": null,
+                  "digestStatus": "MISSING_PLANNED",
+                  "id": "install.runtime.model-inference.core",
+                  "type": "OCI_IMAGE"
+                }
+              ],
+              "resourceId": "module.runtime.model-inference.core",
+              "resourceKind": "MODULE",
+              "sourceVersion": "0.1.0"
+            },
+            {
+              "harnessId": "trust.governance-agentops",
+              "installUnits": [
+                {
+                  "artifactName": "planeon.trust.governance-agentops.core",
+                  "digest": null,
+                  "digestStatus": "MISSING_PLANNED",
+                  "id": "install.trust.governance-agentops.core",
+                  "type": "OCI_IMAGE"
+                }
+              ],
+              "resourceId": "module.trust.governance-agentops.core",
+              "resourceKind": "MODULE",
+              "sourceVersion": "0.1.0"
+            },
+            {
+              "harnessId": "trust.observability-finops",
+              "installUnits": [
+                {
+                  "artifactName": "planeon.trust.observability-finops.core",
+                  "digest": null,
+                  "digestStatus": "MISSING_PLANNED",
+                  "id": "install.trust.observability-finops.core",
+                  "type": "OCI_IMAGE"
+                }
+              ],
+              "resourceId": "module.trust.observability-finops.core",
+              "resourceKind": "MODULE",
+              "sourceVersion": "0.1.0"
+            },
+            {
+              "harnessId": "trust.security-safety",
+              "installUnits": [
+                {
+                  "artifactName": "planeon.trust.security-safety.core",
+                  "digest": null,
+                  "digestStatus": "MISSING_PLANNED",
+                  "id": "install.trust.security-safety.core",
+                  "type": "OCI_IMAGE"
+                }
+              ],
+              "resourceId": "module.trust.security-safety.core",
+              "resourceKind": "MODULE",
+              "sourceVersion": "0.1.0"
+            },
+            {
+              "harnessId": "runtime.model-inference",
+              "installUnits": [
+                {
+                  "artifactName": "planeon.provider.llamacpp",
+                  "digest": null,
+                  "digestStatus": "MISSING_PLANNED",
+                  "id": "install.provider.planeon.llamacpp",
+                  "type": "OCI_IMAGE"
+                }
+              ],
+              "resourceId": "provider.planeon.llamacpp",
+              "resourceKind": "PROVIDER",
+              "sourceVersion": "0.1.0"
+            },
+            {
+              "harnessId": "runtime.infrastructure",
+              "installUnits": [
+                {
+                  "artifactName": "tenant.platform.kubernetes-upstream",
+                  "digest": null,
+                  "digestStatus": "MISSING_PLANNED",
+                  "id": "install.provider.runtime.infrastructure.kubernetes-upstream",
+                  "type": "TENANT_SUPPLIED_PLATFORM"
+                }
+              ],
+              "resourceId": "provider.runtime.infrastructure.kubernetes-upstream",
+              "resourceKind": "PROVIDER",
+              "sourceVersion": "0.1.0"
+            }
+          ],
+          "profileId": "profile.white-goods-silo",
+          "state": "PLANNED"
+        }
+      }
+    },
+    "evidence-plan.json": {
+      "mediaType": "application/json",
+      "sha256": "sha256:201af457ceaeac5d9b08de02d1e1dff4402e420d78e1890621b0d30bbfd4e5ac",
+      "value": {
+        "apiVersion": "harness.planeon.ai/v1alpha1",
+        "kind": "EvidencePlan",
+        "metadata": {
+          "id": "evidence-plan.white-goods-silo",
+          "version": "0.4.0"
+        },
+        "spec": {
+          "assuranceSubjects": {
+            "capabilityIds": [],
+            "harnessIds": []
+          },
+          "evidenceState": "MISSING_PLANNED",
+          "harnessRequirements": [
+            {
+              "evidenceTypes": [
+                "ARTIFACT",
+                "ASSURANCE",
+                "CI",
+                "DEPLOYMENT",
+                "RUNTIME",
+                "SECURITY",
+                "SOURCE"
+              ],
+              "harnessId": "knowledge.data-integration"
+            },
+            {
+              "evidenceTypes": [
+                "ARTIFACT",
+                "CI",
+                "DEPLOYMENT",
+                "RUNTIME",
+                "SECURITY",
+                "SOURCE"
+              ],
+              "harnessId": "knowledge.domain-semantic"
+            },
+            {
+              "evidenceTypes": [
+                "ARTIFACT",
+                "ASSURANCE",
+                "CI",
+                "DEPLOYMENT",
+                "RUNTIME",
+                "SECURITY",
+                "SOURCE"
+              ],
+              "harnessId": "knowledge.retrieval-context"
+            },
+            {
+              "evidenceTypes": [
+                "ARTIFACT",
+                "ASSURANCE",
+                "CI",
+                "DEPLOYMENT",
+                "RUNTIME",
+                "SECURITY",
+                "SOURCE"
+              ],
+              "harnessId": "runtime.ai-gateway"
+            },
+            {
+              "evidenceTypes": [
+                "ARTIFACT",
+                "CI",
+                "DEPLOYMENT",
+                "RUNTIME",
+                "SECURITY",
+                "SOURCE"
+              ],
+              "harnessId": "runtime.infrastructure"
+            },
+            {
+              "evidenceTypes": [
+                "ARTIFACT",
+                "ASSURANCE",
+                "CI",
+                "DEPLOYMENT",
+                "RUNTIME",
+                "SECURITY",
+                "SOURCE"
+              ],
+              "harnessId": "runtime.model-inference"
+            },
+            {
+              "evidenceTypes": [
+                "ARTIFACT",
+                "CI",
+                "DEPLOYMENT",
+                "RUNTIME",
+                "SECURITY",
+                "SOURCE"
+              ],
+              "harnessId": "trust.governance-agentops"
+            },
+            {
+              "evidenceTypes": [
+                "ARTIFACT",
+                "CI",
+                "DEPLOYMENT",
+                "RUNTIME",
+                "SECURITY",
+                "SOURCE"
+              ],
+              "harnessId": "trust.observability-finops"
+            },
+            {
+              "evidenceTypes": [
+                "ARTIFACT",
+                "CI",
+                "DEPLOYMENT",
+                "RUNTIME",
+                "SECURITY",
+                "SOURCE"
+              ],
+              "harnessId": "trust.security-safety"
+            }
+          ],
+          "productionGates": [
+            {
+              "gateId": "gate.runtime-gateway-production-assurance",
+              "harnessId": "runtime.ai-gateway"
+            }
+          ],
+          "profileId": "profile.white-goods-silo",
+          "state": "PLANNED",
+          "tenantAcceptanceIncluded": false
+        }
+      }
+    },
+    "explanation.md": {
+      "mediaType": "text/markdown",
+      "sha256": "sha256:f9773649b01c97a9aa6d6814fb0d29d2cad8cd375d3dd439e1135138f59a03d9",
+      "text": "# Harness profile explanation\n\n- Tenant demand: `demand.white-goods-silo`\n- Readiness: `READY` from `readiness.white-goods-silo`\n- Catalog: `sha256:26d442c4e90a19d767d32e80ef9df3d154b3146d3238dc0eecf29ee773913a26`\n- Direct harnesses: knowledge.retrieval-context, runtime.ai-gateway, runtime.infrastructure, runtime.model-inference\n- Accepted prerequisites: knowledge.data-integration, knowledge.domain-semantic, trust.governance-agentops, trust.observability-finops, trust.security-safety\n- Selected harnesses: knowledge.data-integration, knowledge.domain-semantic, knowledge.retrieval-context, runtime.ai-gateway, runtime.infrastructure, runtime.model-inference, trust.governance-agentops, trust.observability-finops, trust.security-safety\n\n## Explicit provider choices\n\n- `group.infrastructure-provider`: `platform.provider.kubernetes-upstream` -> `provider.runtime.infrastructure.kubernetes-upstream`\n- `group.model-backend`: `provider.planeon.llamacpp` -> `provider.planeon.llamacpp`\n\n## Recommendation-only candidates\n\n- `group.infrastructure-provider`: `platform.provider.kubernetes-upstream` (`PROPOSED_SELECTOR_ONLY`)\n- `group.model-backend`: `provider.planeon.llamacpp`, `provider.planeon.ollama` (`PROPOSED_SELECTOR_ONLY`)\n\n## Evidence boundary\n\nAll resources and install units remain `PLANNED` or `MISSING_PLANNED`.\nCompilation proves no artifact, deployment, runtime, assurance, or tenant acceptance.\n"
+    },
+    "install-plan.json": {
+      "mediaType": "application/json",
+      "sha256": "sha256:be689c276b5ad065bf84844b276f09f22da4d5d88fc448c57d527653737661b8",
+      "value": {
+        "apiVersion": "harness.planeon.ai/v1alpha1",
+        "kind": "InstallPlan",
+        "metadata": {
+          "id": "install-plan.white-goods-silo",
+          "version": "0.4.0"
+        },
+        "spec": {
+          "healthCheckRequired": true,
+          "profileId": "profile.white-goods-silo",
+          "rollbackRequired": true,
+          "state": "PLANNED",
+          "tenantDataRetention": "RETAIN_BY_DEFAULT",
+          "uninstallSupported": true,
+          "waves": [
+            {
+              "index": 0,
+              "resourceIds": [
+                "provider.planeon.llamacpp",
+                "provider.runtime.infrastructure.kubernetes-upstream"
+              ]
+            },
+            {
+              "index": 1,
+              "resourceIds": [
+                "module.runtime.infrastructure.core"
+              ]
+            },
+            {
+              "index": 2,
+              "resourceIds": [
+                "module.trust.observability-finops.core",
+                "module.trust.security-safety.core"
+              ]
+            },
+            {
+              "index": 3,
+              "resourceIds": [
+                "module.knowledge.domain-semantic.core",
+                "module.runtime.model-inference.core",
+                "module.trust.governance-agentops.core"
+              ]
+            },
+            {
+              "index": 4,
+              "resourceIds": [
+                "module.knowledge.data-integration.core",
+                "module.runtime.ai-gateway.core"
+              ]
+            },
+            {
+              "index": 5,
+              "resourceIds": [
+                "module.knowledge.retrieval-context.core"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "profile.json": {
+      "mediaType": "application/json",
+      "sha256": "sha256:abc27127f2f8360737809b70966638d02ff5eec6f7bb98afdcd7f14db80a5e61",
+      "value": {
+        "executionBudget": {
+          "apiVersion": "harness.planeon.ai/v1alpha1",
+          "kind": "ExecutionBudget",
+          "metadata": {
+            "id": "budget.white-goods-silo",
+            "version": "0.4.0"
+          },
+          "spec": {
+            "enforcement": "REQUIRED",
+            "maxConcurrentTasks": 4,
+            "maxModelTokens": 131072,
+            "maxRetries": 2,
+            "maxTaskSeconds": 600,
+            "maxToolCalls": 24,
+            "overflowDisposition": "BLOCK"
+          }
+        },
+        "profile": {
+          "apiVersion": "harness.planeon.ai/v1alpha1",
+          "kind": "HarnessProfile",
+          "metadata": {
+            "id": "profile.white-goods-silo",
+            "version": "0.4.0"
+          },
+          "spec": {
+            "acceptedPrerequisiteHarnessIds": [
+              "knowledge.data-integration",
+              "knowledge.domain-semantic",
+              "trust.governance-agentops",
+              "trust.observability-finops",
+              "trust.security-safety"
+            ],
+            "assuranceSubjects": {
+              "capabilityIds": [],
+              "harnessIds": []
+            },
+            "catalogDigest": "sha256:26d442c4e90a19d767d32e80ef9df3d154b3146d3238dc0eecf29ee773913a26",
+            "directHarnessIds": [
+              "knowledge.retrieval-context",
+              "runtime.ai-gateway",
+              "runtime.infrastructure",
+              "runtime.model-inference"
+            ],
+            "environmentAttestationDigest": "sha256:719e418e93c3484ba7909dfc1b1849deda525338236687e33090f52b269bc0d2",
+            "executionBudgetId": "budget.white-goods-silo",
+            "proposedSelectors": [
+              {
+                "disposition": "PROPOSED_SELECTOR_ONLY",
+                "groupId": "group.infrastructure-provider",
+                "selectorCapabilities": [
+                  "platform.provider.kubernetes-upstream"
+                ]
+              },
+              {
+                "disposition": "PROPOSED_SELECTOR_ONLY",
+                "groupId": "group.model-backend",
+                "selectorCapabilities": [
+                  "provider.planeon.llamacpp",
+                  "provider.planeon.ollama"
+                ]
+              }
+            ],
+            "providerSelections": [
+              {
+                "groupId": "group.infrastructure-provider",
+                "providerId": "provider.runtime.infrastructure.kubernetes-upstream",
+                "selectorCapability": "platform.provider.kubernetes-upstream"
+              },
+              {
+                "groupId": "group.model-backend",
+                "providerId": "provider.planeon.llamacpp",
+                "selectorCapability": "provider.planeon.llamacpp"
+              }
+            ],
+            "readinessAssessmentId": "readiness.white-goods-silo",
+            "readinessStatus": "READY",
+            "requestedCapabilities": [
+              "agent.read-only",
+              "deployment.kubernetes",
+              "model.local-cpu",
+              "platform.provider.kubernetes-upstream",
+              "provider.planeon.llamacpp",
+              "retrieval.cited"
+            ],
+            "selectedHarnessIds": [
+              "knowledge.data-integration",
+              "knowledge.domain-semantic",
+              "knowledge.retrieval-context",
+              "runtime.ai-gateway",
+              "runtime.infrastructure",
+              "runtime.model-inference",
+              "trust.governance-agentops",
+              "trust.observability-finops",
+              "trust.security-safety"
+            ],
+            "selectedModuleIds": [
+              "module.knowledge.data-integration.core",
+              "module.knowledge.domain-semantic.core",
+              "module.knowledge.retrieval-context.core",
+              "module.runtime.ai-gateway.core",
+              "module.runtime.infrastructure.core",
+              "module.runtime.model-inference.core",
+              "module.trust.governance-agentops.core",
+              "module.trust.observability-finops.core",
+              "module.trust.security-safety.core"
+            ],
+            "selectedProviderIds": [
+              "provider.planeon.llamacpp",
+              "provider.runtime.infrastructure.kubernetes-upstream"
+            ],
+            "state": "PLANNED",
+            "tenantDemandId": "demand.white-goods-silo",
+            "tenantId": "tenant.white-goods-silo"
+          }
+        },
+        "schemaVersion": "harness.planeon.ai/compiled-profile-document/v1alpha1",
+        "tenantDemand": {
+          "apiVersion": "harness.planeon.ai/v1alpha1",
+          "kind": "TenantDemand",
+          "metadata": {
+            "id": "demand.white-goods-silo",
+            "version": "0.4.0"
+          },
+          "spec": {
+            "acceptedPrerequisiteHarnessIds": [
+              "knowledge.data-integration",
+              "knowledge.domain-semantic",
+              "trust.governance-agentops",
+              "trust.observability-finops",
+              "trust.security-safety"
+            ],
+            "assuranceSubjects": {
+              "capabilityIds": [],
+              "harnessIds": []
+            },
+            "environment": {
+              "architecture": "amd64",
+              "attestationDigest": "sha256:719e418e93c3484ba7909dfc1b1849deda525338236687e33090f52b269bc0d2",
+              "capabilities": [
+                "architecture.amd64-available",
+                "connectivity.connected",
+                "connectivity.silo",
+                "tenant.namespace-isolation"
+              ],
+              "deploymentMode": "self-managed",
+              "kubernetesDistribution": "upstream",
+              "operatingSystem": "linux",
+              "signatureStatus": "VERIFIED",
+              "tenantId": "tenant.white-goods-silo"
+            },
+            "executionBudget": {
+              "maxConcurrentTasks": 4,
+              "maxModelTokens": 131072,
+              "maxRetries": 2,
+              "maxTaskSeconds": 600,
+              "maxToolCalls": 24
+            },
+            "questionnaireAnswerSetId": "answers.white-goods-silo",
+            "readinessAssessmentId": "readiness.white-goods-silo",
+            "requestedCapabilities": [
+              "agent.read-only",
+              "deployment.kubernetes",
+              "model.local-cpu",
+              "platform.provider.kubernetes-upstream",
+              "provider.planeon.llamacpp",
+              "retrieval.cited"
+            ],
+            "tenantId": "tenant.white-goods-silo"
+          }
+        }
+      }
+    },
+    "profile.sha256": {
+      "mediaType": "text/plain",
+      "sha256": "sha256:d6e2f0c2a93df5d096ac94a71f040fe9c9653c666dc08291cd5d95c386acf9a2",
+      "text": "sha256:abc27127f2f8360737809b70966638d02ff5eec6f7bb98afdcd7f14db80a5e61\n"
+    }
+  },
+  "stage": "evidence-and-acceptance",
+  "synthetic": true
+}

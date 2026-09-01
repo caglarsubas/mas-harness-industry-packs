@@ -1,0 +1,8 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wg: <urn:planeon:white-goods:> .
+
+wg:SyntheticIncompleteKpi a wg:KeyPerformanceIndicator ;
+  wg:stableId "synthetic-incomplete-kpi" ;
+  rdfs:label "Synthetic incomplete KPI" ;
+  wg:formula "a deliberately incomplete synthetic formula" .

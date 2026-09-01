@@ -25,7 +25,7 @@ def main() -> int:
     project = tomllib.loads((root / "pyproject.toml").read_text(encoding="utf-8"))
     if set(project["project"]["dependencies"]) != EXPECTED_DEPENDENCIES:
         raise SystemExit("runtime dependency surface is not closed")
-    if project["dependency-groups"]["dev"] != ["pytest==8.4.2"]:
+    if set(project["dependency-groups"]["dev"]) != {"pytest==8.4.2", "rdflib==7.6.0", "pyshacl==0.40.1"}:
         raise SystemExit("development dependency surface is not closed")
     if any((root / name).exists() for name in ("Dockerfile", "docker-compose.yml", "compose.yaml")):
         raise SystemExit("IND-001 does not authorize container or cloud provisioning")
@@ -35,4 +35,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

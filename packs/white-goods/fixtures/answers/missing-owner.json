@@ -1,0 +1,30 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-answer-set/v1alpha1",
+  "kind": "IndustryAnswerSet",
+  "id": "white-goods.answers.missing-owner",
+  "stage": "evidence-and-acceptance",
+  "synthetic": true,
+  "answers": {
+    "acceptance-outcome": "readiness-blocked-pending-evidence",
+    "business-owner-role": "",
+    "ctq-scope": ["water-containment"],
+    "data-steward-role": "data-steward",
+    "decision-boundary": "Inform a bounded synthetic quality-readiness pilot only.",
+    "deferred-plant-specific-choices": ["plant-identity", "production-threshold", "observation-window"],
+    "domain-owner-role": "domain-owner",
+    "evidence-approver-role": "evidence-approver",
+    "kpi-scope": ["defect-escape-rate"],
+    "manufacturing-process-scope": ["final-test"],
+    "outcome-evidence-refs": "synthetic-evidence:business-domain-v1",
+    "plant-specific-claims": "",
+    "primary-business-objective": "reduce-defect-escape",
+    "product-family-scope": ["dish-care"],
+    "quality-owner-role": "quality-owner",
+    "role-separation-confirmed": true,
+    "tenant-evidence-verified": false,
+    "unacceptable-outcome": "Readiness without an accountable owner."
+  },
+  "deferredPlantSpecificChoices": ["plant identity", "production threshold", "observation window"],
+  "evidence": {"published": false, "runtimeEvidence": false, "assuranceEvidence": false, "tenantAcceptance": false},
+  "expectedDecision": {"status": "BLOCKED", "reasonCodes": ["MISSING_ACCOUNTABLE_OWNER"]}
+}

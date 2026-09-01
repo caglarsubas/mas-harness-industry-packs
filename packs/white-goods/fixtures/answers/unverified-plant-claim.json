@@ -1,0 +1,30 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-answer-set/v1alpha1",
+  "kind": "IndustryAnswerSet",
+  "id": "white-goods.answers.unverified-plant-claim",
+  "stage": "evidence-and-acceptance",
+  "synthetic": true,
+  "answers": {
+    "acceptance-outcome": "readiness-blocked-pending-evidence",
+    "business-owner-role": "business-owner",
+    "ctq-scope": ["sealed-system-integrity", "temperature-stability"],
+    "data-steward-role": "data-steward",
+    "decision-boundary": "Inform a bounded synthetic quality-readiness pilot only.",
+    "deferred-plant-specific-choices": ["plant-identity", "production-threshold", "observation-window"],
+    "domain-owner-role": "domain-owner",
+    "evidence-approver-role": "evidence-approver",
+    "kpi-scope": ["warranty-return-rate"],
+    "manufacturing-process-scope": ["joining-and-sealing", "final-test"],
+    "outcome-evidence-refs": "synthetic-evidence:business-domain-v1",
+    "plant-specific-claims": "synthetic.target.threshold",
+    "primary-business-objective": "improve-resource-performance-evidence",
+    "product-family-scope": ["refrigeration"],
+    "quality-owner-role": "quality-owner",
+    "role-separation-confirmed": true,
+    "tenant-evidence-verified": false,
+    "unacceptable-outcome": "An unverified plant claim treated as accepted evidence."
+  },
+  "deferredPlantSpecificChoices": ["plant identity", "production threshold", "observation window"],
+  "evidence": {"published": false, "runtimeEvidence": false, "assuranceEvidence": false, "tenantAcceptance": false},
+  "expectedDecision": {"status": "BLOCKED", "reasonCodes": ["UNVERIFIED_PLANT_SPECIFIC_CHOICE"]}
+}

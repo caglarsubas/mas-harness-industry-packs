@@ -1,0 +1,144 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix wg: <urn:planeon:white-goods:> .
+
+wg:WhiteGoodsDomain a owl:Ontology ;
+  rdfs:label "Planeon white-goods business domain" .
+
+wg:BusinessObjective a owl:Class ; rdfs:label "Business objective" .
+wg:AccountableRole a owl:Class ; rdfs:label "Accountable role" .
+wg:ProductFamily a owl:Class ; rdfs:label "Product family" .
+wg:ProductModel a owl:Class ; rdfs:label "Product model" .
+wg:ManufacturingProcess a owl:Class ; rdfs:label "Manufacturing process" .
+wg:ProcessStep a owl:Class ; rdfs:label "Process step" .
+wg:QualityCharacteristic a owl:Class ; rdfs:label "Quality characteristic" .
+wg:CriticalToQuality a owl:Class ; rdfs:subClassOf wg:QualityCharacteristic ; rdfs:label "Critical to quality" .
+wg:KeyPerformanceIndicator a owl:Class ; rdfs:label "Key performance indicator" .
+wg:AcceptanceOutcome a owl:Class ; rdfs:label "Acceptance outcome" .
+wg:TargetDirection a owl:Class ; rdfs:label "Target direction" .
+
+wg:stableId a owl:DatatypeProperty ; rdfs:range xsd:string .
+wg:accountableRole a owl:ObjectProperty ; rdfs:range wg:AccountableRole .
+wg:belongsToFamily a owl:ObjectProperty ; rdfs:range wg:ProductFamily .
+wg:processStep a owl:ObjectProperty ; rdfs:range wg:ProcessStep .
+wg:acceptanceOutcome a owl:ObjectProperty ; rdfs:range wg:AcceptanceOutcome .
+wg:metricCode a owl:DatatypeProperty ; rdfs:range xsd:string .
+wg:formula a owl:DatatypeProperty ; rdfs:range xsd:string .
+wg:numeratorDefinition a owl:DatatypeProperty ; rdfs:range xsd:string .
+wg:denominatorDefinition a owl:DatatypeProperty ; rdfs:range xsd:string .
+wg:dimension a owl:DatatypeProperty ; rdfs:range xsd:string .
+wg:evidenceClass a owl:DatatypeProperty ; rdfs:range xsd:string .
+wg:targetDirection a owl:ObjectProperty ; rdfs:range wg:TargetDirection .
+
+wg:HigherIsBetter a wg:TargetDirection ; wg:stableId "higher-is-better" ; rdfs:label "Higher is better" .
+wg:LowerIsBetter a wg:TargetDirection ; wg:stableId "lower-is-better" ; rdfs:label "Lower is better" .
+wg:WithinAcceptedRange a wg:TargetDirection ; wg:stableId "within-accepted-range" ; rdfs:label "Within accepted range" .
+
+wg:BusinessOwner a wg:AccountableRole ; wg:stableId "business-owner" ; rdfs:label "Business owner" .
+wg:DomainOwner a wg:AccountableRole ; wg:stableId "domain-owner" ; rdfs:label "Domain owner" .
+wg:QualityOwner a wg:AccountableRole ; wg:stableId "quality-owner" ; rdfs:label "Quality owner" .
+wg:DataSteward a wg:AccountableRole ; wg:stableId "data-steward" ; rdfs:label "Data steward" .
+wg:EvidenceApprover a wg:AccountableRole ; wg:stableId "evidence-approver" ; rdfs:label "Evidence approver" .
+
+wg:PilotScopeApproved a wg:AcceptanceOutcome ;
+  wg:stableId "pilot-scope-approved" ;
+  rdfs:label "Pilot scope approved from business-domain evidence" ;
+  wg:evidenceClass "business-domain-evidence" .
+wg:ReadinessBlocked a wg:AcceptanceOutcome ;
+  wg:stableId "readiness-blocked-pending-evidence" ;
+  rdfs:label "Readiness blocked pending evidence" ;
+  wg:evidenceClass "blocking-finding" .
+wg:DomainScopeRevisionRequired a wg:AcceptanceOutcome ;
+  wg:stableId "domain-scope-revision-required" ;
+  rdfs:label "Domain scope revision required" ;
+  wg:evidenceClass "scope-decision" .
+
+wg:ImproveFirstPassYield a wg:BusinessObjective ;
+  wg:stableId "improve-first-pass-yield" ; rdfs:label "Improve first-pass yield" ;
+  wg:accountableRole wg:BusinessOwner ; wg:acceptanceOutcome wg:PilotScopeApproved .
+wg:ReduceDefectEscape a wg:BusinessObjective ;
+  wg:stableId "reduce-defect-escape" ; rdfs:label "Reduce confirmed defect escape" ;
+  wg:accountableRole wg:QualityOwner ; wg:acceptanceOutcome wg:PilotScopeApproved .
+wg:ReduceWarrantyReturn a wg:BusinessObjective ;
+  wg:stableId "reduce-warranty-return" ; rdfs:label "Reduce evidence-confirmed warranty return" ;
+  wg:accountableRole wg:BusinessOwner ; wg:acceptanceOutcome wg:PilotScopeApproved .
+wg:ImproveCtqConformance a wg:BusinessObjective ;
+  wg:stableId "improve-ctq-conformance" ; rdfs:label "Improve CTQ conformance" ;
+  wg:accountableRole wg:QualityOwner ; wg:acceptanceOutcome wg:PilotScopeApproved .
+wg:ImproveResourcePerformanceEvidence a wg:BusinessObjective ;
+  wg:stableId "improve-resource-performance-evidence" ; rdfs:label "Improve resource-performance evidence" ;
+  wg:accountableRole wg:EvidenceApprover ; wg:acceptanceOutcome wg:PilotScopeApproved .
+
+wg:Refrigeration a wg:ProductFamily ; wg:stableId "refrigeration" ; rdfs:label "Refrigeration" .
+wg:Laundry a wg:ProductFamily ; wg:stableId "laundry" ; rdfs:label "Laundry" .
+wg:DishCare a wg:ProductFamily ; wg:stableId "dish-care" ; rdfs:label "Dish care" .
+wg:Cooking a wg:ProductFamily ; wg:stableId "cooking" ; rdfs:label "Cooking" .
+
+wg:IncomingInspection a wg:ProcessStep ; wg:stableId "incoming-inspection" ; rdfs:label "Incoming inspection" .
+wg:ComponentPreparation a wg:ProcessStep ; wg:stableId "component-preparation" ; rdfs:label "Component preparation" .
+wg:Assembly a wg:ProcessStep ; wg:stableId "assembly" ; rdfs:label "Assembly" .
+wg:JoiningAndSealing a wg:ProcessStep ; wg:stableId "joining-and-sealing" ; rdfs:label "Joining and sealing" .
+wg:FinalTest a wg:ProcessStep ; wg:stableId "final-test" ; rdfs:label "Final test" .
+wg:Packaging a wg:ProcessStep ; wg:stableId "packaging" ; rdfs:label "Packaging" .
+
+wg:GenericManufacturingFlow a wg:ManufacturingProcess ;
+  wg:stableId "generic-manufacturing-flow" ; rdfs:label "Generic white-goods manufacturing flow" ;
+  wg:processStep wg:IncomingInspection, wg:ComponentPreparation, wg:Assembly, wg:JoiningAndSealing, wg:FinalTest, wg:Packaging .
+
+wg:SealedSystemIntegrity a wg:CriticalToQuality ;
+  wg:stableId "sealed-system-integrity" ; rdfs:label "Sealed-system integrity" ;
+  wg:metricCode "sealed-system-integrity" ; wg:targetDirection wg:WithinAcceptedRange ;
+  wg:accountableRole wg:QualityOwner ; wg:evidenceClass "inspection-or-test-record" .
+wg:TemperatureStability a wg:CriticalToQuality ;
+  wg:stableId "temperature-stability" ; rdfs:label "Temperature stability" ;
+  wg:metricCode "temperature-stability" ; wg:targetDirection wg:WithinAcceptedRange ;
+  wg:accountableRole wg:QualityOwner ; wg:evidenceClass "test-measurement-record" .
+wg:WaterContainment a wg:CriticalToQuality ;
+  wg:stableId "water-containment" ; rdfs:label "Water containment" ;
+  wg:metricCode "water-containment" ; wg:targetDirection wg:WithinAcceptedRange ;
+  wg:accountableRole wg:QualityOwner ; wg:evidenceClass "inspection-or-test-record" .
+wg:VibrationPerformance a wg:CriticalToQuality ;
+  wg:stableId "vibration-performance" ; rdfs:label "Vibration performance" ;
+  wg:metricCode "vibration-performance" ; wg:targetDirection wg:WithinAcceptedRange ;
+  wg:accountableRole wg:QualityOwner ; wg:evidenceClass "test-measurement-record" .
+wg:ElectricalTestResult a wg:CriticalToQuality ;
+  wg:stableId "electrical-test-result" ; rdfs:label "Electrical test result" ;
+  wg:metricCode "electrical-test-result" ; wg:targetDirection wg:WithinAcceptedRange ;
+  wg:accountableRole wg:QualityOwner ; wg:evidenceClass "test-record" .
+wg:CosmeticGrade a wg:CriticalToQuality ;
+  wg:stableId "cosmetic-grade" ; rdfs:label "Cosmetic grade" ;
+  wg:metricCode "cosmetic-grade" ; wg:targetDirection wg:WithinAcceptedRange ;
+  wg:accountableRole wg:QualityOwner ; wg:evidenceClass "inspection-record" .
+
+wg:FirstPassYield a wg:KeyPerformanceIndicator ;
+  wg:stableId "first-pass-yield" ; rdfs:label "First-pass yield" ;
+  wg:formula "accepted units without rework divided by inspected units" ;
+  wg:numeratorDefinition "accepted units without rework" ; wg:denominatorDefinition "inspected units" ;
+  wg:dimension "product-family" ; wg:dimension "process-step" ;
+  wg:targetDirection wg:HigherIsBetter ; wg:accountableRole wg:QualityOwner .
+wg:DefectEscapeRate a wg:KeyPerformanceIndicator ;
+  wg:stableId "defect-escape-rate" ; rdfs:label "Defect escape rate" ;
+  wg:formula "confirmed post-release defects divided by released units" ;
+  wg:numeratorDefinition "confirmed post-release defects" ; wg:denominatorDefinition "released units" ;
+  wg:dimension "product-family" ; wg:dimension "observation-window" ;
+  wg:targetDirection wg:LowerIsBetter ; wg:accountableRole wg:QualityOwner .
+wg:WarrantyReturnRate a wg:KeyPerformanceIndicator ;
+  wg:stableId "warranty-return-rate" ; rdfs:label "Warranty return rate" ;
+  wg:formula "evidence-confirmed returned units divided by shipped units" ;
+  wg:numeratorDefinition "evidence-confirmed returned units" ; wg:denominatorDefinition "shipped units" ;
+  wg:dimension "product-family" ; wg:dimension "observation-window" ;
+  wg:targetDirection wg:LowerIsBetter ; wg:accountableRole wg:BusinessOwner .
+wg:ReworkRate a wg:KeyPerformanceIndicator ;
+  wg:stableId "rework-rate" ; rdfs:label "Rework rate" ;
+  wg:formula "units requiring rework divided by completed units" ;
+  wg:numeratorDefinition "units requiring rework" ; wg:denominatorDefinition "completed units" ;
+  wg:dimension "product-family" ; wg:dimension "process-step" ;
+  wg:targetDirection wg:LowerIsBetter ; wg:accountableRole wg:QualityOwner .
+wg:CtqConformanceRate a wg:KeyPerformanceIndicator ;
+  wg:stableId "ctq-conformance-rate" ; rdfs:label "CTQ conformance rate" ;
+  wg:formula "accepted CTQ observations divided by total CTQ observations" ;
+  wg:numeratorDefinition "accepted CTQ observations" ; wg:denominatorDefinition "total CTQ observations" ;
+  wg:dimension "ctq" ; wg:dimension "product-family" ;
+  wg:targetDirection wg:HigherIsBetter ; wg:accountableRole wg:QualityOwner .

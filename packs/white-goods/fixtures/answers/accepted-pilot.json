@@ -1,0 +1,30 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-answer-set/v1alpha1",
+  "kind": "IndustryAnswerSet",
+  "id": "white-goods.answers.accepted-pilot",
+  "stage": "evidence-and-acceptance",
+  "synthetic": true,
+  "answers": {
+    "acceptance-outcome": "pilot-scope-approved",
+    "business-owner-role": "business-owner",
+    "ctq-scope": ["sealed-system-integrity", "temperature-stability", "electrical-test-result"],
+    "data-steward-role": "data-steward",
+    "decision-boundary": "Inform a bounded synthetic quality-readiness pilot; do not authorize production actions.",
+    "deferred-plant-specific-choices": ["plant-identity", "production-threshold", "observation-window", "source-system-binding", "regulatory-applicability"],
+    "domain-owner-role": "domain-owner",
+    "evidence-approver-role": "evidence-approver",
+    "kpi-scope": ["first-pass-yield", "ctq-conformance-rate"],
+    "manufacturing-process-scope": ["incoming-inspection", "assembly", "final-test"],
+    "outcome-evidence-refs": "synthetic-evidence:business-domain-v1",
+    "plant-specific-claims": "",
+    "primary-business-objective": "improve-ctq-conformance",
+    "product-family-scope": ["refrigeration", "laundry"],
+    "quality-owner-role": "quality-owner",
+    "role-separation-confirmed": true,
+    "tenant-evidence-verified": false,
+    "unacceptable-outcome": "Any decision presented as plant acceptance without tenant evidence."
+  },
+  "deferredPlantSpecificChoices": ["plant identity", "production threshold", "observation window", "source system binding", "regulatory applicability"],
+  "evidence": {"published": false, "runtimeEvidence": false, "assuranceEvidence": false, "tenantAcceptance": false},
+  "expectedDecision": {"status": "READY", "reasonCodes": []}
+}

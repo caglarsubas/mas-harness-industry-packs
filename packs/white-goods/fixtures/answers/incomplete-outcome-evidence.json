@@ -1,0 +1,30 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-answer-set/v1alpha1",
+  "kind": "IndustryAnswerSet",
+  "id": "white-goods.answers.incomplete-outcome-evidence",
+  "stage": "evidence-and-acceptance",
+  "synthetic": true,
+  "answers": {
+    "acceptance-outcome": "readiness-blocked-pending-evidence",
+    "business-owner-role": "business-owner",
+    "ctq-scope": ["cosmetic-grade", "electrical-test-result"],
+    "data-steward-role": "data-steward",
+    "decision-boundary": "Inform a bounded synthetic quality-readiness pilot only.",
+    "deferred-plant-specific-choices": ["plant-identity", "production-threshold", "observation-window"],
+    "domain-owner-role": "domain-owner",
+    "evidence-approver-role": "evidence-approver",
+    "kpi-scope": ["first-pass-yield"],
+    "manufacturing-process-scope": ["assembly", "final-test"],
+    "outcome-evidence-refs": "",
+    "plant-specific-claims": "",
+    "primary-business-objective": "improve-first-pass-yield",
+    "product-family-scope": ["cooking"],
+    "quality-owner-role": "quality-owner",
+    "role-separation-confirmed": true,
+    "tenant-evidence-verified": false,
+    "unacceptable-outcome": "A business-domain outcome without evidence."
+  },
+  "deferredPlantSpecificChoices": ["plant identity", "production threshold", "observation window"],
+  "evidence": {"published": false, "runtimeEvidence": false, "assuranceEvidence": false, "tenantAcceptance": false},
+  "expectedDecision": {"status": "BLOCKED", "reasonCodes": ["INCOMPLETE_OUTCOME_EVIDENCE"]}
+}

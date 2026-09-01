@@ -1,0 +1,53 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix wg: <urn:planeon:white-goods:> .
+
+wg:IdentifiedConceptShape a sh:NodeShape ;
+  sh:targetClass wg:AccountableRole, wg:ProductFamily, wg:ProcessStep, wg:AcceptanceOutcome ;
+  sh:property [ sh:path wg:stableId ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:minLength 1 ] ;
+  sh:property [ sh:path rdfs:label ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:minLength 1 ] .
+
+wg:BusinessObjectiveShape a sh:NodeShape ;
+  sh:targetClass wg:BusinessObjective ;
+  sh:property [ sh:path wg:stableId ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path rdfs:label ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path wg:accountableRole ; sh:class wg:AccountableRole ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path wg:acceptanceOutcome ; sh:class wg:AcceptanceOutcome ; sh:minCount 1 ] .
+
+wg:ProductModelShape a sh:NodeShape ;
+  sh:targetClass wg:ProductModel ;
+  sh:property [ sh:path wg:stableId ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path rdfs:label ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path wg:belongsToFamily ; sh:class wg:ProductFamily ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+wg:ManufacturingProcessShape a sh:NodeShape ;
+  sh:targetClass wg:ManufacturingProcess ;
+  sh:property [ sh:path wg:stableId ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path rdfs:label ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path wg:processStep ; sh:class wg:ProcessStep ; sh:minCount 1 ] .
+
+wg:CriticalToQualityShape a sh:NodeShape ;
+  sh:targetClass wg:CriticalToQuality ;
+  sh:property [ sh:path wg:stableId ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path rdfs:label ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path wg:metricCode ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path wg:targetDirection ; sh:in (wg:HigherIsBetter wg:LowerIsBetter wg:WithinAcceptedRange) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path wg:accountableRole ; sh:class wg:AccountableRole ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path wg:evidenceClass ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+wg:KeyPerformanceIndicatorShape a sh:NodeShape ;
+  sh:targetClass wg:KeyPerformanceIndicator ;
+  sh:property [ sh:path wg:stableId ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path rdfs:label ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path wg:formula ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path wg:numeratorDefinition ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path wg:denominatorDefinition ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path wg:dimension ; sh:datatype xsd:string ; sh:minCount 1 ] ;
+  sh:property [ sh:path wg:targetDirection ; sh:in (wg:HigherIsBetter wg:LowerIsBetter wg:WithinAcceptedRange) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path wg:accountableRole ; sh:class wg:AccountableRole ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+wg:AcceptanceOutcomeShape a sh:NodeShape ;
+  sh:targetClass wg:AcceptanceOutcome ;
+  sh:property [ sh:path wg:evidenceClass ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] .

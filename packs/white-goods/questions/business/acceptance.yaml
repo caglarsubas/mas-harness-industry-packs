@@ -1,0 +1,24 @@
+apiVersion: harness.planeon.ai/questionnaire/v1alpha1
+kind: Questionnaire
+id: white-goods.business.acceptance
+stage: evidence-and-acceptance
+title: Business-domain evidence and acceptance outcome
+questions:
+  - id: acceptance-outcome
+    prompt: Select the current business-domain outcome; this is not runtime or tenant acceptance.
+    responseType: choice
+    required: true
+    choices: [pilot-scope-approved, readiness-blocked-pending-evidence, domain-scope-revision-required]
+    multiple: false
+  - id: outcome-evidence-refs
+    prompt: Provide local evidence identifiers supporting the selected outcome.
+    responseType: string
+    required: true
+  - id: plant-specific-claims
+    prompt: List plant-specific claims only when tenant evidence exists; otherwise leave empty.
+    responseType: string
+    required: false
+  - id: tenant-evidence-verified
+    prompt: Confirm whether tenant authority has verified every declared plant-specific claim.
+    responseType: boolean
+    required: true

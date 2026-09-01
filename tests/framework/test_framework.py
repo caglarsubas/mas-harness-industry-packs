@@ -22,6 +22,7 @@ from planeon_industry_packs.errors import PackValidationError
 from planeon_industry_packs.index import build_index, write_index
 from planeon_industry_packs.loader import load_pack, validate_pack
 from planeon_industry_packs.package import FIXED_EPOCH, archive_bytes, package_pack
+from planeon_industry_packs.rules import validate_static_data
 
 ROOT = Path(__file__).resolve().parents[2]
 COMMON = ROOT / "common"
@@ -82,6 +83,36 @@ def test_contract_lock_pins_exact_con_007_authority_without_schema_bytes() -> No
     assert value["releaseManifestSha256"] == "c5dd4c39d1c69d07f8d8de3d1a09584bb906172fee2d5ac20ad25ff344b0db79"
     assert value["catalogDigest"] == "sha256:26d442c4e90a19d767d32e80ef9df3d154b3146d3238dc0eecf29ee773913a26"
     assert not any((COMMON / entry["path"]).exists() for entry in value["schemas"])
+
+
+def test_rdf_semantic_namespace_identifiers_are_admitted_without_dereferencing() -> None:
+    content = "\n".join(
+        f"@prefix ns{index}: <{namespace}> ."
+        for index, namespace in enumerate(
+            (
+                "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+                "http://www.w3.org/2000/01/rdf-schema#",
+                "http://www.w3.org/2001/XMLSchema#",
+                "http://www.w3.org/2002/07/owl#",
+                "http://www.w3.org/ns/shacl#",
+            )
+        )
+    )
+    validate_static_data(content, path="ontology/allowed.ttl")
+
+
+@pytest.mark.parametrize(
+    ("content", "reason"),
+    [
+        ("@prefix bad: <https://example.invalid/ontology#> .", "NETWORK_TARGET_FORBIDDEN"),
+        ("@prefix owl: <http://www.w3.org/2002/07/owl#> . <urn:a> owl:imports <urn:b> .", "RDF_EXECUTION_FEATURE_FORBIDDEN"),
+        ("@prefix sh: <http://www.w3.org/ns/shacl#> . <urn:a> sh:sparql [] .", "RDF_EXECUTION_FEATURE_FORBIDDEN"),
+        ("@prefix sh: <http://www.w3.org/ns/shacl#> . <urn:a> sh:js [] .", "RDF_EXECUTION_FEATURE_FORBIDDEN"),
+    ],
+)
+def test_rdf_network_and_execution_features_remain_rejected(content: str, reason: str) -> None:
+    with pytest.raises(PackValidationError, match=reason):
+        validate_static_data(content, path="ontology/rejected.ttl")
 
 
 def test_common_journey_is_exact_and_contiguous() -> None:

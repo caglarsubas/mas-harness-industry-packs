@@ -1,0 +1,55 @@
+apiVersion: harness.planeon.ai/questionnaire/v1alpha1
+kind: Questionnaire
+id: white-goods.business.objectives
+stage: domain-and-outcomes
+title: White-goods objectives and scope
+questions:
+  - id: primary-business-objective
+    prompt: Select the primary measurable outcome for this domain slice.
+    responseType: choice
+    required: true
+    choices:
+      - improve-first-pass-yield
+      - reduce-defect-escape
+      - reduce-warranty-return
+      - improve-ctq-conformance
+      - improve-resource-performance-evidence
+    multiple: false
+  - id: product-family-scope
+    prompt: Select the product families included in the declared scope.
+    responseType: choice
+    required: true
+    choices: [refrigeration, laundry, dish-care, cooking]
+    multiple: true
+  - id: manufacturing-process-scope
+    prompt: Select the manufacturing processes covered by the declared scope.
+    responseType: choice
+    required: true
+    choices: [incoming-inspection, component-preparation, assembly, joining-and-sealing, final-test, packaging]
+    multiple: true
+  - id: ctq-scope
+    prompt: Select the critical-to-quality concepts included in this business-domain slice.
+    responseType: choice
+    required: true
+    choices: [sealed-system-integrity, temperature-stability, water-containment, vibration-performance, electrical-test-result, cosmetic-grade]
+    multiple: true
+  - id: kpi-scope
+    prompt: Select the KPI definitions used to evaluate the declared business objective.
+    responseType: choice
+    required: true
+    choices: [first-pass-yield, defect-escape-rate, warranty-return-rate, rework-rate, ctq-conformance-rate]
+    multiple: true
+  - id: deferred-plant-specific-choices
+    prompt: Confirm which choices remain deferred until tenant evidence and authority are available.
+    responseType: choice
+    required: true
+    choices: [plant-identity, production-threshold, observation-window, source-system-binding, regulatory-applicability]
+    multiple: true
+  - id: decision-boundary
+    prompt: State what decisions this initiative may inform and what remains out of scope.
+    responseType: string
+    required: true
+  - id: unacceptable-outcome
+    prompt: State a measurable outcome that must block readiness or acceptance.
+    responseType: string
+    required: true

@@ -1,0 +1,8 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wg: <urn:planeon:white-goods:> .
+
+wg:SyntheticRefrigerationModel a wg:ProductModel ;
+  wg:stableId "synthetic-refrigeration-model" ;
+  rdfs:label "Synthetic refrigeration product model" ;
+  wg:belongsToFamily wg:Refrigeration .

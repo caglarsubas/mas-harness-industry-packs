@@ -15,7 +15,7 @@ from typing import Iterable
 
 NAME = "planeon-harness-industry-packs"
 NORMALIZED = "planeon_harness_industry_packs"
-VERSION = "0.1.0"
+VERSION = "0.1.1"
 DIST_INFO = f"{NORMALIZED}-{VERSION}.dist-info"
 FIXED_EPOCH = 946684800
 ROOT = Path(__file__).resolve().parents[2]
@@ -141,4 +141,3 @@ def get_requires_for_build_wheel(config_settings: object = None) -> list[str]:
 def get_requires_for_build_sdist(config_settings: object = None) -> list[str]:
     del config_settings
     return []
-

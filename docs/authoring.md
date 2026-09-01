@@ -10,6 +10,11 @@ A sector pack declares `packKind: SECTOR`, `overlayMode: APPEND_ONLY`, and an `e
 
 Declare every file once in `pack.yaml`. The loader admits regular UTF-8 YAML, JSON, Markdown, text, CSV, JSONL, RDF, Turtle, and OWL only. It rejects links, special files, hidden members, traversal, executable suffixes or modes, duplicate structured-data keys, custom YAML tags, unlisted files, oversize files, remote targets, template markers, credential fields, executable fields, and model/tool invocation fields.
 
+RDF-family content has one narrow identifier exception: the exact W3C RDF,
+RDFS, XSD, OWL, and SHACL namespace IRIs may appear as semantic identifiers and
+are never dereferenced. Domain terms use `urn:` identifiers. RDF imports,
+SPARQL/JavaScript constraints, and every other HTTP or FTP IRI remain forbidden.
+
 Rule expressions use only `all`, `any`, `not`, `eq`, `in`, `exists`, `gte`, and `lte`. Rule actions use only `ASK_QUESTION`, `REQUIRE_EVIDENCE`, `RECOMMEND_HARNESS`, and `BLOCK_READINESS`. Rule fields are answer references; rules are declarative data, never expressions evaluated as source code.
 
 ## Deterministic outputs
@@ -24,5 +29,9 @@ Schema validation and deterministic packaging prove only source and offline arti
 
 ## Dependencies and licensing
 
-IND-001 uses only exact open-source dependencies `jsonschema==4.24.0`, `PyYAML==6.0.2`, and development-only `pytest==8.4.2`. RDFLib and pySHACL are intentionally absent; ontology conformance is not claimed until a later packet admits and locks that toolchain. Pack metadata accepts Apache-2.0, MIT, BSD-2-Clause, or BSD-3-Clause content only.
-
+The framework uses exact open-source dependencies `jsonschema==4.24.0` and
+`PyYAML==6.0.2`. Development verification uses `pytest==8.4.2`,
+`rdflib==7.6.0`, and `pyshacl==0.40.1` with a locked offline transitive closure.
+RDFLib and pySHACL are not runtime dependencies and cannot resolve remote
+graphs during packet acceptance. Pack metadata accepts Apache-2.0, MIT,
+BSD-2-Clause, or BSD-3-Clause content only.

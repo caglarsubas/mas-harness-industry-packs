@@ -18,6 +18,18 @@ FORBIDDEN_KEYS = {
 }
 TEMPLATE_MARKERS = ("{{", "}}", "${", "{%", "%}")
 REMOTE_PATTERN = re.compile(r"(?:https?|ftp)://", re.IGNORECASE)
+RDF_SUFFIXES = {".rdf", ".ttl", ".owl"}
+SEMANTIC_NAMESPACE_IRIS = (
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "http://www.w3.org/2000/01/rdf-schema#",
+    "http://www.w3.org/2001/XMLSchema#",
+    "http://www.w3.org/2002/07/owl#",
+    "http://www.w3.org/ns/shacl#",
+)
+FORBIDDEN_RDF_FEATURES = re.compile(
+    r"(?:owl:imports|sh:(?:sparql|js)|<http://www\.w3\.org/2002/07/owl#imports>)",
+    re.IGNORECASE,
+)
 
 
 def _schema_errors(schema: dict[str, Any], value: Any) -> Iterable[str]:
@@ -39,7 +51,17 @@ def validate_static_data(value: Any, *, path: str) -> None:
     elif isinstance(value, str):
         if any(marker in value for marker in TEMPLATE_MARKERS):
             raise PackValidationError("TEMPLATE_FORBIDDEN", "template interpolation is forbidden", path=path)
-        if REMOTE_PATTERN.search(value):
+        remote_subject = value
+        if Path(path).suffix.casefold() in RDF_SUFFIXES:
+            if FORBIDDEN_RDF_FEATURES.search(value):
+                raise PackValidationError(
+                    "RDF_EXECUTION_FEATURE_FORBIDDEN",
+                    "RDF imports, SPARQL constraints, and JavaScript constraints are forbidden",
+                    path=path,
+                )
+            for namespace in SEMANTIC_NAMESPACE_IRIS:
+                remote_subject = remote_subject.replace(namespace, "")
+        if REMOTE_PATTERN.search(remote_subject):
             raise PackValidationError("NETWORK_TARGET_FORBIDDEN", "remote targets are forbidden", path=path)
 
 
@@ -66,4 +88,3 @@ def validate_resource_identity(value: Any, *, declared_id: str, declared_stage: 
 
 def is_structured(path: str) -> bool:
     return Path(path).suffix.casefold() in {".yaml", ".yml", ".json"}
-

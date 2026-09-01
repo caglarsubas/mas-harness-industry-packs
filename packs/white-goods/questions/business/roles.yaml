@@ -1,0 +1,30 @@
+apiVersion: harness.planeon.ai/questionnaire/v1alpha1
+kind: Questionnaire
+id: white-goods.business.roles
+stage: business-context
+title: Accountable white-goods roles
+questions:
+  - id: business-owner-role
+    prompt: Name the accountable business role for the declared outcome.
+    responseType: string
+    required: true
+  - id: domain-owner-role
+    prompt: Name the role accountable for vocabulary and ontology decisions.
+    responseType: string
+    required: true
+  - id: quality-owner-role
+    prompt: Name the role accountable for CTQ and quality definitions.
+    responseType: string
+    required: true
+  - id: data-steward-role
+    prompt: Name the role accountable for source meaning, provenance, and quality evidence.
+    responseType: string
+    required: true
+  - id: evidence-approver-role
+    prompt: Name the role authorized to approve evidence for this setup stage.
+    responseType: string
+    required: true
+  - id: role-separation-confirmed
+    prompt: Confirm that authoring and evidence approval responsibilities are explicitly reviewed.
+    responseType: boolean
+    required: true

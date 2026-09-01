@@ -60,7 +60,7 @@ def test_sector_pack_is_closed_and_pinned_to_exact_common_foundation() -> None:
     common = load_pack(COMMON)
     assert report.accepted
     assert report.pack_id == "white-goods.manufacturing"
-    assert report.pack_version == "0.4.0"
+    assert report.pack_version == "0.5.0"
     assert report.evidence == EVIDENCE
     assert pack.manifest["overlayMode"] == "APPEND_ONLY"
     assert pack.manifest["extends"] == {
@@ -70,8 +70,8 @@ def test_sector_pack_is_closed_and_pinned_to_exact_common_foundation() -> None:
     }
     assert pack.files["contracts.lock.json"] == common.files["contracts.lock.json"]
     assert pack.files["journey.yaml"] == common.files["journey.yaml"]
-    assert len(pack.files) == 64
-    assert len(pack.resource_ids) == 61
+    assert len(pack.files) == 72
+    assert len(pack.resource_ids) == 69
     assert not (pack.resource_ids & common.resource_ids)
 
 
@@ -217,7 +217,7 @@ def test_sector_index_and_archive_are_byte_reproducible() -> None:
     assert first_archive == second_archive
     assert first_index["evidence"] == EVIDENCE
     assert first_index["packDigest"] == load_pack(PACK_ROOT).digest
-    assert first_archive[0] == "white-goods.manufacturing-0.4.0.tar.gz"
+    assert first_archive[0] == "white-goods.manufacturing-0.5.0.tar.gz"
 
 
 def test_framework_0_1_1_wheel_keeps_runtime_dependencies_closed(tmp_path: Path) -> None:

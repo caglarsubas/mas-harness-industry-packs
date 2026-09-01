@@ -55,11 +55,11 @@ def test_sector_pack_advances_only_the_governance_slice() -> None:
     report = validate_pack(PACK_ROOT, common_root=COMMON)
     pack = load_pack(PACK_ROOT, common_root=COMMON)
     common = load_pack(COMMON)
-    assert report.accepted and report.pack_version == "0.4.0"
+    assert report.accepted and report.pack_version == "0.5.0"
     assert pack.manifest["compatibility"]["frameworkVersion"] == "0.1.0"
     assert pack.manifest["extends"]["packDigest"] == "3cfea19e6e0a4a653d63622e250f40001b4f8221ebab18fa5bfc1601b8eddea3"
-    assert len(pack.files) == 64
-    assert len(pack.resource_ids) == 61
+    assert len(pack.files) == 72
+    assert len(pack.resource_ids) == 69
     validate_pack_contract(pack, common)
 
 
@@ -241,10 +241,10 @@ def test_sector_index_archive_and_handler_are_reproducible(capsys: pytest.Captur
     first_archive, second_archive = archive_bytes(PACK_ROOT), archive_bytes(PACK_ROOT)
     assert canonical_json_bytes(first_index) == canonical_json_bytes(second_index)
     assert first_archive == second_archive
-    assert first_archive[0] == "white-goods.manufacturing-0.4.0.tar.gz"
+    assert first_archive[0] == "white-goods.manufacturing-0.5.0.tar.gz"
     assert main(["white-goods"]) == 0
     output = json.loads(capsys.readouterr().out)
-    assert output["packVersion"] == "0.4.0"
+    assert output["packVersion"] == "0.5.0"
     assert output["frameworkVersion"] == "0.1.1"
     assert output["evidence"] == GOVERNANCE_EVIDENCE
     assert output["retainedArtifacts"] is False

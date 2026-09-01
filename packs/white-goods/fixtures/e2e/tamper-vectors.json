@@ -1,0 +1,14 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-certification-tamper-catalog/v1alpha1",
+  "kind": "IndustryCertificationTamperCatalog",
+  "id": "white-goods.certification.tamper-vectors",
+  "stage": "evidence-and-acceptance",
+  "synthetic": true,
+  "vectors": [
+    {"id": "white-goods.certification.tamper.content", "mutationKind": "CONTENT_BYTES_CHANGED", "targetPath": "fixtures/e2e/minimal-amd64.json", "expectedReason": "LOCK_MEMBER_DIGEST_MISMATCH"},
+    {"id": "white-goods.certification.tamper.missing", "mutationKind": "MEMBER_MISSING", "targetPath": "fixtures/e2e/minimal-arm64.json", "expectedReason": "LOCK_MEMBER_MISSING"},
+    {"id": "white-goods.certification.tamper.extra", "mutationKind": "UNDECLARED_MEMBER", "targetPath": "fixtures/e2e/undeclared-member.json", "expectedReason": "LOCK_UNDECLARED_MEMBER"},
+    {"id": "white-goods.certification.tamper.payload", "mutationKind": "LOCK_PAYLOAD_DIGEST_CHANGED", "targetPath": "pack.lock.json", "expectedReason": "LOCK_PAYLOAD_DIGEST_MISMATCH"},
+    {"id": "white-goods.certification.tamper.manifest", "mutationKind": "MANIFEST_LOCK_BINDING_CHANGED", "targetPath": "manifest.json", "expectedReason": "MANIFEST_LOCK_BINDING_MISMATCH"}
+  ]
+}

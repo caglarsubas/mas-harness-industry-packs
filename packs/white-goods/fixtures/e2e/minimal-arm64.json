@@ -1,0 +1,17 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-certification-scenario/v1alpha1",
+  "kind": "IndustryCertificationScenario",
+  "id": "white-goods.certification.scenario.minimal-arm64",
+  "stage": "evidence-and-acceptance",
+  "synthetic": true,
+  "profileSlug": "minimal-arm64",
+  "bindings": {
+    "businessAnswers": {"path": "fixtures/answers/accepted-pilot.json", "sha256": "b76421c1f0cfa258c97f159a48f0f8f53782ec6415384b9fed3acc57119da052"},
+    "dataReadiness": {"path": "fixtures/readiness/pass.json", "sha256": "9f91f09cdd33d37d94cf4d92f340fa9445bbd0bc376a4abc5e13ddccbdad329f"},
+    "governanceDecision": {"path": "fixtures/governance/ready-read-only.json", "sha256": "3cbd6b58159c92e7e157987b87b0886185f69e8a4fd29d70917e27ec47152a24"},
+    "providerDemand": {"path": "fixtures/demands/minimal-arm64.json", "sha256": "487ef4f31c118f2e7ecbc7adabfbb11a0b86f7d91cd7234f79439049becfdd7c"},
+    "providerGolden": {"path": "fixtures/expected/minimal-arm64.json", "sha256": "5879ebffaf89d0ed27e8b544db90a295217a701278f6936d5143e134d5674466"}
+  },
+  "expectedOutcome": "SOURCE_CONTRACT_READY",
+  "evidenceBoundary": {"source": true, "candidate": false, "ci": false, "merge": false, "artifact": false, "publication": false, "deployment": false, "runtime": false, "assurance": false, "crossRepositoryConformance": false, "tenantAcceptance": false}
+}

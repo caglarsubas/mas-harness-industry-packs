@@ -1,0 +1,238 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-provider-demand-fixture/v1alpha1",
+  "kind": "IndustryProviderDemandFixture",
+  "id": "white-goods.providers.demand.regulated-openshift",
+  "stage": "environment-and-provider-fit",
+  "synthetic": true,
+  "compileRequest": {
+  "demand": {
+    "acceptedPrerequisiteHarnessIds": [
+      "trust.governance-agentops",
+      "trust.observability-finops",
+      "trust.security-safety"
+    ],
+    "assuranceSubjects": {
+      "capabilityIds": [],
+      "harnessIds": []
+    },
+    "environment": {
+      "architecture": "amd64",
+      "attestationDigest": "sha256:dbc0c23fbe16b66d0f97975e7292f6ecb6a00032e5eb6a23fecd169b8f43cfb7",
+      "capabilities": [
+        "architecture.amd64-available",
+        "connectivity.connected",
+        "platform.openshift.arbitrary-uid",
+        "tenant.namespace-isolation"
+      ],
+      "deploymentMode": "self-managed",
+      "kubernetesDistribution": "openshift",
+      "operatingSystem": "linux",
+      "signatureStatus": "VERIFIED",
+      "tenantId": "tenant.white-goods-regulated-openshift"
+    },
+    "executionBudget": {
+      "maxConcurrentTasks": 4,
+      "maxModelTokens": 131072,
+      "maxRetries": 1,
+      "maxTaskSeconds": 600,
+      "maxToolCalls": 24
+    },
+    "requestedCapabilities": [
+      "agent.governed-action",
+      "assurance.required",
+      "model.local-cpu",
+      "platform.openshift",
+      "platform.provider.openshift",
+      "provider.planeon.llamacpp"
+    ]
+  },
+  "metadata": {
+    "demandId": "demand.white-goods-regulated-openshift",
+    "profileId": "profile.white-goods-regulated-openshift",
+    "tenantId": "tenant.white-goods-regulated-openshift",
+    "version": "0.4.0"
+  },
+  "questionnaireAnswerSet": {
+    "apiVersion": "harness.planeon.ai/v1alpha1",
+    "kind": "QuestionnaireAnswerSet",
+    "metadata": {
+      "id": "answers.white-goods-regulated-openshift",
+      "version": "0.4.0"
+    },
+    "spec": {
+      "answers": [
+        {
+          "questionId": "question.profile-id",
+          "source": "TENANT_DECLARATION",
+          "value": "profile.white-goods-regulated-openshift"
+        },
+        {
+          "questionId": "question.deployment-mode",
+          "source": "TENANT_DECLARATION",
+          "value": "self-managed"
+        },
+        {
+          "questionId": "question.architecture",
+          "source": "TENANT_DECLARATION",
+          "value": "amd64"
+        },
+        {
+          "questionId": "question.operating-system",
+          "source": "TENANT_DECLARATION",
+          "value": "linux"
+        },
+        {
+          "questionId": "question.kubernetes-distribution",
+          "source": "TENANT_DECLARATION",
+          "value": "openshift"
+        },
+        {
+          "questionId": "question.requested-capabilities",
+          "source": "TENANT_DECLARATION",
+          "value": [
+            "agent.governed-action",
+            "assurance.required",
+            "model.local-cpu",
+            "platform.openshift",
+            "platform.provider.openshift",
+            "provider.planeon.llamacpp"
+          ]
+        },
+        {
+          "questionId": "question.accepted-prerequisites",
+          "source": "TENANT_DECLARATION",
+          "value": [
+            "trust.governance-agentops",
+            "trust.observability-finops",
+            "trust.security-safety"
+          ]
+        },
+        {
+          "questionId": "question.infrastructure-selector",
+          "source": "TENANT_DECLARATION",
+          "value": "platform.provider.openshift"
+        },
+        {
+          "questionId": "question.model-class",
+          "source": "TENANT_DECLARATION",
+          "value": "model.local-cpu"
+        },
+        {
+          "questionId": "question.model-provider",
+          "source": "TENANT_DECLARATION",
+          "value": "provider.planeon.llamacpp"
+        },
+        {
+          "questionId": "question.selectors-explicitly-accepted",
+          "source": "TENANT_DECLARATION",
+          "value": true
+        },
+        {
+          "questionId": "question.capacity-attestation-required",
+          "source": "TENANT_DECLARATION",
+          "value": true
+        }
+      ],
+      "questionnaireDefinitionId": "questionnaire.white-goods-provider-profile",
+      "questionnaireSessionId": "session.white-goods-regulated-openshift",
+      "status": "SUBMITTED"
+    }
+  },
+  "readinessAssessment": {
+    "apiVersion": "harness.planeon.ai/v1alpha1",
+    "kind": "DataReadinessAssessment",
+    "metadata": {
+      "id": "readiness.white-goods-regulated-openshift",
+      "version": "0.4.0"
+    },
+    "spec": {
+      "gateResults": [
+        {
+          "evidenceIds": [
+            "evidence.white-goods-regulated-openshift.business-owner"
+          ],
+          "gateId": "business.owner",
+          "reasonCode": "readiness.business-owner-passed",
+          "status": "PASS"
+        },
+        {
+          "evidenceIds": [
+            "evidence.white-goods-regulated-openshift.business-outcome"
+          ],
+          "gateId": "business.outcome",
+          "reasonCode": "readiness.business-outcome-passed",
+          "status": "PASS"
+        },
+        {
+          "evidenceIds": [
+            "evidence.white-goods-regulated-openshift.data-owner"
+          ],
+          "gateId": "data.owner",
+          "reasonCode": "readiness.data-owner-passed",
+          "status": "PASS"
+        },
+        {
+          "evidenceIds": [
+            "evidence.white-goods-regulated-openshift.data-quality"
+          ],
+          "gateId": "data.quality",
+          "reasonCode": "readiness.data-quality-passed",
+          "status": "PASS"
+        },
+        {
+          "evidenceIds": [
+            "evidence.white-goods-regulated-openshift.data-completeness"
+          ],
+          "gateId": "data.completeness",
+          "reasonCode": "readiness.data-completeness-passed",
+          "status": "PASS"
+        },
+        {
+          "evidenceIds": [
+            "evidence.white-goods-regulated-openshift.data-freshness"
+          ],
+          "gateId": "data.freshness",
+          "reasonCode": "readiness.data-freshness-passed",
+          "status": "PASS"
+        },
+        {
+          "evidenceIds": [
+            "evidence.white-goods-regulated-openshift.data-provenance"
+          ],
+          "gateId": "data.provenance",
+          "reasonCode": "readiness.data-provenance-passed",
+          "status": "PASS"
+        },
+        {
+          "evidenceIds": [
+            "evidence.white-goods-regulated-openshift.data-classification"
+          ],
+          "gateId": "data.classification",
+          "reasonCode": "readiness.data-classification-passed",
+          "status": "PASS"
+        },
+        {
+          "evidenceIds": [
+            "evidence.white-goods-regulated-openshift.integration-readiness"
+          ],
+          "gateId": "integration.readiness",
+          "reasonCode": "readiness.integration-readiness-passed",
+          "status": "PASS"
+        },
+        {
+          "evidenceIds": [
+            "evidence.white-goods-regulated-openshift.autonomy-boundary"
+          ],
+          "gateId": "autonomy.boundary",
+          "reasonCode": "readiness.autonomy-boundary-passed",
+          "status": "PASS"
+        }
+      ],
+      "missingGateIds": [],
+      "overallStatus": "READY",
+      "questionnaireSessionId": "session.white-goods-regulated-openshift"
+    }
+  },
+  "schemaVersion": "harness.planeon.ai/compile-request/v1alpha1"
+  }
+}

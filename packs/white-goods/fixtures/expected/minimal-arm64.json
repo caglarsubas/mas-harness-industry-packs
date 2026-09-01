@@ -1,0 +1,425 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-provider-golden-output-envelope/v1alpha1",
+  "canonicalization": "SORTED_UTF8_JSON_V1",
+  "catalogDigest": "sha256:26d442c4e90a19d767d32e80ef9df3d154b3146d3238dc0eecf29ee773913a26",
+  "compileRequestPath": "fixtures/demands/minimal-arm64.json",
+  "compilerSha256": "0b0960c87bc1214e795144968db3976bd548c80e6002b03bc3f6e292303a764b",
+  "contractsCommit": "2146278a95344cd2a8e22596b2f315b46edffc88",
+  "evidenceBoundary": {
+    "artifact": false,
+    "assurance": false,
+    "candidate": false,
+    "ci": false,
+    "crossRepositoryConformance": false,
+    "deployment": false,
+    "merge": false,
+    "publication": false,
+    "runtime": false,
+    "sourceContract": true,
+    "tenantAcceptance": false
+  },
+  "id": "white-goods.providers.golden.minimal-arm64",
+  "kind": "IndustryProviderGoldenOutputEnvelope",
+  "outputNames": [
+    "profile.json",
+    "bom.json",
+    "install-plan.json",
+    "evidence-plan.json",
+    "explanation.md",
+    "profile.sha256"
+  ],
+  "outputs": {
+    "bom.json": {
+      "mediaType": "application/json",
+      "sha256": "sha256:88795d1c8c391344199cbb8e8da5c15722c055ec03fecaf1c80e9d53569ae594",
+      "value": {
+        "apiVersion": "harness.planeon.ai/v1alpha1",
+        "kind": "BillOfMaterials",
+        "metadata": {
+          "id": "bom.white-goods-minimal-arm64",
+          "version": "0.4.0"
+        },
+        "spec": {
+          "catalogDigest": "sha256:26d442c4e90a19d767d32e80ef9df3d154b3146d3238dc0eecf29ee773913a26",
+          "entries": [
+            {
+              "harnessId": "runtime.infrastructure",
+              "installUnits": [
+                {
+                  "artifactName": "planeon.runtime.infrastructure.core",
+                  "digest": null,
+                  "digestStatus": "MISSING_PLANNED",
+                  "id": "install.runtime.infrastructure.core",
+                  "type": "OCI_ARTIFACT"
+                }
+              ],
+              "resourceId": "module.runtime.infrastructure.core",
+              "resourceKind": "MODULE",
+              "sourceVersion": "0.1.0"
+            },
+            {
+              "harnessId": "runtime.model-inference",
+              "installUnits": [
+                {
+                  "artifactName": "planeon.runtime.model-inference.core",
+                  "digest": null,
+                  "digestStatus": "MISSING_PLANNED",
+                  "id": "install.runtime.model-inference.core",
+                  "type": "OCI_IMAGE"
+                }
+              ],
+              "resourceId": "module.runtime.model-inference.core",
+              "resourceKind": "MODULE",
+              "sourceVersion": "0.1.0"
+            },
+            {
+              "harnessId": "trust.observability-finops",
+              "installUnits": [
+                {
+                  "artifactName": "planeon.trust.observability-finops.core",
+                  "digest": null,
+                  "digestStatus": "MISSING_PLANNED",
+                  "id": "install.trust.observability-finops.core",
+                  "type": "OCI_IMAGE"
+                }
+              ],
+              "resourceId": "module.trust.observability-finops.core",
+              "resourceKind": "MODULE",
+              "sourceVersion": "0.1.0"
+            },
+            {
+              "harnessId": "trust.security-safety",
+              "installUnits": [
+                {
+                  "artifactName": "planeon.trust.security-safety.core",
+                  "digest": null,
+                  "digestStatus": "MISSING_PLANNED",
+                  "id": "install.trust.security-safety.core",
+                  "type": "OCI_IMAGE"
+                }
+              ],
+              "resourceId": "module.trust.security-safety.core",
+              "resourceKind": "MODULE",
+              "sourceVersion": "0.1.0"
+            },
+            {
+              "harnessId": "runtime.model-inference",
+              "installUnits": [
+                {
+                  "artifactName": "planeon.provider.llamacpp",
+                  "digest": null,
+                  "digestStatus": "MISSING_PLANNED",
+                  "id": "install.provider.planeon.llamacpp",
+                  "type": "OCI_IMAGE"
+                }
+              ],
+              "resourceId": "provider.planeon.llamacpp",
+              "resourceKind": "PROVIDER",
+              "sourceVersion": "0.1.0"
+            },
+            {
+              "harnessId": "runtime.infrastructure",
+              "installUnits": [
+                {
+                  "artifactName": "tenant.platform.k3s",
+                  "digest": null,
+                  "digestStatus": "MISSING_PLANNED",
+                  "id": "install.provider.runtime.infrastructure.k3s",
+                  "type": "TENANT_SUPPLIED_PLATFORM"
+                }
+              ],
+              "resourceId": "provider.runtime.infrastructure.k3s",
+              "resourceKind": "PROVIDER",
+              "sourceVersion": "0.1.0"
+            }
+          ],
+          "profileId": "profile.white-goods-minimal-arm64",
+          "state": "PLANNED"
+        }
+      }
+    },
+    "evidence-plan.json": {
+      "mediaType": "application/json",
+      "sha256": "sha256:a9a7a845d5f40fca3034445c90727c3734527c615080ab8759116b456bfd9233",
+      "value": {
+        "apiVersion": "harness.planeon.ai/v1alpha1",
+        "kind": "EvidencePlan",
+        "metadata": {
+          "id": "evidence-plan.white-goods-minimal-arm64",
+          "version": "0.4.0"
+        },
+        "spec": {
+          "assuranceSubjects": {
+            "capabilityIds": [],
+            "harnessIds": []
+          },
+          "evidenceState": "MISSING_PLANNED",
+          "harnessRequirements": [
+            {
+              "evidenceTypes": [
+                "ARTIFACT",
+                "CI",
+                "DEPLOYMENT",
+                "RUNTIME",
+                "SECURITY",
+                "SOURCE"
+              ],
+              "harnessId": "runtime.infrastructure"
+            },
+            {
+              "evidenceTypes": [
+                "ARTIFACT",
+                "ASSURANCE",
+                "CI",
+                "DEPLOYMENT",
+                "RUNTIME",
+                "SECURITY",
+                "SOURCE"
+              ],
+              "harnessId": "runtime.model-inference"
+            },
+            {
+              "evidenceTypes": [
+                "ARTIFACT",
+                "CI",
+                "DEPLOYMENT",
+                "RUNTIME",
+                "SECURITY",
+                "SOURCE"
+              ],
+              "harnessId": "trust.observability-finops"
+            },
+            {
+              "evidenceTypes": [
+                "ARTIFACT",
+                "CI",
+                "DEPLOYMENT",
+                "RUNTIME",
+                "SECURITY",
+                "SOURCE"
+              ],
+              "harnessId": "trust.security-safety"
+            }
+          ],
+          "productionGates": [],
+          "profileId": "profile.white-goods-minimal-arm64",
+          "state": "PLANNED",
+          "tenantAcceptanceIncluded": false
+        }
+      }
+    },
+    "explanation.md": {
+      "mediaType": "text/markdown",
+      "sha256": "sha256:7fe68db111230d2c43918229094ee60a74b11e2b28c7e95630c7d5b4e2baff60",
+      "text": "# Harness profile explanation\n\n- Tenant demand: `demand.white-goods-minimal-arm64`\n- Readiness: `READY` from `readiness.white-goods-minimal-arm64`\n- Catalog: `sha256:26d442c4e90a19d767d32e80ef9df3d154b3146d3238dc0eecf29ee773913a26`\n- Direct harnesses: runtime.infrastructure, runtime.model-inference\n- Accepted prerequisites: trust.observability-finops, trust.security-safety\n- Selected harnesses: runtime.infrastructure, runtime.model-inference, trust.observability-finops, trust.security-safety\n\n## Explicit provider choices\n\n- `group.infrastructure-provider`: `platform.provider.k3s` -> `provider.runtime.infrastructure.k3s`\n- `group.model-backend`: `provider.planeon.llamacpp` -> `provider.planeon.llamacpp`\n\n## Recommendation-only candidates\n\n- `group.infrastructure-provider`: `platform.provider.k3s` (`PROPOSED_SELECTOR_ONLY`)\n- `group.model-backend`: `provider.planeon.llamacpp`, `provider.planeon.ollama` (`PROPOSED_SELECTOR_ONLY`)\n\n## Evidence boundary\n\nAll resources and install units remain `PLANNED` or `MISSING_PLANNED`.\nCompilation proves no artifact, deployment, runtime, assurance, or tenant acceptance.\n"
+    },
+    "install-plan.json": {
+      "mediaType": "application/json",
+      "sha256": "sha256:2957c79a7b660c78b362ba85724cf401e3c083a3488840e6e3365f67c0f7b471",
+      "value": {
+        "apiVersion": "harness.planeon.ai/v1alpha1",
+        "kind": "InstallPlan",
+        "metadata": {
+          "id": "install-plan.white-goods-minimal-arm64",
+          "version": "0.4.0"
+        },
+        "spec": {
+          "healthCheckRequired": true,
+          "profileId": "profile.white-goods-minimal-arm64",
+          "rollbackRequired": true,
+          "state": "PLANNED",
+          "tenantDataRetention": "RETAIN_BY_DEFAULT",
+          "uninstallSupported": true,
+          "waves": [
+            {
+              "index": 0,
+              "resourceIds": [
+                "provider.planeon.llamacpp",
+                "provider.runtime.infrastructure.k3s"
+              ]
+            },
+            {
+              "index": 1,
+              "resourceIds": [
+                "module.runtime.infrastructure.core"
+              ]
+            },
+            {
+              "index": 2,
+              "resourceIds": [
+                "module.trust.observability-finops.core",
+                "module.trust.security-safety.core"
+              ]
+            },
+            {
+              "index": 3,
+              "resourceIds": [
+                "module.runtime.model-inference.core"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "profile.json": {
+      "mediaType": "application/json",
+      "sha256": "sha256:40376b8a43353a6a375af5549f851e8cf10588d62dec63bc72fd64f9fad300fc",
+      "value": {
+        "executionBudget": {
+          "apiVersion": "harness.planeon.ai/v1alpha1",
+          "kind": "ExecutionBudget",
+          "metadata": {
+            "id": "budget.white-goods-minimal-arm64",
+            "version": "0.4.0"
+          },
+          "spec": {
+            "enforcement": "REQUIRED",
+            "maxConcurrentTasks": 1,
+            "maxModelTokens": 32768,
+            "maxRetries": 1,
+            "maxTaskSeconds": 300,
+            "maxToolCalls": 12,
+            "overflowDisposition": "BLOCK"
+          }
+        },
+        "profile": {
+          "apiVersion": "harness.planeon.ai/v1alpha1",
+          "kind": "HarnessProfile",
+          "metadata": {
+            "id": "profile.white-goods-minimal-arm64",
+            "version": "0.4.0"
+          },
+          "spec": {
+            "acceptedPrerequisiteHarnessIds": [
+              "trust.observability-finops",
+              "trust.security-safety"
+            ],
+            "assuranceSubjects": {
+              "capabilityIds": [],
+              "harnessIds": []
+            },
+            "catalogDigest": "sha256:26d442c4e90a19d767d32e80ef9df3d154b3146d3238dc0eecf29ee773913a26",
+            "directHarnessIds": [
+              "runtime.infrastructure",
+              "runtime.model-inference"
+            ],
+            "environmentAttestationDigest": "sha256:bd84c7506f245013ac64ae261d839f028c9b94d77e27bf97fcf4d55ce9b07319",
+            "executionBudgetId": "budget.white-goods-minimal-arm64",
+            "proposedSelectors": [
+              {
+                "disposition": "PROPOSED_SELECTOR_ONLY",
+                "groupId": "group.infrastructure-provider",
+                "selectorCapabilities": [
+                  "platform.provider.k3s"
+                ]
+              },
+              {
+                "disposition": "PROPOSED_SELECTOR_ONLY",
+                "groupId": "group.model-backend",
+                "selectorCapabilities": [
+                  "provider.planeon.llamacpp",
+                  "provider.planeon.ollama"
+                ]
+              }
+            ],
+            "providerSelections": [
+              {
+                "groupId": "group.infrastructure-provider",
+                "providerId": "provider.runtime.infrastructure.k3s",
+                "selectorCapability": "platform.provider.k3s"
+              },
+              {
+                "groupId": "group.model-backend",
+                "providerId": "provider.planeon.llamacpp",
+                "selectorCapability": "provider.planeon.llamacpp"
+              }
+            ],
+            "readinessAssessmentId": "readiness.white-goods-minimal-arm64",
+            "readinessStatus": "READY",
+            "requestedCapabilities": [
+              "model.local-cpu",
+              "platform.k3s",
+              "platform.provider.k3s",
+              "provider.planeon.llamacpp"
+            ],
+            "selectedHarnessIds": [
+              "runtime.infrastructure",
+              "runtime.model-inference",
+              "trust.observability-finops",
+              "trust.security-safety"
+            ],
+            "selectedModuleIds": [
+              "module.runtime.infrastructure.core",
+              "module.runtime.model-inference.core",
+              "module.trust.observability-finops.core",
+              "module.trust.security-safety.core"
+            ],
+            "selectedProviderIds": [
+              "provider.planeon.llamacpp",
+              "provider.runtime.infrastructure.k3s"
+            ],
+            "state": "PLANNED",
+            "tenantDemandId": "demand.white-goods-minimal-arm64",
+            "tenantId": "tenant.white-goods-minimal-arm64"
+          }
+        },
+        "schemaVersion": "harness.planeon.ai/compiled-profile-document/v1alpha1",
+        "tenantDemand": {
+          "apiVersion": "harness.planeon.ai/v1alpha1",
+          "kind": "TenantDemand",
+          "metadata": {
+            "id": "demand.white-goods-minimal-arm64",
+            "version": "0.4.0"
+          },
+          "spec": {
+            "acceptedPrerequisiteHarnessIds": [
+              "trust.observability-finops",
+              "trust.security-safety"
+            ],
+            "assuranceSubjects": {
+              "capabilityIds": [],
+              "harnessIds": []
+            },
+            "environment": {
+              "architecture": "arm64",
+              "attestationDigest": "sha256:bd84c7506f245013ac64ae261d839f028c9b94d77e27bf97fcf4d55ce9b07319",
+              "capabilities": [
+                "architecture.arm64-available",
+                "connectivity.connected",
+                "tenant.namespace-isolation"
+              ],
+              "deploymentMode": "self-managed",
+              "kubernetesDistribution": "k3s",
+              "operatingSystem": "linux",
+              "signatureStatus": "VERIFIED",
+              "tenantId": "tenant.white-goods-minimal-arm64"
+            },
+            "executionBudget": {
+              "maxConcurrentTasks": 1,
+              "maxModelTokens": 32768,
+              "maxRetries": 1,
+              "maxTaskSeconds": 300,
+              "maxToolCalls": 12
+            },
+            "questionnaireAnswerSetId": "answers.white-goods-minimal-arm64",
+            "readinessAssessmentId": "readiness.white-goods-minimal-arm64",
+            "requestedCapabilities": [
+              "model.local-cpu",
+              "platform.k3s",
+              "platform.provider.k3s",
+              "provider.planeon.llamacpp"
+            ],
+            "tenantId": "tenant.white-goods-minimal-arm64"
+          }
+        }
+      }
+    },
+    "profile.sha256": {
+      "mediaType": "text/plain",
+      "sha256": "sha256:e030a5aeffaf3159df0fb11c62a4df9af90640d370f8b13039d28416ee721deb",
+      "text": "sha256:40376b8a43353a6a375af5549f851e8cf10588d62dec63bc72fd64f9fad300fc\n"
+    }
+  },
+  "stage": "evidence-and-acceptance",
+  "synthetic": true
+}

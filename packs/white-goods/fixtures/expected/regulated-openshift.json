@@ -1,0 +1,533 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-provider-golden-output-envelope/v1alpha1",
+  "canonicalization": "SORTED_UTF8_JSON_V1",
+  "catalogDigest": "sha256:26d442c4e90a19d767d32e80ef9df3d154b3146d3238dc0eecf29ee773913a26",
+  "compileRequestPath": "fixtures/demands/regulated-openshift.json",
+  "compilerSha256": "0b0960c87bc1214e795144968db3976bd548c80e6002b03bc3f6e292303a764b",
+  "contractsCommit": "2146278a95344cd2a8e22596b2f315b46edffc88",
+  "evidenceBoundary": {
+    "artifact": false,
+    "assurance": false,
+    "candidate": false,
+    "ci": false,
+    "crossRepositoryConformance": false,
+    "deployment": false,
+    "merge": false,
+    "publication": false,
+    "runtime": false,
+    "sourceContract": true,
+    "tenantAcceptance": false
+  },
+  "id": "white-goods.providers.golden.regulated-openshift",
+  "kind": "IndustryProviderGoldenOutputEnvelope",
+  "outputNames": [
+    "profile.json",
+    "bom.json",
+    "install-plan.json",
+    "evidence-plan.json",
+    "explanation.md",
+    "profile.sha256"
+  ],
+  "outputs": {
+    "bom.json": {
+      "mediaType": "application/json",
+      "sha256": "sha256:032031322345c067395187dca1780273dd78ba5cc90662b6495e766a3cc172dc",
+      "value": {
+        "apiVersion": "harness.planeon.ai/v1alpha1",
+        "kind": "BillOfMaterials",
+        "metadata": {
+          "id": "bom.white-goods-regulated-openshift",
+          "version": "0.4.0"
+        },
+        "spec": {
+          "catalogDigest": "sha256:26d442c4e90a19d767d32e80ef9df3d154b3146d3238dc0eecf29ee773913a26",
+          "entries": [
+            {
+              "harnessId": "runtime.ai-gateway",
+              "installUnits": [
+                {
+                  "artifactName": "planeon.runtime.ai-gateway.core",
+                  "digest": null,
+                  "digestStatus": "MISSING_PLANNED",
+                  "id": "install.runtime.ai-gateway.core",
+                  "type": "OCI_IMAGE"
+                }
+              ],
+              "resourceId": "module.runtime.ai-gateway.core",
+              "resourceKind": "MODULE",
+              "sourceVersion": "0.1.0"
+            },
+            {
+              "harnessId": "runtime.infrastructure",
+              "installUnits": [
+                {
+                  "artifactName": "planeon.runtime.infrastructure.core",
+                  "digest": null,
+                  "digestStatus": "MISSING_PLANNED",
+                  "id": "install.runtime.infrastructure.core",
+                  "type": "OCI_ARTIFACT"
+                }
+              ],
+              "resourceId": "module.runtime.infrastructure.core",
+              "resourceKind": "MODULE",
+              "sourceVersion": "0.1.0"
+            },
+            {
+              "harnessId": "runtime.model-inference",
+              "installUnits": [
+                {
+                  "artifactName": "planeon.runtime.model-inference.core",
+                  "digest": null,
+                  "digestStatus": "MISSING_PLANNED",
+                  "id": "install.runtime.model-inference.core",
+                  "type": "OCI_IMAGE"
+                }
+              ],
+              "resourceId": "module.runtime.model-inference.core",
+              "resourceKind": "MODULE",
+              "sourceVersion": "0.1.0"
+            },
+            {
+              "harnessId": "trust.evaluation-assurance",
+              "installUnits": [
+                {
+                  "artifactName": "planeon.trust.evaluation-assurance.core",
+                  "digest": null,
+                  "digestStatus": "MISSING_PLANNED",
+                  "id": "install.trust.evaluation-assurance.core",
+                  "type": "OCI_IMAGE"
+                }
+              ],
+              "resourceId": "module.trust.evaluation-assurance.core",
+              "resourceKind": "MODULE",
+              "sourceVersion": "0.1.0"
+            },
+            {
+              "harnessId": "trust.governance-agentops",
+              "installUnits": [
+                {
+                  "artifactName": "planeon.trust.governance-agentops.core",
+                  "digest": null,
+                  "digestStatus": "MISSING_PLANNED",
+                  "id": "install.trust.governance-agentops.core",
+                  "type": "OCI_IMAGE"
+                }
+              ],
+              "resourceId": "module.trust.governance-agentops.core",
+              "resourceKind": "MODULE",
+              "sourceVersion": "0.1.0"
+            },
+            {
+              "harnessId": "trust.observability-finops",
+              "installUnits": [
+                {
+                  "artifactName": "planeon.trust.observability-finops.core",
+                  "digest": null,
+                  "digestStatus": "MISSING_PLANNED",
+                  "id": "install.trust.observability-finops.core",
+                  "type": "OCI_IMAGE"
+                }
+              ],
+              "resourceId": "module.trust.observability-finops.core",
+              "resourceKind": "MODULE",
+              "sourceVersion": "0.1.0"
+            },
+            {
+              "harnessId": "trust.security-safety",
+              "installUnits": [
+                {
+                  "artifactName": "planeon.trust.security-safety.core",
+                  "digest": null,
+                  "digestStatus": "MISSING_PLANNED",
+                  "id": "install.trust.security-safety.core",
+                  "type": "OCI_IMAGE"
+                }
+              ],
+              "resourceId": "module.trust.security-safety.core",
+              "resourceKind": "MODULE",
+              "sourceVersion": "0.1.0"
+            },
+            {
+              "harnessId": "runtime.model-inference",
+              "installUnits": [
+                {
+                  "artifactName": "planeon.provider.llamacpp",
+                  "digest": null,
+                  "digestStatus": "MISSING_PLANNED",
+                  "id": "install.provider.planeon.llamacpp",
+                  "type": "OCI_IMAGE"
+                }
+              ],
+              "resourceId": "provider.planeon.llamacpp",
+              "resourceKind": "PROVIDER",
+              "sourceVersion": "0.1.0"
+            },
+            {
+              "harnessId": "runtime.infrastructure",
+              "installUnits": [
+                {
+                  "artifactName": "tenant.platform.openshift",
+                  "digest": null,
+                  "digestStatus": "MISSING_PLANNED",
+                  "id": "install.provider.runtime.infrastructure.openshift",
+                  "type": "TENANT_SUPPLIED_PLATFORM"
+                }
+              ],
+              "resourceId": "provider.runtime.infrastructure.openshift",
+              "resourceKind": "PROVIDER",
+              "sourceVersion": "0.1.0"
+            }
+          ],
+          "profileId": "profile.white-goods-regulated-openshift",
+          "state": "PLANNED"
+        }
+      }
+    },
+    "evidence-plan.json": {
+      "mediaType": "application/json",
+      "sha256": "sha256:5979a62ef679ea922426d0fa4d33849e9a8c9ba8455945fa9a2a935f7f7d3442",
+      "value": {
+        "apiVersion": "harness.planeon.ai/v1alpha1",
+        "kind": "EvidencePlan",
+        "metadata": {
+          "id": "evidence-plan.white-goods-regulated-openshift",
+          "version": "0.4.0"
+        },
+        "spec": {
+          "assuranceSubjects": {
+            "capabilityIds": [],
+            "harnessIds": []
+          },
+          "evidenceState": "MISSING_PLANNED",
+          "harnessRequirements": [
+            {
+              "evidenceTypes": [
+                "ARTIFACT",
+                "ASSURANCE",
+                "CI",
+                "DEPLOYMENT",
+                "RUNTIME",
+                "SECURITY",
+                "SOURCE"
+              ],
+              "harnessId": "runtime.ai-gateway"
+            },
+            {
+              "evidenceTypes": [
+                "ARTIFACT",
+                "CI",
+                "DEPLOYMENT",
+                "RUNTIME",
+                "SECURITY",
+                "SOURCE"
+              ],
+              "harnessId": "runtime.infrastructure"
+            },
+            {
+              "evidenceTypes": [
+                "ARTIFACT",
+                "ASSURANCE",
+                "CI",
+                "DEPLOYMENT",
+                "RUNTIME",
+                "SECURITY",
+                "SOURCE"
+              ],
+              "harnessId": "runtime.model-inference"
+            },
+            {
+              "evidenceTypes": [
+                "ARTIFACT",
+                "ASSURANCE",
+                "CI",
+                "DEPLOYMENT",
+                "RUNTIME",
+                "SECURITY",
+                "SOURCE"
+              ],
+              "harnessId": "trust.evaluation-assurance"
+            },
+            {
+              "evidenceTypes": [
+                "ARTIFACT",
+                "CI",
+                "DEPLOYMENT",
+                "RUNTIME",
+                "SECURITY",
+                "SOURCE"
+              ],
+              "harnessId": "trust.governance-agentops"
+            },
+            {
+              "evidenceTypes": [
+                "ARTIFACT",
+                "CI",
+                "DEPLOYMENT",
+                "RUNTIME",
+                "SECURITY",
+                "SOURCE"
+              ],
+              "harnessId": "trust.observability-finops"
+            },
+            {
+              "evidenceTypes": [
+                "ARTIFACT",
+                "CI",
+                "DEPLOYMENT",
+                "RUNTIME",
+                "SECURITY",
+                "SOURCE"
+              ],
+              "harnessId": "trust.security-safety"
+            }
+          ],
+          "productionGates": [
+            {
+              "gateId": "gate.runtime-gateway-production-assurance",
+              "harnessId": "runtime.ai-gateway"
+            }
+          ],
+          "profileId": "profile.white-goods-regulated-openshift",
+          "state": "PLANNED",
+          "tenantAcceptanceIncluded": false
+        }
+      }
+    },
+    "explanation.md": {
+      "mediaType": "text/markdown",
+      "sha256": "sha256:c3adc1c685a20397b32924e2afd88f1c0f6bf7fdceeef708976cdcab61da323d",
+      "text": "# Harness profile explanation\n\n- Tenant demand: `demand.white-goods-regulated-openshift`\n- Readiness: `READY` from `readiness.white-goods-regulated-openshift`\n- Catalog: `sha256:26d442c4e90a19d767d32e80ef9df3d154b3146d3238dc0eecf29ee773913a26`\n- Direct harnesses: runtime.ai-gateway, runtime.infrastructure, runtime.model-inference, trust.evaluation-assurance\n- Accepted prerequisites: trust.governance-agentops, trust.observability-finops, trust.security-safety\n- Selected harnesses: runtime.ai-gateway, runtime.infrastructure, runtime.model-inference, trust.evaluation-assurance, trust.governance-agentops, trust.observability-finops, trust.security-safety\n\n## Explicit provider choices\n\n- `group.infrastructure-provider`: `platform.provider.openshift` -> `provider.runtime.infrastructure.openshift`\n- `group.model-backend`: `provider.planeon.llamacpp` -> `provider.planeon.llamacpp`\n\n## Recommendation-only candidates\n\n- `group.infrastructure-provider`: `platform.provider.openshift` (`PROPOSED_SELECTOR_ONLY`)\n- `group.model-backend`: `provider.planeon.llamacpp`, `provider.planeon.ollama` (`PROPOSED_SELECTOR_ONLY`)\n\n## Evidence boundary\n\nAll resources and install units remain `PLANNED` or `MISSING_PLANNED`.\nCompilation proves no artifact, deployment, runtime, assurance, or tenant acceptance.\n"
+    },
+    "install-plan.json": {
+      "mediaType": "application/json",
+      "sha256": "sha256:6ec2262e6793402190c40b1449f800c67933ff35937a8e16752893f7cb56418f",
+      "value": {
+        "apiVersion": "harness.planeon.ai/v1alpha1",
+        "kind": "InstallPlan",
+        "metadata": {
+          "id": "install-plan.white-goods-regulated-openshift",
+          "version": "0.4.0"
+        },
+        "spec": {
+          "healthCheckRequired": true,
+          "profileId": "profile.white-goods-regulated-openshift",
+          "rollbackRequired": true,
+          "state": "PLANNED",
+          "tenantDataRetention": "RETAIN_BY_DEFAULT",
+          "uninstallSupported": true,
+          "waves": [
+            {
+              "index": 0,
+              "resourceIds": [
+                "provider.planeon.llamacpp",
+                "provider.runtime.infrastructure.openshift"
+              ]
+            },
+            {
+              "index": 1,
+              "resourceIds": [
+                "module.runtime.infrastructure.core"
+              ]
+            },
+            {
+              "index": 2,
+              "resourceIds": [
+                "module.trust.observability-finops.core",
+                "module.trust.security-safety.core"
+              ]
+            },
+            {
+              "index": 3,
+              "resourceIds": [
+                "module.runtime.model-inference.core",
+                "module.trust.governance-agentops.core"
+              ]
+            },
+            {
+              "index": 4,
+              "resourceIds": [
+                "module.runtime.ai-gateway.core",
+                "module.trust.evaluation-assurance.core"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "profile.json": {
+      "mediaType": "application/json",
+      "sha256": "sha256:f9140603500127a848a574be93de98f6ba56a983c5f03ad257fe8a52bd0fcc2b",
+      "value": {
+        "executionBudget": {
+          "apiVersion": "harness.planeon.ai/v1alpha1",
+          "kind": "ExecutionBudget",
+          "metadata": {
+            "id": "budget.white-goods-regulated-openshift",
+            "version": "0.4.0"
+          },
+          "spec": {
+            "enforcement": "REQUIRED",
+            "maxConcurrentTasks": 4,
+            "maxModelTokens": 131072,
+            "maxRetries": 1,
+            "maxTaskSeconds": 600,
+            "maxToolCalls": 24,
+            "overflowDisposition": "BLOCK"
+          }
+        },
+        "profile": {
+          "apiVersion": "harness.planeon.ai/v1alpha1",
+          "kind": "HarnessProfile",
+          "metadata": {
+            "id": "profile.white-goods-regulated-openshift",
+            "version": "0.4.0"
+          },
+          "spec": {
+            "acceptedPrerequisiteHarnessIds": [
+              "trust.governance-agentops",
+              "trust.observability-finops",
+              "trust.security-safety"
+            ],
+            "assuranceSubjects": {
+              "capabilityIds": [],
+              "harnessIds": []
+            },
+            "catalogDigest": "sha256:26d442c4e90a19d767d32e80ef9df3d154b3146d3238dc0eecf29ee773913a26",
+            "directHarnessIds": [
+              "runtime.ai-gateway",
+              "runtime.infrastructure",
+              "runtime.model-inference",
+              "trust.evaluation-assurance"
+            ],
+            "environmentAttestationDigest": "sha256:dbc0c23fbe16b66d0f97975e7292f6ecb6a00032e5eb6a23fecd169b8f43cfb7",
+            "executionBudgetId": "budget.white-goods-regulated-openshift",
+            "proposedSelectors": [
+              {
+                "disposition": "PROPOSED_SELECTOR_ONLY",
+                "groupId": "group.infrastructure-provider",
+                "selectorCapabilities": [
+                  "platform.provider.openshift"
+                ]
+              },
+              {
+                "disposition": "PROPOSED_SELECTOR_ONLY",
+                "groupId": "group.model-backend",
+                "selectorCapabilities": [
+                  "provider.planeon.llamacpp",
+                  "provider.planeon.ollama"
+                ]
+              }
+            ],
+            "providerSelections": [
+              {
+                "groupId": "group.infrastructure-provider",
+                "providerId": "provider.runtime.infrastructure.openshift",
+                "selectorCapability": "platform.provider.openshift"
+              },
+              {
+                "groupId": "group.model-backend",
+                "providerId": "provider.planeon.llamacpp",
+                "selectorCapability": "provider.planeon.llamacpp"
+              }
+            ],
+            "readinessAssessmentId": "readiness.white-goods-regulated-openshift",
+            "readinessStatus": "READY",
+            "requestedCapabilities": [
+              "agent.governed-action",
+              "assurance.required",
+              "model.local-cpu",
+              "platform.openshift",
+              "platform.provider.openshift",
+              "provider.planeon.llamacpp"
+            ],
+            "selectedHarnessIds": [
+              "runtime.ai-gateway",
+              "runtime.infrastructure",
+              "runtime.model-inference",
+              "trust.evaluation-assurance",
+              "trust.governance-agentops",
+              "trust.observability-finops",
+              "trust.security-safety"
+            ],
+            "selectedModuleIds": [
+              "module.runtime.ai-gateway.core",
+              "module.runtime.infrastructure.core",
+              "module.runtime.model-inference.core",
+              "module.trust.evaluation-assurance.core",
+              "module.trust.governance-agentops.core",
+              "module.trust.observability-finops.core",
+              "module.trust.security-safety.core"
+            ],
+            "selectedProviderIds": [
+              "provider.planeon.llamacpp",
+              "provider.runtime.infrastructure.openshift"
+            ],
+            "state": "PLANNED",
+            "tenantDemandId": "demand.white-goods-regulated-openshift",
+            "tenantId": "tenant.white-goods-regulated-openshift"
+          }
+        },
+        "schemaVersion": "harness.planeon.ai/compiled-profile-document/v1alpha1",
+        "tenantDemand": {
+          "apiVersion": "harness.planeon.ai/v1alpha1",
+          "kind": "TenantDemand",
+          "metadata": {
+            "id": "demand.white-goods-regulated-openshift",
+            "version": "0.4.0"
+          },
+          "spec": {
+            "acceptedPrerequisiteHarnessIds": [
+              "trust.governance-agentops",
+              "trust.observability-finops",
+              "trust.security-safety"
+            ],
+            "assuranceSubjects": {
+              "capabilityIds": [],
+              "harnessIds": []
+            },
+            "environment": {
+              "architecture": "amd64",
+              "attestationDigest": "sha256:dbc0c23fbe16b66d0f97975e7292f6ecb6a00032e5eb6a23fecd169b8f43cfb7",
+              "capabilities": [
+                "architecture.amd64-available",
+                "connectivity.connected",
+                "platform.openshift.arbitrary-uid",
+                "tenant.namespace-isolation"
+              ],
+              "deploymentMode": "self-managed",
+              "kubernetesDistribution": "openshift",
+              "operatingSystem": "linux",
+              "signatureStatus": "VERIFIED",
+              "tenantId": "tenant.white-goods-regulated-openshift"
+            },
+            "executionBudget": {
+              "maxConcurrentTasks": 4,
+              "maxModelTokens": 131072,
+              "maxRetries": 1,
+              "maxTaskSeconds": 600,
+              "maxToolCalls": 24
+            },
+            "questionnaireAnswerSetId": "answers.white-goods-regulated-openshift",
+            "readinessAssessmentId": "readiness.white-goods-regulated-openshift",
+            "requestedCapabilities": [
+              "agent.governed-action",
+              "assurance.required",
+              "model.local-cpu",
+              "platform.openshift",
+              "platform.provider.openshift",
+              "provider.planeon.llamacpp"
+            ],
+            "tenantId": "tenant.white-goods-regulated-openshift"
+          }
+        }
+      }
+    },
+    "profile.sha256": {
+      "mediaType": "text/plain",
+      "sha256": "sha256:88c94d2900512dbb4bdb530d662de51e5b7c5407c849ad4af666fc12fba278ca",
+      "text": "sha256:f9140603500127a848a574be93de98f6ba56a983c5f03ad257fe8a52bd0fcc2b\n"
+    }
+  },
+  "stage": "evidence-and-acceptance",
+  "synthetic": true
+}

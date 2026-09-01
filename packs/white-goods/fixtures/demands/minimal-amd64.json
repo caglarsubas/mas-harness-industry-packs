@@ -1,0 +1,231 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-provider-demand-fixture/v1alpha1",
+  "kind": "IndustryProviderDemandFixture",
+  "id": "white-goods.providers.demand.minimal-amd64",
+  "stage": "environment-and-provider-fit",
+  "synthetic": true,
+  "compileRequest": {
+  "demand": {
+    "acceptedPrerequisiteHarnessIds": [
+      "trust.observability-finops",
+      "trust.security-safety"
+    ],
+    "assuranceSubjects": {
+      "capabilityIds": [],
+      "harnessIds": []
+    },
+    "environment": {
+      "architecture": "amd64",
+      "attestationDigest": "sha256:e4ebde0fcc8b34e7c54c45d8f901a084614ce0c674631e3c52d92914452fb84c",
+      "capabilities": [
+        "architecture.amd64-available",
+        "connectivity.connected",
+        "tenant.namespace-isolation"
+      ],
+      "deploymentMode": "self-managed",
+      "kubernetesDistribution": "upstream",
+      "operatingSystem": "linux",
+      "signatureStatus": "VERIFIED",
+      "tenantId": "tenant.white-goods-minimal-amd64"
+    },
+    "executionBudget": {
+      "maxConcurrentTasks": 2,
+      "maxModelTokens": 65536,
+      "maxRetries": 1,
+      "maxTaskSeconds": 300,
+      "maxToolCalls": 16
+    },
+    "requestedCapabilities": [
+      "deployment.kubernetes",
+      "model.local-cpu",
+      "platform.provider.kubernetes-upstream",
+      "provider.planeon.llamacpp"
+    ]
+  },
+  "metadata": {
+    "demandId": "demand.white-goods-minimal-amd64",
+    "profileId": "profile.white-goods-minimal-amd64",
+    "tenantId": "tenant.white-goods-minimal-amd64",
+    "version": "0.4.0"
+  },
+  "questionnaireAnswerSet": {
+    "apiVersion": "harness.planeon.ai/v1alpha1",
+    "kind": "QuestionnaireAnswerSet",
+    "metadata": {
+      "id": "answers.white-goods-minimal-amd64",
+      "version": "0.4.0"
+    },
+    "spec": {
+      "answers": [
+        {
+          "questionId": "question.profile-id",
+          "source": "TENANT_DECLARATION",
+          "value": "profile.white-goods-minimal-amd64"
+        },
+        {
+          "questionId": "question.deployment-mode",
+          "source": "TENANT_DECLARATION",
+          "value": "self-managed"
+        },
+        {
+          "questionId": "question.architecture",
+          "source": "TENANT_DECLARATION",
+          "value": "amd64"
+        },
+        {
+          "questionId": "question.operating-system",
+          "source": "TENANT_DECLARATION",
+          "value": "linux"
+        },
+        {
+          "questionId": "question.kubernetes-distribution",
+          "source": "TENANT_DECLARATION",
+          "value": "upstream"
+        },
+        {
+          "questionId": "question.requested-capabilities",
+          "source": "TENANT_DECLARATION",
+          "value": [
+            "deployment.kubernetes",
+            "model.local-cpu",
+            "platform.provider.kubernetes-upstream",
+            "provider.planeon.llamacpp"
+          ]
+        },
+        {
+          "questionId": "question.accepted-prerequisites",
+          "source": "TENANT_DECLARATION",
+          "value": [
+            "trust.observability-finops",
+            "trust.security-safety"
+          ]
+        },
+        {
+          "questionId": "question.infrastructure-selector",
+          "source": "TENANT_DECLARATION",
+          "value": "platform.provider.kubernetes-upstream"
+        },
+        {
+          "questionId": "question.model-class",
+          "source": "TENANT_DECLARATION",
+          "value": "model.local-cpu"
+        },
+        {
+          "questionId": "question.model-provider",
+          "source": "TENANT_DECLARATION",
+          "value": "provider.planeon.llamacpp"
+        },
+        {
+          "questionId": "question.selectors-explicitly-accepted",
+          "source": "TENANT_DECLARATION",
+          "value": true
+        },
+        {
+          "questionId": "question.capacity-attestation-required",
+          "source": "TENANT_DECLARATION",
+          "value": true
+        }
+      ],
+      "questionnaireDefinitionId": "questionnaire.white-goods-provider-profile",
+      "questionnaireSessionId": "session.white-goods-minimal-amd64",
+      "status": "SUBMITTED"
+    }
+  },
+  "readinessAssessment": {
+    "apiVersion": "harness.planeon.ai/v1alpha1",
+    "kind": "DataReadinessAssessment",
+    "metadata": {
+      "id": "readiness.white-goods-minimal-amd64",
+      "version": "0.4.0"
+    },
+    "spec": {
+      "gateResults": [
+        {
+          "evidenceIds": [
+            "evidence.white-goods-minimal-amd64.business-owner"
+          ],
+          "gateId": "business.owner",
+          "reasonCode": "readiness.business-owner-passed",
+          "status": "PASS"
+        },
+        {
+          "evidenceIds": [
+            "evidence.white-goods-minimal-amd64.business-outcome"
+          ],
+          "gateId": "business.outcome",
+          "reasonCode": "readiness.business-outcome-passed",
+          "status": "PASS"
+        },
+        {
+          "evidenceIds": [
+            "evidence.white-goods-minimal-amd64.data-owner"
+          ],
+          "gateId": "data.owner",
+          "reasonCode": "readiness.data-owner-passed",
+          "status": "PASS"
+        },
+        {
+          "evidenceIds": [
+            "evidence.white-goods-minimal-amd64.data-quality"
+          ],
+          "gateId": "data.quality",
+          "reasonCode": "readiness.data-quality-passed",
+          "status": "PASS"
+        },
+        {
+          "evidenceIds": [
+            "evidence.white-goods-minimal-amd64.data-completeness"
+          ],
+          "gateId": "data.completeness",
+          "reasonCode": "readiness.data-completeness-passed",
+          "status": "PASS"
+        },
+        {
+          "evidenceIds": [
+            "evidence.white-goods-minimal-amd64.data-freshness"
+          ],
+          "gateId": "data.freshness",
+          "reasonCode": "readiness.data-freshness-passed",
+          "status": "PASS"
+        },
+        {
+          "evidenceIds": [
+            "evidence.white-goods-minimal-amd64.data-provenance"
+          ],
+          "gateId": "data.provenance",
+          "reasonCode": "readiness.data-provenance-passed",
+          "status": "PASS"
+        },
+        {
+          "evidenceIds": [
+            "evidence.white-goods-minimal-amd64.data-classification"
+          ],
+          "gateId": "data.classification",
+          "reasonCode": "readiness.data-classification-passed",
+          "status": "PASS"
+        },
+        {
+          "evidenceIds": [
+            "evidence.white-goods-minimal-amd64.integration-readiness"
+          ],
+          "gateId": "integration.readiness",
+          "reasonCode": "readiness.integration-readiness-passed",
+          "status": "PASS"
+        },
+        {
+          "evidenceIds": [
+            "evidence.white-goods-minimal-amd64.autonomy-boundary"
+          ],
+          "gateId": "autonomy.boundary",
+          "reasonCode": "readiness.autonomy-boundary-passed",
+          "status": "PASS"
+        }
+      ],
+      "missingGateIds": [],
+      "overallStatus": "READY",
+      "questionnaireSessionId": "session.white-goods-minimal-amd64"
+    }
+  },
+  "schemaVersion": "harness.planeon.ai/compile-request/v1alpha1"
+  }
+}

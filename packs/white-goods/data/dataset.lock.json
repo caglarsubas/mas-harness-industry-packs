@@ -1,0 +1,38 @@
+{
+  "apiVersion": "harness.planeon.ai/synthetic-dataset-lock/v1alpha1",
+  "kind": "SyntheticDatasetLock",
+  "id": "white-goods.data.dataset-lock",
+  "stage": "data-readiness",
+  "synthetic": true,
+  "algorithm": "SHA-256",
+  "members": [
+    {
+      "path": "data/api/service-observations.json",
+      "mediaType": "application/json",
+      "recordCount": 4,
+      "size": 742,
+      "sha256": "36ed7fe18c4f6e723de3deb1e8be441311bc0210f1d2bd830b38a799ef7e5ee5"
+    },
+    {
+      "path": "data/events/telemetry.jsonl",
+      "mediaType": "application/x-ndjson",
+      "recordCount": 4,
+      "size": 627,
+      "sha256": "d480858dd46eab179b9a06deda1ab69c140aca3cb1ad65504aeece70a3784e24"
+    },
+    {
+      "path": "data/files/inspection-evidence.md",
+      "mediaType": "text/markdown",
+      "recordCount": 1,
+      "size": 352,
+      "sha256": "b3fd732ccb1ae30e775f1425dc0aae660ea88bc486bbf3d55dcaf1388f4ae3b1"
+    },
+    {
+      "path": "data/postgresql/quality-observations.csv",
+      "mediaType": "text/csv",
+      "recordCount": 4,
+      "size": 344,
+      "sha256": "e4bf5abfdc5d51692740382b957c30a053e9648d9d1c4e5674ff0c4f46a2637b"
+    }
+  ]
+}

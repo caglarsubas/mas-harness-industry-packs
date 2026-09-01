@@ -61,6 +61,8 @@ def _sha256(value: bytes) -> str:
 def _questionnaire_contract(pack: ValidatedPack) -> dict[str, dict[str, Any]]:
     questions: dict[str, dict[str, Any]] = {}
     for resource in pack.manifest["content"]["questionnaires"]:
+        if not resource["path"].startswith("questions/business/"):
+            continue
         value = yaml.safe_load(pack.files[resource["path"]])
         for question in value["questions"]:
             identifier = question["id"]

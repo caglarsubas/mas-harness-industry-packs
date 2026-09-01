@@ -1,0 +1,32 @@
+apiVersion: harness.planeon.ai/questionnaire/v1alpha1
+kind: Questionnaire
+id: white-goods.data.sources
+stage: data-readiness
+title: White-goods data source ownership and scope
+questions:
+  - id: data-source-class-scope
+    prompt: Select each source class required by the accepted business scope.
+    responseType: choice
+    required: true
+    choices: [api, postgresql, files, events]
+    multiple: true
+  - id: data-owner-role
+    prompt: Name the accountable role for data-readiness decisions.
+    responseType: string
+    required: true
+  - id: data-custodian-role
+    prompt: Name the role responsible for source custody and evidence collection.
+    responseType: string
+    required: true
+  - id: data-classification-scope
+    prompt: State the approved classification scope without including tenant records.
+    responseType: string
+    required: true
+  - id: source-evidence-refs
+    prompt: Provide stable local evidence identifiers for ownership and source inspection.
+    responseType: string
+    required: true
+  - id: synthetic-examples-confirmed
+    prompt: Confirm that the bundled examples are synthetic and not production observations.
+    responseType: boolean
+    required: true

@@ -1,0 +1,23 @@
+{
+  "apiVersion": "harness.planeon.ai/data-contract-binding/v1alpha1",
+  "kind": "DataContractBinding",
+  "id": "white-goods.data.contract-binding",
+  "stage": "data-readiness",
+  "repository": "caglarsubas/mas-harness-contracts",
+  "commit": "2146278a95344cd2a8e22596b2f315b46edffc88",
+  "readinessSchema": {
+    "path": "schemas/v1alpha1/readiness/data-readiness-assessment.schema.json",
+    "sha256": "ffe003a1a7ec0773f49d8f394ac3dd6281114bd4335ff05c87d223412faf92a5"
+  },
+  "commonSchema": {
+    "path": "schemas/v1alpha1/guidance/common.schema.json",
+    "sha256": "4d77297073d4c2e559f1131fbada566b499197f87113f7e28b136f0b4ae5f429"
+  },
+  "historicalLockObservation": {
+    "recordedPath": "schemas/v1alpha1/guidance/data-readiness-assessment.schema.json",
+    "authoritativePath": "schemas/v1alpha1/readiness/data-readiness-assessment.schema.json",
+    "contentDigestMatches": true,
+    "status": "DOCUMENTED_NOT_CORRECTED"
+  },
+  "schemaBytesCopied": false
+}

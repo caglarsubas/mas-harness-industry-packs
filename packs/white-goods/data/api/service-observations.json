@@ -1,0 +1,13 @@
+{
+  "apiVersion": "harness.planeon.ai/synthetic-observations/v1alpha1",
+  "kind": "SyntheticObservations",
+  "id": "white-goods.data.api-observations",
+  "stage": "data-readiness",
+  "synthetic": true,
+  "records": [
+    {"recordId": "api-001", "productFamily": "refrigeration", "inspectionResult": "conforming", "observedAt": "2026-01-15T11:50:00Z"},
+    {"recordId": "api-002", "productFamily": "laundry", "inspectionResult": "conforming", "observedAt": "2026-01-15T11:51:00Z"},
+    {"recordId": "api-003", "productFamily": "dish-care", "inspectionResult": "review", "observedAt": "2026-01-15T11:52:00Z"},
+    {"recordId": "api-004", "productFamily": "cooking", "inspectionResult": "conforming", "observedAt": "2026-01-15T11:53:00Z"}
+  ]
+}

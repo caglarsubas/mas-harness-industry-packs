@@ -1,0 +1,45 @@
+{
+  "apiVersion": "harness.planeon.ai/source-inventory/v1alpha1",
+  "kind": "SourceInventory",
+  "id": "white-goods.data.source-inventory",
+  "stage": "data-readiness",
+  "synthetic": true,
+  "sources": [
+    {
+      "id": "white-goods.source.api",
+      "sourceClass": "api",
+      "ownerRole": "quality-owner",
+      "custodianRole": "data-steward",
+      "classification": "internal-synthetic",
+      "dataPath": "data/api/service-observations.json",
+      "evidenceIds": ["white-goods.evidence.api-inspection"]
+    },
+    {
+      "id": "white-goods.source.events",
+      "sourceClass": "events",
+      "ownerRole": "quality-owner",
+      "custodianRole": "data-steward",
+      "classification": "internal-synthetic",
+      "dataPath": "data/events/telemetry.jsonl",
+      "evidenceIds": ["white-goods.evidence.event-inspection"]
+    },
+    {
+      "id": "white-goods.source.files",
+      "sourceClass": "files",
+      "ownerRole": "quality-owner",
+      "custodianRole": "data-steward",
+      "classification": "internal-synthetic",
+      "dataPath": "data/files/inspection-evidence.md",
+      "evidenceIds": ["white-goods.evidence.file-inspection"]
+    },
+    {
+      "id": "white-goods.source.postgresql",
+      "sourceClass": "postgresql",
+      "ownerRole": "quality-owner",
+      "custodianRole": "data-steward",
+      "classification": "internal-synthetic",
+      "dataPath": "data/postgresql/quality-observations.csv",
+      "evidenceIds": ["white-goods.evidence.postgresql-inspection"]
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+apiVersion: harness.planeon.ai/questionnaire/v1alpha1
+kind: Questionnaire
+id: white-goods.data.readiness-evidence
+stage: data-readiness
+title: White-goods deterministic data-readiness evidence
+questions:
+  - id: expected-observation-count
+    prompt: Record the expected observation count for the fixed evaluation scope.
+    responseType: number
+    required: true
+  - id: nonnull-required-field-count
+    prompt: Record observations containing every required field.
+    responseType: number
+    required: true
+  - id: latest-observation-time
+    prompt: Record the latest observation time represented by approved local evidence.
+    responseType: string
+    required: true
+  - id: duplicate-observation-count
+    prompt: Record observations classified as duplicates by the approved local method.
+    responseType: number
+    required: true
+  - id: classified-observation-count
+    prompt: Record observations with an approved data classification.
+    responseType: number
+    required: true
+  - id: provenanced-observation-count
+    prompt: Record observations bound to approved provenance evidence.
+    responseType: number
+    required: true
+  - id: readiness-policy-evidence-refs
+    prompt: Provide stable local evidence identifiers for the tenant-approved readiness policy.
+    responseType: string
+    required: true
+  - id: data-readiness-evaluator-state
+    prompt: Record the deterministic evaluator state; this is not a user self-attestation.
+    responseType: choice
+    required: true
+    choices: [pass, warn, fail]
+    multiple: false
+  - id: tenant-readiness-policy-approved
+    prompt: Confirm that tenant authority approved the policy used for this evaluation.
+    responseType: boolean
+    required: true

@@ -1,0 +1,41 @@
+{
+  "apiVersion": "harness.planeon.ai/data-readiness-fixture/v1alpha1",
+  "kind": "DataReadinessFixture",
+  "id": "white-goods.readiness.pass",
+  "stage": "data-readiness",
+  "synthetic": true,
+  "evaluationTime": "2026-01-15T12:00:00Z",
+  "measurements": {
+    "expectedObservationCount": 100,
+    "observedRecordCount": 100,
+    "nonnullRequiredFieldCount": 100,
+    "duplicateObservationCount": 0,
+    "classifiedObservationCount": 100,
+    "provenancedObservationCount": 100,
+    "latestObservationTime": "2026-01-15T11:50:00Z"
+  },
+  "expectedDecision": {"status": "PASS", "reasonCodes": []},
+  "evidence": {"published": false, "deploymentEvidence": false, "runtimeEvidence": false, "assuranceEvidence": false, "tenantAcceptance": false},
+  "assessment": {
+    "apiVersion": "harness.planeon.ai/v1alpha1",
+    "kind": "DataReadinessAssessment",
+    "metadata": {"id": "white-goods.readiness.pass", "version": "0.2.0"},
+    "spec": {
+      "questionnaireSessionId": "white-goods.session.synthetic-data-readiness",
+      "overallStatus": "READY",
+      "gateResults": [
+        {"gateId": "business.owner", "status": "PASS", "evidenceIds": ["white-goods.evidence.business-owner"], "reasonCode": "evidence.satisfied"},
+        {"gateId": "business.outcome", "status": "PASS", "evidenceIds": ["white-goods.evidence.business-outcome"], "reasonCode": "evidence.satisfied"},
+        {"gateId": "data.owner", "status": "PASS", "evidenceIds": ["white-goods.evidence.data-owner"], "reasonCode": "evidence.satisfied"},
+        {"gateId": "data.quality", "status": "PASS", "evidenceIds": ["white-goods.evidence.synthetic-measurements"], "reasonCode": "evidence.satisfied"},
+        {"gateId": "data.completeness", "status": "PASS", "evidenceIds": ["white-goods.evidence.synthetic-measurements"], "reasonCode": "evidence.satisfied"},
+        {"gateId": "data.freshness", "status": "PASS", "evidenceIds": ["white-goods.evidence.synthetic-measurements"], "reasonCode": "evidence.satisfied"},
+        {"gateId": "data.provenance", "status": "PASS", "evidenceIds": ["white-goods.evidence.synthetic-measurements"], "reasonCode": "evidence.satisfied"},
+        {"gateId": "data.classification", "status": "PASS", "evidenceIds": ["white-goods.evidence.synthetic-measurements"], "reasonCode": "evidence.satisfied"},
+        {"gateId": "integration.readiness", "status": "NOT_APPLICABLE", "evidenceIds": [], "reasonCode": "scope.not-applicable"},
+        {"gateId": "autonomy.boundary", "status": "NOT_APPLICABLE", "evidenceIds": [], "reasonCode": "scope.not-applicable"}
+      ],
+      "missingGateIds": []
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "apiVersion": "harness.planeon.ai/data-readiness-fixture/v1alpha1",
+  "kind": "DataReadinessFixture",
+  "id": "white-goods.readiness.fail-missing",
+  "stage": "data-readiness",
+  "synthetic": true,
+  "evaluationTime": "2026-01-15T12:00:00Z",
+  "measurements": {
+    "expectedObservationCount": 100,
+    "observedRecordCount": 0,
+    "nonnullRequiredFieldCount": 0,
+    "duplicateObservationCount": 0,
+    "classifiedObservationCount": 0,
+    "provenancedObservationCount": 0,
+    "latestObservationTime": null
+  },
+  "expectedDecision": {"status": "FAIL", "reasonCodes": ["MISSING_DATA"]},
+  "evidence": {"published": false, "deploymentEvidence": false, "runtimeEvidence": false, "assuranceEvidence": false, "tenantAcceptance": false},
+  "assessment": {
+    "apiVersion": "harness.planeon.ai/v1alpha1",
+    "kind": "DataReadinessAssessment",
+    "metadata": {"id": "white-goods.readiness.fail-missing", "version": "0.2.0"},
+    "spec": {
+      "questionnaireSessionId": "white-goods.session.synthetic-data-readiness",
+      "overallStatus": "BLOCKED",
+      "gateResults": [
+        {"gateId": "business.owner", "status": "PASS", "evidenceIds": ["white-goods.evidence.business-owner"], "reasonCode": "evidence.satisfied"},
+        {"gateId": "business.outcome", "status": "PASS", "evidenceIds": ["white-goods.evidence.business-outcome"], "reasonCode": "evidence.satisfied"},
+        {"gateId": "data.owner", "status": "PASS", "evidenceIds": ["white-goods.evidence.data-owner"], "reasonCode": "evidence.satisfied"},
+        {"gateId": "data.quality", "status": "BLOCKED", "evidenceIds": [], "reasonCode": "data.missing"},
+        {"gateId": "data.completeness", "status": "NOT_APPLICABLE", "evidenceIds": [], "reasonCode": "data.no-observations"},
+        {"gateId": "data.freshness", "status": "NOT_APPLICABLE", "evidenceIds": [], "reasonCode": "data.no-observations"},
+        {"gateId": "data.provenance", "status": "NOT_APPLICABLE", "evidenceIds": [], "reasonCode": "data.no-observations"},
+        {"gateId": "data.classification", "status": "NOT_APPLICABLE", "evidenceIds": [], "reasonCode": "data.no-observations"},
+        {"gateId": "integration.readiness", "status": "NOT_APPLICABLE", "evidenceIds": [], "reasonCode": "scope.not-applicable"},
+        {"gateId": "autonomy.boundary", "status": "NOT_APPLICABLE", "evidenceIds": [], "reasonCode": "scope.not-applicable"}
+      ],
+      "missingGateIds": ["data.quality"]
+    }
+  }
+}

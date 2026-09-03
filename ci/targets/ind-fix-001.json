@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "harness.planeon.ai/make-target-descriptor/v1alpha1",
+  "packetId": "IND-FIX-001",
+  "targets": [
+    {
+      "name": "ind-fix-001-regression",
+      "acceptedVariables": {},
+      "argvTemplate": [["python3", "tests/bootstrap/test_static_contract.py"]]
+    }
+  ]
+}

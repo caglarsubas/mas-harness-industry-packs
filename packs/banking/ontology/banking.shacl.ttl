@@ -1,0 +1,53 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix bank: <urn:planeon:banking:> .
+
+bank:GlossaryTermShape a sh:NodeShape ;
+  sh:targetClass owl:Class ,
+    bank:BusinessObjective , bank:AccountableRole , bank:KeyPerformanceIndicator , bank:AcceptanceOutcome ,
+    bank:TargetDirection , bank:PilotDecisionScope , bank:InstitutionSpecificChoice ,
+    bank:Party , bank:Customer , bank:Counterparty , bank:LegalEntity , bank:NaturalPersonRole ,
+    bank:ProductFamily , bank:Product , bank:Account , bank:AccountRole ,
+    bank:Transaction , bank:PaymentInstruction , bank:TransactionType , bank:Channel ,
+    bank:CreditFacility , bank:CreditApplication , bank:CreditDecision ,
+    bank:RiskType , bank:Control , bank:ComplianceObligation , bank:RiskDataElement ;
+  sh:property [ sh:path bank:stableId ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^[a-z][a-z0-9]*(-[a-z0-9]+)*$" ] ;
+  sh:property [ sh:path rdfs:label ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:minLength 1 ] ;
+  sh:property [ sh:path rdfs:comment ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:minLength 1 ] ;
+  sh:property [ sh:path bank:termVersion ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^(0|[1-9][0-9]*)[.](0|[1-9][0-9]*)[.](0|[1-9][0-9]*)$" ] ;
+  sh:property [ sh:path bank:provenance ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( "AUTHORED_CLEAN_ROOM" "NAMED_STANDARD_CONCEPT" ) ] ;
+  sh:property [ sh:path bank:alignsWithStandard ; sh:in ( "ISO 20022 PaymentInstruction" "ISO 13616 IBAN" "ISO 17442 LEI" "ISO 4217 currency code" "FIBO LegalEntity" ) ] ;
+  sh:property [ sh:path bank:answersBusinessQuestion ; sh:datatype xsd:string ; sh:minCount 1 ; sh:pattern "^[a-z][a-z0-9]*(-[a-z0-9]+)*$" ] .
+
+bank:BusinessObjectiveShape a sh:NodeShape ;
+  sh:targetClass bank:BusinessObjective ;
+  sh:property [ sh:path bank:accountableRole ; sh:class bank:AccountableRole ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path bank:acceptanceOutcome ; sh:class bank:AcceptanceOutcome ; sh:minCount 1 ] ;
+  sh:property [ sh:path bank:measuredBy ; sh:class bank:KeyPerformanceIndicator ; sh:minCount 1 ] .
+
+bank:KeyPerformanceIndicatorShape a sh:NodeShape ;
+  sh:targetClass bank:KeyPerformanceIndicator ;
+  sh:property [ sh:path bank:formula ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path bank:numeratorDefinition ; sh:datatype xsd:string ; sh:maxCount 1 ] ;
+  sh:property [ sh:path bank:denominatorDefinition ; sh:datatype xsd:string ; sh:maxCount 1 ] ;
+  sh:property [ sh:path bank:observationDefinition ; sh:datatype xsd:string ; sh:maxCount 1 ] ;
+  sh:or (
+    [ sh:property [ sh:path bank:numeratorDefinition ; sh:minCount 1 ] , [ sh:path bank:denominatorDefinition ; sh:minCount 1 ] ]
+    [ sh:property [ sh:path bank:observationDefinition ; sh:minCount 1 ] ]
+  ) ;
+  sh:property [ sh:path bank:dimension ; sh:datatype xsd:string ; sh:minCount 1 ] ;
+  sh:property [ sh:path bank:targetDirection ; sh:in ( bank:HigherIsBetter bank:LowerIsBetter bank:WithinAcceptedRange ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path bank:accountableRole ; sh:class bank:AccountableRole ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path bank:evidenceClass ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+bank:AcceptanceOutcomeShape a sh:NodeShape ;
+  sh:targetClass bank:AcceptanceOutcome ;
+  sh:property [ sh:path bank:evidenceClass ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path bank:accountableRole ; sh:class bank:AccountableRole ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+bank:ProductShape a sh:NodeShape ;
+  sh:targetClass bank:Product ;
+  sh:property [ sh:path bank:belongsToFamily ; sh:class bank:ProductFamily ; sh:minCount 1 ; sh:maxCount 1 ] .

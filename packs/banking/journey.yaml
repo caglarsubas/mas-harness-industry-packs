@@ -1,0 +1,35 @@
+apiVersion: harness.planeon.ai/industry-journey/v1alpha1
+kind: IndustryJourney
+stages:
+  - id: business-context
+    ordinal: 1
+    title: Business context
+    purpose: Establish accountable owners, scope, constraints, and intended business value.
+  - id: domain-and-outcomes
+    ordinal: 2
+    title: Domain and outcomes
+    purpose: Define domain language, actors, outcomes, measures, and unacceptable results.
+  - id: data-readiness
+    ordinal: 3
+    title: Data readiness
+    purpose: Prove completeness, quality, provenance, classification, retention, and access authority.
+  - id: governance-and-regulation
+    ordinal: 4
+    title: Governance and regulation
+    purpose: Bind applicable policy, regulatory controls, accountability, waivers, and evidence.
+  - id: integration-readiness
+    ordinal: 5
+    title: Integration readiness
+    purpose: Inventory systems, protocols, side effects, credentials, and isolation boundaries.
+  - id: harness-demand
+    ordinal: 6
+    title: Harness demand
+    purpose: Select only the harness capabilities required by the accepted business and evidence scope.
+  - id: environment-and-provider-fit
+    ordinal: 7
+    title: Environment and provider fit
+    purpose: Fit open-source providers to architecture, capacity, Kubernetes, and air-gap constraints.
+  - id: evidence-and-acceptance
+    ordinal: 8
+    title: Evidence and acceptance
+    purpose: Separate validation, deployment, runtime, assurance, and tenant acceptance decisions.

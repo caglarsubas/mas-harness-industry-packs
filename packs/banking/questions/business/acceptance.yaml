@@ -1,0 +1,16 @@
+apiVersion: harness.planeon.ai/questionnaire/v1alpha1
+kind: Questionnaire
+id: banking.business.acceptance
+stage: evidence-and-acceptance
+title: Banking business-domain evidence and acceptance outcome
+questions:
+  - id: acceptance-outcome
+    prompt: Select the current business-domain outcome; this is not runtime or tenant acceptance.
+    responseType: choice
+    required: true
+    choices: [pilot-scope-approved, readiness-blocked-pending-evidence, domain-scope-revision-required]
+    multiple: false
+  - id: outcome-evidence-refs
+    prompt: Provide local evidence identifiers supporting the selected outcome.
+    responseType: string
+    required: true

@@ -1,0 +1,66 @@
+apiVersion: harness.planeon.ai/questionnaire/v1alpha1
+kind: Questionnaire
+id: banking.business.objectives
+stage: domain-and-outcomes
+title: Banking objectives, scope, and decision boundary
+questions:
+  - id: primary-business-objective
+    prompt: Select the primary measurable outcome for this banking domain slice.
+    responseType: choice
+    required: true
+    choices:
+      - improve-straight-through-processing
+      - improve-first-contact-resolution
+      - reduce-complaint-resolution-time
+      - improve-risk-report-timeliness
+      - reduce-risk-data-exceptions
+      - improve-cited-answer-coverage
+    multiple: false
+  - id: product-family-scope
+    prompt: Select the product families included in the declared scope.
+    responseType: choice
+    required: true
+    choices: [deposits, payments, cards, consumer-lending, commercial-lending]
+    multiple: true
+  - id: channel-scope
+    prompt: Select the service channels included in the declared scope.
+    responseType: choice
+    required: true
+    choices: [branch, online, mobile, contact-centre, partner-api]
+    multiple: true
+  - id: kpi-scope
+    prompt: Select the KPI definitions used to evaluate the declared business objective.
+    responseType: choice
+    required: true
+    choices:
+      - straight-through-processing-rate
+      - first-contact-resolution-rate
+      - complaint-resolution-time
+      - risk-report-timeliness
+      - risk-data-exception-rate
+      - cited-answer-rate
+    multiple: true
+  - id: pilot-decision-scope
+    prompt: Select the decision scope of the pilot; this is a stage-local scope declaration, not an autonomy level.
+    responseType: choice
+    required: true
+    choices: [information-only, human-reviewed-recommendation, automated-decision-out-of-pilot-scope]
+    multiple: false
+  - id: unacceptable-outcome
+    prompt: State a measurable outcome that must block readiness or acceptance.
+    responseType: string
+    required: true
+  - id: deferred-institution-specific-choices
+    prompt: Confirm which choices remain deferred until tenant evidence and authority are available.
+    responseType: choice
+    required: true
+    choices: [institution-identity, jurisdiction, licence-type, risk-appetite, observation-window, regulatory-applicability]
+    multiple: true
+  - id: institution-specific-claims
+    prompt: List institution-specific claims only when tenant evidence exists; otherwise leave empty.
+    responseType: string
+    required: false
+  - id: tenant-evidence-verified
+    prompt: Confirm whether tenant authority has verified every declared institution-specific claim.
+    responseType: boolean
+    required: true

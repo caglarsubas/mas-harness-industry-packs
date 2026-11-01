@@ -6,6 +6,8 @@ Every tenant setup begins with `common.foundation` version `1.0.0` and its eight
 
 A sector pack declares `packKind: SECTOR`, `overlayMode: APPEND_ONLY`, and an `extends` record binding the exact computed common-pack digest. It repeats the exact journey and contract-lock bytes so validation is self-contained. It may add uniquely identified material to an existing stage. It cannot remove, replace, shadow, reorder, weaken, or extend another sector pack.
 
+Banking is the current release sector: new sector authoring starts from `packs/banking` (`banking.financial-services`, see `docs/banking/business-domain.md`). The white-goods pack and its pages under `docs/white-goods/` are historical source, kept byte-identical; they show the same framework rules but are not extended for release scope.
+
 ## Data-only content
 
 Declare every file once in `pack.yaml`. The loader admits regular UTF-8 YAML, JSON, Markdown, text, CSV, JSONL, RDF, Turtle, and OWL only. It rejects links, special files, hidden members, traversal, executable suffixes or modes, duplicate structured-data keys, custom YAML tags, unlisted files, oversize files, remote targets, template markers, credential fields, executable fields, and model/tool invocation fields.

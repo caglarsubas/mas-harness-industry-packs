@@ -1,0 +1,12 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix bank: <urn:planeon:banking:> .
+
+bank:SyntheticDepositProduct a bank:Product ;
+  bank:stableId "synthetic-deposit-product" ;
+  rdfs:label "Synthetic deposit product" ;
+  rdfs:comment "A synthetic example product used only to prove the local shapes." ;
+  bank:termVersion "1.0.0" ;
+  bank:provenance "AUTHORED_CLEAN_ROOM" ;
+  bank:answersBusinessQuestion "product-family-scope" ;
+  bank:belongsToFamily bank:Deposits .

@@ -1,0 +1,34 @@
+apiVersion: harness.planeon.ai/questionnaire/v1alpha1
+kind: Questionnaire
+id: banking.business.roles
+stage: business-context
+title: Accountable banking roles
+questions:
+  - id: business-owner-role
+    prompt: Name the accountable business role for the declared banking outcome.
+    responseType: string
+    required: true
+  - id: domain-owner-role
+    prompt: Name the role accountable for banking vocabulary, glossary, and ontology decisions.
+    responseType: string
+    required: true
+  - id: risk-owner-role
+    prompt: Name the first-line role that owns the risks of the declared business slice.
+    responseType: string
+    required: true
+  - id: compliance-owner-role
+    prompt: Name the second-line role that independently oversees compliance for the declared business slice.
+    responseType: string
+    required: true
+  - id: data-steward-role
+    prompt: Name the role accountable for source meaning, provenance, and data quality evidence.
+    responseType: string
+    required: true
+  - id: evidence-approver-role
+    prompt: Name the role authorized to approve evidence for this setup stage.
+    responseType: string
+    required: true
+  - id: role-separation-confirmed
+    prompt: Confirm that authoring, first-line risk ownership, second-line compliance oversight, and evidence approval are held by distinct roles.
+    responseType: boolean
+    required: true

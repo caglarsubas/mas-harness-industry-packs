@@ -1,0 +1,72 @@
+apiVersion: harness.planeon.ai/industry-pack/v1alpha1
+kind: IndustryPack
+metadata:
+  id: banking.financial-services
+  version: 0.1.0
+  title: Banking business objectives, accountable roles, glossary, ontology, KPI definitions, and synthetic answer sets
+  industry: banking
+  license: Apache-2.0
+  packKind: SECTOR
+compatibility:
+  frameworkVersion: 0.1.0
+  contractsLock:
+    path: contracts.lock.json
+    sha256: 81d7470e28b452cbf8de2e4903b47b5335709b09cf6375f78481057973d75c91
+journey:
+  path: journey.yaml
+  sha256: 950a6d21c68a35117a3cd36d67491cde85274ef911d78ff8585e1be8671db2fb
+overlayMode: APPEND_ONLY
+extends:
+  id: common.foundation
+  version: 1.0.0
+  packDigest: 3cfea19e6e0a4a653d63622e250f40001b4f8221ebab18fa5bfc1601b8eddea3
+content:
+  questionnaires:
+    - id: banking.business.acceptance
+      stage: evidence-and-acceptance
+      path: questions/business/acceptance.yaml
+    - id: banking.business.objectives
+      stage: domain-and-outcomes
+      path: questions/business/objectives.yaml
+    - id: banking.business.roles
+      stage: business-context
+      path: questions/business/roles.yaml
+  rules: []
+  readiness: []
+  ontologies:
+    - id: banking.domain.ontology
+      stage: domain-and-outcomes
+      path: ontology/banking.ttl
+    - id: banking.domain.shapes
+      stage: evidence-and-acceptance
+      path: ontology/banking.shacl.ttl
+  controls: []
+  providerPreferences: []
+  fixtures:
+    - id: banking.answers.accepted-pilot
+      stage: evidence-and-acceptance
+      path: fixtures/answers/accepted-pilot.json
+    - id: banking.answers.decision-scope-deferred
+      stage: evidence-and-acceptance
+      path: fixtures/answers/decision-scope-deferred.json
+    - id: banking.answers.incomplete-outcome-evidence
+      stage: evidence-and-acceptance
+      path: fixtures/answers/incomplete-outcome-evidence.json
+    - id: banking.answers.missing-owner
+      stage: evidence-and-acceptance
+      path: fixtures/answers/missing-owner.json
+    - id: banking.ontology.invalid-example
+      stage: evidence-and-acceptance
+      path: fixtures/answers/ontology-invalid.ttl
+    - id: banking.ontology.valid-example
+      stage: evidence-and-acceptance
+      path: fixtures/answers/ontology-valid.ttl
+    - id: banking.answers.personal-data-in-answer
+      stage: evidence-and-acceptance
+      path: fixtures/answers/personal-data-in-answer.json
+    - id: banking.answers.role-separation-unconfirmed
+      stage: evidence-and-acceptance
+      path: fixtures/answers/role-separation-unconfirmed.json
+    - id: banking.answers.unverified-institution-claim
+      stage: evidence-and-acceptance
+      path: fixtures/answers/unverified-institution-claim.json

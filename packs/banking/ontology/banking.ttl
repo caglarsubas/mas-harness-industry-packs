@@ -1,0 +1,437 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix bank: <urn:planeon:banking:> .
+
+bank:BankingDomain a owl:Ontology ;
+  rdfs:label "Planeon banking business domain" ;
+  rdfs:comment "Clean-room business vocabulary for a bounded banking setup slice; definitions only, no institution data and no thresholds." .
+
+# Glossary and relation properties
+
+bank:stableId a owl:DatatypeProperty ; rdfs:range xsd:string ; rdfs:label "Stable identifier" ; rdfs:comment "Lower-case identifier that never changes within a term version." .
+bank:termVersion a owl:DatatypeProperty ; rdfs:range xsd:string ; rdfs:label "Term version" ; rdfs:comment "Semantic version of the glossary entry." .
+bank:provenance a owl:DatatypeProperty ; rdfs:range xsd:string ; rdfs:label "Provenance" ; rdfs:comment "Closed origin of the definition: authored clean-room or a concept named by a public standard." .
+bank:alignsWithStandard a owl:DatatypeProperty ; rdfs:range xsd:string ; rdfs:label "Aligns with standard" ; rdfs:comment "Plain-text name of a public identifier standard or reference ontology concept; never an address and never copied text." .
+bank:answersBusinessQuestion a owl:DatatypeProperty ; rdfs:range xsd:string ; rdfs:label "Answers business question" ; rdfs:comment "Identifier of the questionnaire question this term serves." .
+bank:accountableRole a owl:ObjectProperty ; rdfs:range bank:AccountableRole ; rdfs:label "Accountable role" ; rdfs:comment "The single role accountable for the subject." .
+bank:acceptanceOutcome a owl:ObjectProperty ; rdfs:range bank:AcceptanceOutcome ; rdfs:label "Acceptance outcome" ; rdfs:comment "Business-domain outcome that can close the subject." .
+bank:measuredBy a owl:ObjectProperty ; rdfs:range bank:KeyPerformanceIndicator ; rdfs:label "Measured by" ; rdfs:comment "KPI definition used to evaluate an objective." .
+bank:belongsToFamily a owl:ObjectProperty ; rdfs:range bank:ProductFamily ; rdfs:label "Belongs to family" ; rdfs:comment "Product family of a product." .
+bank:targetDirection a owl:ObjectProperty ; rdfs:range bank:TargetDirection ; rdfs:label "Target direction" ; rdfs:comment "Direction in which a KPI improves." .
+bank:formula a owl:DatatypeProperty ; rdfs:range xsd:string ; rdfs:label "Formula" ; rdfs:comment "Plain-language computation of a KPI, without values." .
+bank:numeratorDefinition a owl:DatatypeProperty ; rdfs:range xsd:string ; rdfs:label "Numerator definition" ; rdfs:comment "What a ratio KPI counts above the line." .
+bank:denominatorDefinition a owl:DatatypeProperty ; rdfs:range xsd:string ; rdfs:label "Denominator definition" ; rdfs:comment "What a ratio KPI counts below the line." .
+bank:observationDefinition a owl:DatatypeProperty ; rdfs:range xsd:string ; rdfs:label "Observation definition" ; rdfs:comment "What a duration or timeliness KPI observes." .
+bank:dimension a owl:DatatypeProperty ; rdfs:range xsd:string ; rdfs:label "Dimension" ; rdfs:comment "Breakdown along which a KPI is reported." .
+bank:evidenceClass a owl:DatatypeProperty ; rdfs:range xsd:string ; rdfs:label "Evidence class" ; rdfs:comment "Kind of local record that evidences the subject." .
+
+# Business frame
+
+bank:BusinessObjective a owl:Class ;
+  bank:stableId "business-objective" ; rdfs:label "Business objective" ;
+  rdfs:comment "A measurable outcome the institution wants a bounded assistant slice to improve." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "primary-business-objective" .
+bank:AccountableRole a owl:Class ;
+  bank:stableId "accountable-role" ; rdfs:label "Accountable role" ;
+  rdfs:comment "An organisational role, never a named person, that answers for a decision, definition, or piece of evidence." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "role-separation-confirmed" .
+bank:KeyPerformanceIndicator a owl:Class ;
+  bank:stableId "key-performance-indicator" ; rdfs:label "Key performance indicator" ;
+  rdfs:comment "A defined measure with a formula, an observation basis, dimensions, a target direction, and an evidence class, but no target value." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "kpi-scope" .
+bank:AcceptanceOutcome a owl:Class ;
+  bank:stableId "acceptance-outcome" ; rdfs:label "Acceptance outcome" ;
+  rdfs:comment "The business-domain result of this setup stage; it is never runtime or tenant acceptance." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "acceptance-outcome" .
+bank:TargetDirection a owl:Class ;
+  bank:stableId "target-direction" ; rdfs:label "Target direction" ;
+  rdfs:comment "The direction in which a KPI is considered to improve." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "kpi-scope" .
+bank:PilotDecisionScope a owl:Class ;
+  bank:stableId "pilot-decision-scope" ; rdfs:label "Pilot decision scope" ;
+  rdfs:comment "A stage-local declaration of what a pilot may decide; it is not an autonomy level or action category." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "pilot-decision-scope" .
+bank:InstitutionSpecificChoice a owl:Class ;
+  bank:stableId "institution-specific-choice" ; rdfs:label "Institution-specific choice" ;
+  rdfs:comment "A choice that only the tenant institution can make with its own evidence and authority, deferred at this stage." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "deferred-institution-specific-choices" .
+
+# Parties
+
+bank:Party a owl:Class ;
+  bank:stableId "party" ; rdfs:label "Party" ;
+  rdfs:comment "Any person role or organisation that takes part in a banking relationship or transaction." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "product-family-scope" .
+bank:Customer a owl:Class ; rdfs:subClassOf bank:Party ;
+  bank:stableId "customer" ; rdfs:label "Customer" ;
+  rdfs:comment "A party that holds or applies for a product of the institution." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "product-family-scope" .
+bank:Counterparty a owl:Class ;
+  bank:stableId "counterparty" ; rdfs:label "Counterparty" ;
+  rdfs:comment "The other party to a transaction or exposure, seen from the institution." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "product-family-scope" .
+bank:LegalEntity a owl:Class ;
+  bank:stableId "legal-entity" ; rdfs:label "Legal entity" ;
+  rdfs:comment "An organisation with its own legal capacity, identified by a public entity identifier where one exists." ;
+  bank:termVersion "1.0.0" ; bank:provenance "NAMED_STANDARD_CONCEPT" ;
+  bank:alignsWithStandard "ISO 17442 LEI", "FIBO LegalEntity" ; bank:answersBusinessQuestion "product-family-scope" .
+bank:NaturalPersonRole a owl:Class ;
+  bank:stableId "natural-person-role" ; rdfs:label "Natural-person role" ;
+  rdfs:comment "The role a natural person plays towards the institution; a role only, never a person record." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "product-family-scope" .
+
+# Products
+
+bank:ProductFamily a owl:Class ;
+  bank:stableId "product-family" ; rdfs:label "Product family" ;
+  rdfs:comment "A group of banking products that share purpose and servicing." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "product-family-scope" .
+bank:Product a owl:Class ;
+  bank:stableId "product" ; rdfs:label "Product" ;
+  rdfs:comment "A specific offering of the institution that belongs to exactly one product family." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "product-family-scope" .
+
+# Accounts
+
+bank:Account a owl:Class ;
+  bank:stableId "account" ; rdfs:label "Account" ;
+  rdfs:comment "A record of balances and movements that the institution keeps for a product relationship." ;
+  bank:termVersion "1.0.0" ; bank:provenance "NAMED_STANDARD_CONCEPT" ;
+  bank:alignsWithStandard "ISO 13616 IBAN" ; bank:answersBusinessQuestion "product-family-scope" .
+bank:AccountRole a owl:Class ;
+  bank:stableId "account-role" ; rdfs:label "Account role" ;
+  rdfs:comment "The capacity in which a party relates to an account." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "product-family-scope" .
+
+# Transactions
+
+bank:Transaction a owl:Class ;
+  bank:stableId "transaction" ; rdfs:label "Transaction" ;
+  rdfs:comment "A booked movement of value on one or more accounts." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "product-family-scope" .
+bank:PaymentInstruction a owl:Class ;
+  bank:stableId "payment-instruction" ; rdfs:label "Payment instruction" ;
+  rdfs:comment "A request from a party to move funds, before it is booked as a transaction." ;
+  bank:termVersion "1.0.0" ; bank:provenance "NAMED_STANDARD_CONCEPT" ;
+  bank:alignsWithStandard "ISO 20022 PaymentInstruction" ; bank:answersBusinessQuestion "product-family-scope" .
+bank:TransactionType a owl:Class ;
+  bank:stableId "transaction-type" ; rdfs:label "Transaction type" ;
+  rdfs:comment "A closed category that describes the business nature of a transaction." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "product-family-scope" .
+
+# Channels
+
+bank:Channel a owl:Class ;
+  bank:stableId "channel" ; rdfs:label "Channel" ;
+  rdfs:comment "A route through which a party is served or an instruction is received." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "channel-scope" .
+
+# Credit
+
+bank:CreditFacility a owl:Class ;
+  bank:stableId "credit-facility" ; rdfs:label "Credit facility" ;
+  rdfs:comment "An arrangement under which the institution makes funds available to a borrower." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "product-family-scope" .
+bank:CreditApplication a owl:Class ;
+  bank:stableId "credit-application" ; rdfs:label "Credit application" ;
+  rdfs:comment "A request for a credit facility awaiting a decision." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "pilot-decision-scope" .
+bank:CreditDecision a owl:Class ;
+  bank:stableId "credit-decision" ; rdfs:label "Credit decision" ;
+  rdfs:comment "The outcome of assessing a credit application; a concept only, outside the decision scope of this stage." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "pilot-decision-scope" .
+
+# Risk and compliance
+
+bank:RiskType a owl:Class ;
+  bank:stableId "risk-type" ; rdfs:label "Risk type" ;
+  rdfs:comment "A closed category of risk owned by the first line and overseen by the second line." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "risk-owner-role" .
+bank:Control a owl:Class ;
+  bank:stableId "control" ; rdfs:label "Control" ;
+  rdfs:comment "An activity that reduces the likelihood or impact of a risk event." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "compliance-owner-role" .
+bank:ComplianceObligation a owl:Class ;
+  bank:stableId "compliance-obligation" ; rdfs:label "Compliance obligation" ;
+  rdfs:comment "A duty the institution must meet; its instances and applicability are decided at a later governance stage." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "deferred-institution-specific-choices" .
+bank:RiskDataElement a owl:Class ;
+  bank:stableId "risk-data-element" ; rdfs:label "Risk data element" ;
+  rdfs:comment "A defined data item used to measure, aggregate, or report risk." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "kpi-scope" .
+
+# Target directions
+
+bank:HigherIsBetter a bank:TargetDirection ;
+  bank:stableId "higher-is-better" ; rdfs:label "Higher is better" ;
+  rdfs:comment "The KPI improves as its value rises." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "kpi-scope" .
+bank:LowerIsBetter a bank:TargetDirection ;
+  bank:stableId "lower-is-better" ; rdfs:label "Lower is better" ;
+  rdfs:comment "The KPI improves as its value falls." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "kpi-scope" .
+bank:WithinAcceptedRange a bank:TargetDirection ;
+  bank:stableId "within-accepted-range" ; rdfs:label "Within accepted range" ;
+  rdfs:comment "The KPI is acceptable inside a range the tenant sets later." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "kpi-scope" .
+
+# Accountable roles
+
+bank:BusinessOwner a bank:AccountableRole ;
+  bank:stableId "business-owner" ; rdfs:label "Business owner" ;
+  rdfs:comment "Role accountable for the declared business outcome." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "business-owner-role" .
+bank:DomainOwner a bank:AccountableRole ;
+  bank:stableId "domain-owner" ; rdfs:label "Domain owner" ;
+  rdfs:comment "Role accountable for banking vocabulary, glossary, and ontology decisions." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "domain-owner-role" .
+bank:RiskOwner a bank:AccountableRole ;
+  bank:stableId "risk-owner" ; rdfs:label "First-line risk owner" ;
+  rdfs:comment "First-line role that owns and manages the risks of the declared business slice." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "risk-owner-role" .
+bank:ComplianceOwner a bank:AccountableRole ;
+  bank:stableId "compliance-owner" ; rdfs:label "Second-line compliance owner" ;
+  rdfs:comment "Second-line role that independently oversees compliance of the declared business slice." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "compliance-owner-role" .
+bank:DataSteward a bank:AccountableRole ;
+  bank:stableId "data-steward" ; rdfs:label "Data steward" ;
+  rdfs:comment "Role accountable for source meaning, provenance, and data quality evidence." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "data-steward-role" .
+bank:EvidenceApprover a bank:AccountableRole ;
+  bank:stableId "evidence-approver" ; rdfs:label "Evidence approver" ;
+  rdfs:comment "Role authorised to approve evidence for this setup stage, distinct from the authoring role." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "evidence-approver-role" .
+
+# Acceptance outcomes
+
+bank:PilotScopeApproved a bank:AcceptanceOutcome ;
+  bank:stableId "pilot-scope-approved" ; rdfs:label "Pilot scope approved from business-domain evidence" ;
+  rdfs:comment "The business-domain slice is complete enough to proceed to the next evidence-gated stage." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "acceptance-outcome" ;
+  bank:evidenceClass "business-domain-evidence" ; bank:accountableRole bank:EvidenceApprover .
+bank:ReadinessBlocked a bank:AcceptanceOutcome ;
+  bank:stableId "readiness-blocked-pending-evidence" ; rdfs:label "Readiness blocked pending evidence" ;
+  rdfs:comment "At least one blocking finding must be resolved before the slice can proceed." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "acceptance-outcome" ;
+  bank:evidenceClass "blocking-finding" ; bank:accountableRole bank:EvidenceApprover .
+bank:DomainScopeRevisionRequired a bank:AcceptanceOutcome ;
+  bank:stableId "domain-scope-revision-required" ; rdfs:label "Domain scope revision required" ;
+  rdfs:comment "The declared scope must be revised before evidence can be judged." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "acceptance-outcome" ;
+  bank:evidenceClass "scope-decision" ; bank:accountableRole bank:BusinessOwner .
+
+# Business objectives
+
+bank:ImproveStraightThroughProcessing a bank:BusinessObjective ;
+  bank:stableId "improve-straight-through-processing" ; rdfs:label "Improve straight-through processing" ;
+  rdfs:comment "Raise the share of instructions completed without manual intervention." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "primary-business-objective" ;
+  bank:accountableRole bank:BusinessOwner ; bank:acceptanceOutcome bank:PilotScopeApproved ; bank:measuredBy bank:StraightThroughProcessingRate .
+bank:ImproveFirstContactResolution a bank:BusinessObjective ;
+  bank:stableId "improve-first-contact-resolution" ; rdfs:label "Improve first-contact resolution" ;
+  rdfs:comment "Resolve more customer enquiries at the first contact." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "primary-business-objective" ;
+  bank:accountableRole bank:BusinessOwner ; bank:acceptanceOutcome bank:PilotScopeApproved ; bank:measuredBy bank:FirstContactResolutionRate .
+bank:ReduceComplaintResolutionTime a bank:BusinessObjective ;
+  bank:stableId "reduce-complaint-resolution-time" ; rdfs:label "Reduce complaint resolution time" ;
+  rdfs:comment "Shorten the elapsed time from complaint receipt to recorded resolution." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "primary-business-objective" ;
+  bank:accountableRole bank:BusinessOwner ; bank:acceptanceOutcome bank:PilotScopeApproved ; bank:measuredBy bank:ComplaintResolutionTime .
+bank:ImproveRiskReportTimeliness a bank:BusinessObjective ;
+  bank:stableId "improve-risk-report-timeliness" ; rdfs:label "Improve risk report timeliness" ;
+  rdfs:comment "Shorten the time from reporting-period end to an approved internal risk report." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "primary-business-objective" ;
+  bank:accountableRole bank:RiskOwner ; bank:acceptanceOutcome bank:PilotScopeApproved ; bank:measuredBy bank:RiskReportTimeliness .
+bank:ReduceRiskDataExceptions a bank:BusinessObjective ;
+  bank:stableId "reduce-risk-data-exceptions" ; rdfs:label "Reduce risk data exceptions" ;
+  rdfs:comment "Lower the share of risk data elements with an open quality exception." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "primary-business-objective" ;
+  bank:accountableRole bank:DataSteward ; bank:acceptanceOutcome bank:PilotScopeApproved ; bank:measuredBy bank:RiskDataExceptionRate .
+bank:ImproveCitedAnswerCoverage a bank:BusinessObjective ;
+  bank:stableId "improve-cited-answer-coverage" ; rdfs:label "Improve cited-answer coverage" ;
+  rdfs:comment "Raise the share of assistant answers that carry a valid citation to an approved internal source." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "primary-business-objective" ;
+  bank:accountableRole bank:DomainOwner ; bank:acceptanceOutcome bank:PilotScopeApproved ; bank:measuredBy bank:CitedAnswerRate .
+
+# KPI definitions (no target values)
+
+bank:StraightThroughProcessingRate a bank:KeyPerformanceIndicator ;
+  bank:stableId "straight-through-processing-rate" ; rdfs:label "Straight-through processing rate" ;
+  rdfs:comment "Share of received instructions completed without manual intervention." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "kpi-scope" ;
+  bank:formula "instructions completed without manual intervention divided by instructions received" ;
+  bank:numeratorDefinition "instructions completed without manual intervention" ; bank:denominatorDefinition "instructions received" ;
+  bank:dimension "product-family", "channel" ;
+  bank:targetDirection bank:HigherIsBetter ; bank:accountableRole bank:BusinessOwner ; bank:evidenceClass "processing-record-extract" .
+bank:FirstContactResolutionRate a bank:KeyPerformanceIndicator ;
+  bank:stableId "first-contact-resolution-rate" ; rdfs:label "First-contact resolution rate" ;
+  rdfs:comment "Share of customer enquiries resolved at the first contact." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "kpi-scope" ;
+  bank:formula "enquiries resolved at first contact divided by enquiries received" ;
+  bank:numeratorDefinition "enquiries resolved at first contact" ; bank:denominatorDefinition "enquiries received" ;
+  bank:dimension "channel", "product-family" ;
+  bank:targetDirection bank:HigherIsBetter ; bank:accountableRole bank:BusinessOwner ; bank:evidenceClass "case-record-extract" .
+bank:ComplaintResolutionTime a bank:KeyPerformanceIndicator ;
+  bank:stableId "complaint-resolution-time" ; rdfs:label "Complaint resolution time" ;
+  rdfs:comment "Elapsed time from complaint receipt to recorded resolution." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "kpi-scope" ;
+  bank:formula "median elapsed time from complaint receipt to recorded resolution" ;
+  bank:observationDefinition "elapsed time per resolved complaint from receipt to recorded resolution" ;
+  bank:dimension "product-family", "channel" ;
+  bank:targetDirection bank:LowerIsBetter ; bank:accountableRole bank:BusinessOwner ; bank:evidenceClass "complaint-case-record" .
+bank:RiskReportTimeliness a bank:KeyPerformanceIndicator ;
+  bank:stableId "risk-report-timeliness" ; rdfs:label "Risk report timeliness" ;
+  rdfs:comment "Time from reporting-period end to an approved internal risk report." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "kpi-scope" ;
+  bank:formula "elapsed time from reporting-period end to approval of the internal risk report" ;
+  bank:observationDefinition "elapsed time per internal risk report from reporting-period end to recorded approval" ;
+  bank:dimension "risk-type", "reporting-period" ;
+  bank:targetDirection bank:LowerIsBetter ; bank:accountableRole bank:RiskOwner ; bank:evidenceClass "report-approval-record" .
+bank:RiskDataExceptionRate a bank:KeyPerformanceIndicator ;
+  bank:stableId "risk-data-exception-rate" ; rdfs:label "Risk data exception rate" ;
+  rdfs:comment "Share of in-scope risk data elements with an open quality exception." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "kpi-scope" ;
+  bank:formula "risk data elements with an open quality exception divided by risk data elements in scope" ;
+  bank:numeratorDefinition "risk data elements with an open quality exception" ; bank:denominatorDefinition "risk data elements in scope" ;
+  bank:dimension "risk-type", "data-element" ;
+  bank:targetDirection bank:LowerIsBetter ; bank:accountableRole bank:DataSteward ; bank:evidenceClass "data-quality-exception-record" .
+bank:CitedAnswerRate a bank:KeyPerformanceIndicator ;
+  bank:stableId "cited-answer-rate" ; rdfs:label "Cited-answer rate" ;
+  rdfs:comment "Share of assistant answers with a valid citation to an approved internal source." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "kpi-scope" ;
+  bank:formula "sampled assistant answers with a valid source citation divided by sampled assistant answers" ;
+  bank:numeratorDefinition "sampled assistant answers with a valid source citation" ; bank:denominatorDefinition "sampled assistant answers" ;
+  bank:dimension "product-family", "channel" ;
+  bank:targetDirection bank:HigherIsBetter ; bank:accountableRole bank:DomainOwner ; bank:evidenceClass "answer-review-sample" .
+
+# Pilot decision scopes
+
+bank:InformationOnly a bank:PilotDecisionScope ;
+  bank:stableId "information-only" ; rdfs:label "Information only" ;
+  rdfs:comment "The pilot gives cited answers and takes no action." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "pilot-decision-scope" .
+bank:HumanReviewedRecommendation a bank:PilotDecisionScope ;
+  bank:stableId "human-reviewed-recommendation" ; rdfs:label "Human-reviewed recommendation" ;
+  rdfs:comment "The pilot proposes an outcome that an accountable person reviews before anything happens." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "pilot-decision-scope" .
+bank:AutomatedDecisionOutOfPilotScope a bank:PilotDecisionScope ;
+  bank:stableId "automated-decision-out-of-pilot-scope" ; rdfs:label "Automated decision, out of pilot scope" ;
+  rdfs:comment "The pilot would decide without human review; this scope is deferred to the governance stage." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "pilot-decision-scope" .
+
+# Deferred institution-specific choices
+
+bank:InstitutionIdentity a bank:InstitutionSpecificChoice ;
+  bank:stableId "institution-identity" ; rdfs:label "Institution identity" ;
+  rdfs:comment "Which institution the pack is configured for." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "deferred-institution-specific-choices" .
+bank:Jurisdiction a bank:InstitutionSpecificChoice ;
+  bank:stableId "jurisdiction" ; rdfs:label "Jurisdiction" ;
+  rdfs:comment "Where the institution operates the declared business slice." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "deferred-institution-specific-choices" .
+bank:LicenceType a bank:InstitutionSpecificChoice ;
+  bank:stableId "licence-type" ; rdfs:label "Licence type" ;
+  rdfs:comment "The kind of banking authorisation the institution holds." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "deferred-institution-specific-choices" .
+bank:RiskAppetite a bank:InstitutionSpecificChoice ;
+  bank:stableId "risk-appetite" ; rdfs:label "Risk appetite" ;
+  rdfs:comment "How much risk the institution accepts for the declared business slice." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "deferred-institution-specific-choices" .
+bank:ObservationWindow a bank:InstitutionSpecificChoice ;
+  bank:stableId "observation-window" ; rdfs:label "Observation window" ;
+  rdfs:comment "The period over which KPIs are observed." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "deferred-institution-specific-choices" .
+bank:RegulatoryApplicability a bank:InstitutionSpecificChoice ;
+  bank:stableId "regulatory-applicability" ; rdfs:label "Regulatory applicability" ;
+  rdfs:comment "Which external obligations apply; evaluated only at the governance stage with tenant evidence." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "deferred-institution-specific-choices" .
+
+# Product families
+
+bank:Deposits a bank:ProductFamily ;
+  bank:stableId "deposits" ; rdfs:label "Deposits" ;
+  rdfs:comment "Products under which the institution holds funds for a party." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "product-family-scope" .
+bank:Payments a bank:ProductFamily ;
+  bank:stableId "payments" ; rdfs:label "Payments" ;
+  rdfs:comment "Products that move funds between parties on instruction." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "product-family-scope" .
+bank:Cards a bank:ProductFamily ;
+  bank:stableId "cards" ; rdfs:label "Cards" ;
+  rdfs:comment "Payment instruments issued to a party for purchases and withdrawals." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "product-family-scope" .
+bank:ConsumerLending a bank:ProductFamily ;
+  bank:stableId "consumer-lending" ; rdfs:label "Consumer lending" ;
+  rdfs:comment "Credit products offered to natural-person customers." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "product-family-scope" .
+bank:CommercialLending a bank:ProductFamily ;
+  bank:stableId "commercial-lending" ; rdfs:label "Commercial lending" ;
+  rdfs:comment "Credit products offered to businesses and other legal entities." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "product-family-scope" .
+
+# Account roles
+
+bank:Holder a bank:AccountRole ;
+  bank:stableId "holder" ; rdfs:label "Holder" ;
+  rdfs:comment "Party in whose name an account is kept." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "product-family-scope" .
+bank:Signatory a bank:AccountRole ;
+  bank:stableId "signatory" ; rdfs:label "Signatory" ;
+  rdfs:comment "Party authorised to give instructions on an account." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "product-family-scope" .
+bank:Beneficiary a bank:AccountRole ;
+  bank:stableId "beneficiary" ; rdfs:label "Beneficiary" ;
+  rdfs:comment "Party that receives funds or benefits from an account or instruction." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "product-family-scope" .
+
+# Channels
+
+bank:Branch a bank:Channel ;
+  bank:stableId "branch" ; rdfs:label "Branch" ;
+  rdfs:comment "In-person service at a physical location of the institution." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "channel-scope" .
+bank:Online a bank:Channel ;
+  bank:stableId "online" ; rdfs:label "Online" ;
+  rdfs:comment "Self-service through a web interface of the institution." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "channel-scope" .
+bank:Mobile a bank:Channel ;
+  bank:stableId "mobile" ; rdfs:label "Mobile" ;
+  rdfs:comment "Self-service through a mobile application of the institution." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "channel-scope" .
+bank:ContactCentre a bank:Channel ;
+  bank:stableId "contact-centre" ; rdfs:label "Contact centre" ;
+  rdfs:comment "Assisted service by telephone, chat, or message." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "channel-scope" .
+bank:PartnerApi a bank:Channel ;
+  bank:stableId "partner-api" ; rdfs:label "Partner interface" ;
+  rdfs:comment "Service delivered through an interface offered to an authorised partner." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "channel-scope" .
+
+# Risk types
+
+bank:CreditRisk a bank:RiskType ;
+  bank:stableId "credit" ; rdfs:label "Credit risk" ;
+  rdfs:comment "Risk of loss when a borrower or counterparty does not meet its obligations." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "risk-owner-role" .
+bank:LiquidityRisk a bank:RiskType ;
+  bank:stableId "liquidity" ; rdfs:label "Liquidity risk" ;
+  rdfs:comment "Risk that the institution cannot meet payment obligations when they fall due." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "risk-owner-role" .
+bank:MarketRisk a bank:RiskType ;
+  bank:stableId "market" ; rdfs:label "Market risk" ;
+  rdfs:comment "Risk of loss from movements in market prices or rates." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "risk-owner-role" .
+bank:OperationalRisk a bank:RiskType ;
+  bank:stableId "operational" ; rdfs:label "Operational risk" ;
+  rdfs:comment "Risk of loss from failed processes, people, systems, or external events." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "risk-owner-role" .
+bank:ConductRisk a bank:RiskType ;
+  bank:stableId "conduct" ; rdfs:label "Conduct risk" ;
+  rdfs:comment "Risk that the institution's behaviour leads to poor customer outcomes." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "risk-owner-role" .
+bank:FinancialCrimeRisk a bank:RiskType ;
+  bank:stableId "financial-crime" ; rdfs:label "Financial-crime risk" ;
+  rdfs:comment "Risk that the institution's products or channels are used for fraud or other financial crime." ;
+  bank:termVersion "1.0.0" ; bank:provenance "AUTHORED_CLEAN_ROOM" ; bank:answersBusinessQuestion "risk-owner-role" .

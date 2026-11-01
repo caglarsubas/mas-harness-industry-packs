@@ -1,0 +1,12 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix bank: <urn:planeon:banking:> .
+
+bank:SyntheticIncompleteKpi a bank:KeyPerformanceIndicator ;
+  bank:stableId "synthetic-incomplete-kpi" ;
+  rdfs:label "Synthetic incomplete KPI" ;
+  rdfs:comment "A deliberately incomplete synthetic KPI used only to prove the local shapes fail closed." ;
+  bank:termVersion "1.0.0" ;
+  bank:provenance "UNDECLARED_ORIGIN" ;
+  bank:answersBusinessQuestion "kpi-scope" ;
+  bank:formula "a deliberately incomplete synthetic formula" .

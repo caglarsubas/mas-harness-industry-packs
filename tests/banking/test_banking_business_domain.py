@@ -218,7 +218,13 @@ def test_unknown_missing_or_mistyped_answer_keys_are_refused_not_blocked() -> No
     mistyped["answers"]["role-separation-confirmed"] = "yes"
     outside = _vector("accepted-pilot.json")
     outside["answers"]["channel-scope"] = ["telegraph"]
-    for value, message in ((unknown, "answer keys"), (missing, "answer keys"), (mistyped, "boolean answer"), (outside, "outside closed set")):
+    cross_empty = _vector("accepted-pilot.json")
+    cross_empty["answers"]["role-separation-confirmed"] = ""
+    cross_empty_choice = _vector("accepted-pilot.json")
+    cross_empty_choice["answers"]["channel-scope"] = ""
+    cases = ((unknown, "answer keys"), (missing, "answer keys"), (mistyped, "boolean answer"), (outside, "outside closed set"),
+             (cross_empty, "boolean answer"), (cross_empty_choice, "choice answer type"))
+    for value, message in cases:
         with pytest.raises(ValueError, match=message):
             HANDLER.evaluate_answer_set(value, questions)
 

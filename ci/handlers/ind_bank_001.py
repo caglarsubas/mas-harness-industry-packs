@@ -140,8 +140,15 @@ def questionnaire_contract(pack: ValidatedPack) -> tuple[dict[str, dict[str, Any
     return questions, texts
 
 
-def _answer_present(value: Any) -> bool:
-    return value is not None and value != "" and value != []
+def _answer_present(value: Any, question: dict[str, Any]) -> bool:
+    """Only null or the question type's own empty form ("" for string, [] for multiple choice) is unanswered."""
+    if value is None:
+        return False
+    if question["responseType"] == "string":
+        return value != ""
+    if question["responseType"] == "choice" and question["multiple"]:
+        return value != []
+    return True
 
 
 def _validate_answer_type(identifier: str, value: Any, question: dict[str, Any]) -> None:
@@ -173,16 +180,18 @@ def evaluate_answer_set(value: dict[str, Any], questions: dict[str, dict[str, An
     answers = value["answers"]
     if not isinstance(answers, dict) or set(answers) != set(questions):
         raise ValueError("answer keys do not match the closed questionnaire")
+    present: dict[str, bool] = {}
     for identifier, question in questions.items():
-        if _answer_present(answers[identifier]) or not question["required"]:
+        present[identifier] = _answer_present(answers[identifier], question)
+        if present[identifier]:
             _validate_answer_type(identifier, answers[identifier], question)
 
     reasons: set[str] = set()
-    if any(not _answer_present(answers[identifier]) for identifier in ROLE_QUESTIONS):
+    if any(not present[identifier] for identifier in ROLE_QUESTIONS):
         reasons.add("MISSING_ACCOUNTABLE_OWNER")
-    if not _answer_present(answers["outcome-evidence-refs"]):
+    if not present["outcome-evidence-refs"]:
         reasons.add("INCOMPLETE_OUTCOME_EVIDENCE")
-    if _answer_present(answers["institution-specific-claims"]) and answers["tenant-evidence-verified"] is not True:
+    if present["institution-specific-claims"] and answers["tenant-evidence-verified"] is not True:
         reasons.add("UNVERIFIED_INSTITUTION_SPECIFIC_CHOICE")
     if answers["role-separation-confirmed"] is not True:
         reasons.add("ROLE_SEPARATION_UNCONFIRMED")
@@ -191,7 +200,7 @@ def evaluate_answer_set(value: dict[str, Any], questions: dict[str, dict[str, An
     if any(find_disallowed(text) for answer in answers.values() for text in _strings(answer)):
         reasons.add("PERSONAL_DATA_FORBIDDEN")
     special = set(ROLE_QUESTIONS) | {"outcome-evidence-refs"}
-    if any(question["required"] and identifier not in special and not _answer_present(answers[identifier]) for identifier, question in questions.items()):
+    if any(question["required"] and identifier not in special and not present[identifier] for identifier, question in questions.items()):
         reasons.add("INCOMPLETE_REQUIRED_ANSWER")
     if answers["acceptance-outcome"] != "pilot-scope-approved" and not reasons:
         reasons.add("NON_READY_ACCEPTANCE_OUTCOME")
@@ -315,7 +324,7 @@ def main(argv: list[str] | None = None) -> int:
         if set(answers["deferred-institution-specific-choices"]) != set(questions["deferred-institution-specific-choices"]["choices"]):
             raise SystemExit(f"a synthetic vector resolves an institution-specific choice: {path.name}")
         for question in ROLE_QUESTIONS:
-            if _answer_present(answers[question]) and question not in role_ids.get(answers[question], set()):
+            if _answer_present(answers[question], questions[question]) and question not in role_ids.get(answers[question], set()):
                 raise SystemExit(f"role answer is not the matching accountable role: {path.name}")
         findings += [(relative, key, hit) for key, answer in sorted(answers.items()) for text in _strings(answer) for hit in find_disallowed(text)]
         answer_digests[path.name] = _sha256(canonical_json_bytes(value))

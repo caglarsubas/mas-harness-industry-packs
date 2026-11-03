@@ -1,0 +1,14 @@
+{
+  "apiVersion": "harness.planeon.ai/synthetic-observations/v1alpha1",
+  "kind": "SyntheticObservations",
+  "id": "banking.data.api-product-catalogue",
+  "stage": "data-readiness",
+  "synthetic": true,
+  "records": [
+    {"recordId": "rate-0001", "productFamily": "deposits", "rateType": "illustrative-deposit-rate", "rateBasisPoints": 125, "observedAt": "2026-01-15T11:30:00Z"},
+    {"recordId": "rate-0002", "productFamily": "payments", "rateType": "illustrative-transfer-fee", "rateBasisPoints": 10, "observedAt": "2026-01-15T11:31:00Z"},
+    {"recordId": "rate-0003", "productFamily": "cards", "rateType": "illustrative-purchase-rate", "rateBasisPoints": 1800, "observedAt": "2026-01-15T11:32:00Z"},
+    {"recordId": "rate-0004", "productFamily": "consumer-lending", "rateType": "illustrative-lending-rate", "rateBasisPoints": 950, "observedAt": "2026-01-15T11:33:00Z"},
+    {"recordId": "rate-0005", "productFamily": "commercial-lending", "rateType": "illustrative-lending-rate", "rateBasisPoints": 700, "observedAt": "2026-01-15T11:34:00Z"}
+  ]
+}

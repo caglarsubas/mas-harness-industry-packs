@@ -2,8 +2,8 @@ apiVersion: harness.planeon.ai/industry-pack/v1alpha1
 kind: IndustryPack
 metadata:
   id: banking.financial-services
-  version: 0.1.0
-  title: Banking business objectives, accountable roles, glossary, ontology, KPI definitions, and synthetic answer sets
+  version: 0.2.0
+  title: Banking business objectives, accountable roles, glossary, ontology, KPI definitions, synthetic answer sets, and data readiness
   industry: banking
   license: Apache-2.0
   packKind: SECTOR
@@ -11,15 +11,15 @@ compatibility:
   frameworkVersion: 0.1.0
   contractsLock:
     path: contracts.lock.json
-    sha256: 81d7470e28b452cbf8de2e4903b47b5335709b09cf6375f78481057973d75c91
+    sha256: "81d7470e28b452cbf8de2e4903b47b5335709b09cf6375f78481057973d75c91"
 journey:
   path: journey.yaml
-  sha256: 950a6d21c68a35117a3cd36d67491cde85274ef911d78ff8585e1be8671db2fb
+  sha256: "950a6d21c68a35117a3cd36d67491cde85274ef911d78ff8585e1be8671db2fb"
 overlayMode: APPEND_ONLY
 extends:
   id: common.foundation
   version: 1.0.0
-  packDigest: 3cfea19e6e0a4a653d63622e250f40001b4f8221ebab18fa5bfc1601b8eddea3
+  packDigest: "3cfea19e6e0a4a653d63622e250f40001b4f8221ebab18fa5bfc1601b8eddea3"
 content:
   questionnaires:
     - id: banking.business.acceptance
@@ -31,8 +31,26 @@ content:
     - id: banking.business.roles
       stage: business-context
       path: questions/business/roles.yaml
-  rules: []
-  readiness: []
+    - id: banking.data.readiness-evidence
+      stage: data-readiness
+      path: questions/data/readiness.yaml
+    - id: banking.data.sources
+      stage: data-readiness
+      path: questions/data/sources.yaml
+  rules:
+    - id: banking.data.block-unready
+      stage: data-readiness
+      path: rules/data-readiness.json
+  readiness:
+    - id: banking.data.contract-binding
+      stage: data-readiness
+      path: data/contract-binding.json
+    - id: banking.data.dataset-lock
+      stage: data-readiness
+      path: data/dataset.lock.json
+    - id: banking.data.readiness-policy
+      stage: data-readiness
+      path: data/readiness-policy.json
   ontologies:
     - id: banking.domain.ontology
       stage: domain-and-outcomes
@@ -70,3 +88,48 @@ content:
     - id: banking.answers.unverified-institution-claim
       stage: evidence-and-acceptance
       path: fixtures/answers/unverified-institution-claim.json
+    - id: banking.data.api-product-catalogue
+      stage: data-readiness
+      path: data/api/product-catalogue.json
+    - id: banking.data.event-transactions
+      stage: data-readiness
+      path: data/events/transactions.jsonl
+    - id: banking.data.file-product-terms
+      stage: data-readiness
+      path: data/files/product-terms.md
+    - id: banking.data.postgresql-accounts
+      stage: data-readiness
+      path: data/postgresql/accounts.csv
+    - id: banking.data.postgresql-parties
+      stage: data-readiness
+      path: data/postgresql/parties.csv
+    - id: banking.data.source-inventory
+      stage: data-readiness
+      path: fixtures/sources/source-inventory.json
+    - id: banking.readiness.fail-disallowed-data
+      stage: data-readiness
+      path: fixtures/readiness/fail-disallowed-data.json
+    - id: banking.readiness.fail-duplicate
+      stage: data-readiness
+      path: fixtures/readiness/fail-duplicate.json
+    - id: banking.readiness.fail-missing
+      stage: data-readiness
+      path: fixtures/readiness/fail-missing.json
+    - id: banking.readiness.fail-reconciliation
+      stage: data-readiness
+      path: fixtures/readiness/fail-reconciliation.json
+    - id: banking.readiness.fail-stale
+      stage: data-readiness
+      path: fixtures/readiness/fail-stale.json
+    - id: banking.readiness.fail-unclassified
+      stage: data-readiness
+      path: fixtures/readiness/fail-unclassified.json
+    - id: banking.readiness.fail-unprovenanced
+      stage: data-readiness
+      path: fixtures/readiness/fail-unprovenanced.json
+    - id: banking.readiness.pass
+      stage: data-readiness
+      path: fixtures/readiness/pass.json
+    - id: banking.readiness.warn-freshness
+      stage: data-readiness
+      path: fixtures/readiness/warn-freshness.json

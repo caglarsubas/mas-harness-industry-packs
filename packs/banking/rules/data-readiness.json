@@ -1,0 +1,17 @@
+{
+  "apiVersion": "harness.planeon.ai/pack-rule/v1alpha1",
+  "kind": "PackRule",
+  "id": "banking.data.block-unready",
+  "stage": "data-readiness",
+  "when": {
+    "any": [
+      {"in": ["answers.data-readiness-evaluator-state", ["warn", "fail"]]},
+      {"eq": ["answers.tenant-readiness-policy-approved", false]}
+    ]
+  },
+  "action": {
+    "type": "BLOCK_READINESS",
+    "target": "banking.data.readiness",
+    "message": "Banking data readiness remains blocked until deterministic evidence passes under a tenant-approved policy."
+  }
+}

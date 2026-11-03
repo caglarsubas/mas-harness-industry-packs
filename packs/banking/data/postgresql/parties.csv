@@ -1,0 +1,5 @@
+party_id,segment,party_type,observed_at
+party-0001,retail,natural-person-role,2026-01-15T11:00:00Z
+party-0002,retail,natural-person-role,2026-01-15T11:05:00Z
+party-0003,small-business,legal-entity,2026-01-15T11:10:00Z
+party-0004,corporate,legal-entity,2026-01-15T11:15:00Z

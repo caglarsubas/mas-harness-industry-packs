@@ -1,5 +1,6 @@
 # Banking business-domain foundation
 
+Banking 0.2.0 adds the synthetic data-readiness slice described in `docs/banking/data-readiness.md`; this page describes the business-domain foundation it builds on.
 ## Scope and evidence boundary
 
 `banking.financial-services` 0.1.0 (industry `banking`) is a clean-room, data-only sector overlay on the exact `common.foundation` 1.0.0 pack. It is the banking successor of the historical white-goods business-domain slice for release scope. It guides a tenant through a bounded business and domain definition before any data integration, model, agent, tool, runtime, or production action is selected.

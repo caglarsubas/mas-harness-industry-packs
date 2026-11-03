@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "harness.planeon.ai/make-target-descriptor/v1alpha1",
+  "packetId": "IND-BANK-002",
+  "targets": [
+    {
+      "name": "data-readiness",
+      "acceptedVariables": {"PACK": {"const": "banking"}},
+      "argvTemplate": [["python3", "ci/handlers/ind_bank_002.py", {"variable": "PACK"}]]
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "apiVersion": "harness.planeon.ai/data-readiness-policy/v1alpha1",
+  "kind": "DataReadinessPolicy",
+  "id": "banking.data.readiness-policy",
+  "stage": "data-readiness",
+  "version": "0.2.0",
+  "illustrative": true,
+  "tenantReplacementRequired": true,
+  "decisionPrecedence": ["FAIL", "WARN", "PASS"],
+  "missingDataReasonCode": "MISSING_DATA",
+  "sourceClasses": {
+    "api": {
+      "label": "illustrative, tenant-overridable",
+      "metrics": {
+        "completeness": {"passMinimum": "0.98", "warnMinimum": "0.95"},
+        "freshnessMinutes": {"passMaximum": "60", "warnMaximum": "240"},
+        "duplicateRate": {"passMaximum": "0.01", "warnMaximum": "0.02"},
+        "classificationCoverage": {"passMinimum": "1.00", "warnMinimum": "0.98"},
+        "provenanceCoverage": {"passMinimum": "1.00", "warnMinimum": "0.98"}
+      }
+    },
+    "events": {
+      "label": "illustrative, tenant-overridable",
+      "metrics": {
+        "completeness": {"passMinimum": "0.99", "warnMinimum": "0.97"},
+        "freshnessMinutes": {"passMaximum": "5", "warnMaximum": "15"},
+        "duplicateRate": {"passMaximum": "0.000", "warnMaximum": "0.005"},
+        "classificationCoverage": {"passMinimum": "1.00", "warnMinimum": "0.99"},
+        "provenanceCoverage": {"passMinimum": "1.00", "warnMinimum": "0.99"}
+      }
+    },
+    "files": {
+      "label": "illustrative, tenant-overridable",
+      "metrics": {
+        "completeness": {"passMinimum": "0.95", "warnMinimum": "0.90"},
+        "freshnessMinutes": {"passMaximum": "10080", "warnMaximum": "43200"},
+        "duplicateRate": {"passMaximum": "0.02", "warnMaximum": "0.05"},
+        "classificationCoverage": {"passMinimum": "1.00", "warnMinimum": "0.98"},
+        "provenanceCoverage": {"passMinimum": "1.00", "warnMinimum": "0.99"}
+      }
+    },
+    "postgresql": {
+      "label": "illustrative, tenant-overridable",
+      "metrics": {
+        "completeness": {"passMinimum": "1.00", "warnMinimum": "0.99"},
+        "freshnessMinutes": {"passMaximum": "1440", "warnMaximum": "2880"},
+        "duplicateRate": {"passMaximum": "0.000", "warnMaximum": "0.001"},
+        "classificationCoverage": {"passMinimum": "1.00", "warnMinimum": "0.99"},
+        "provenanceCoverage": {"passMinimum": "1.00", "warnMinimum": "0.99"}
+      }
+    }
+  }
+}

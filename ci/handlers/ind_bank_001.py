@@ -66,6 +66,13 @@ PACKET_OWNED_FILES = (
 )
 IBAN_CANDIDATE = re.compile(r"(?<![A-Za-z0-9])[A-Z]{2}[0-9]{2}(?:[A-Z0-9]{11,30}|(?: [A-Z0-9]{4}){2,7}(?: [A-Z0-9]{1,3})?)(?![A-Za-z0-9])")
 DIGIT_RUN = re.compile(r"(?<![0-9])[0-9](?:[ -]?[0-9]){12,18}(?![0-9])")
+# Raw repository scan only (IB1-R1-3): a standalone lowercase hexadecimal token of exactly 40 or 64 characters.
+HEX_TOKEN = re.compile(r"(?<![A-Za-z0-9])(?:[0-9a-f]{64}|[0-9a-f]{40})(?![A-Za-z0-9])")
+# Banking 0.2.0 declares exactly these two data questionnaires; IND-BANK-002 owns their closure (ruling Q-IB2-B1).
+DECLARED_DATA_QUESTIONNAIRES = {
+    ("banking.data.readiness-evidence", "questions/data/readiness.yaml", "data-readiness"),
+    ("banking.data.sources", "questions/data/sources.yaml", "data-readiness"),
+}
 
 
 def _sha256(value: bytes) -> str:
@@ -100,6 +107,29 @@ def find_disallowed(text: str) -> list[str]:
     return sorted(found)
 
 
+def _strict_hit_spans(text: str) -> list[tuple[str, int, int]]:
+    spans = [(match.group(0), match.start(), match.end()) for match in IBAN_CANDIDATE.finditer(text) if iban_valid(match.group(0))]
+    for match in DIGIT_RUN.finditer(text):
+        digits = re.sub(r"[ -]", "", match.group(0))
+        if 13 <= len(digits) <= 19 and luhn_valid(digits):
+            spans.append((match.group(0), match.start(), match.end()))
+    return spans
+
+
+def find_disallowed_raw(text: str) -> list[str]:
+    """Raw repository scan: blank each standalone lowercase 40- or 64-character hexadecimal token with spaces, run the
+    strict scan on the result, and also report every strict hit on the original text that extends outside a blanked token."""
+    tokens = [match.span() for match in HEX_TOKEN.finditer(text)]
+    characters = list(text)
+    for start, end in tokens:
+        characters[start:end] = " " * (end - start)
+    found = set(find_disallowed("".join(characters)))
+    for hit, start, end in _strict_hit_spans(text):
+        if not any(token_start <= start and end <= token_end for token_start, token_end in tokens):
+            found.add(hit)
+    return sorted(found)
+
+
 def _strings(value: Any) -> Iterator[str]:
     if isinstance(value, str):
         yield value
@@ -114,6 +144,8 @@ def questionnaire_contract(pack: ValidatedPack) -> tuple[dict[str, dict[str, Any
     texts: list[tuple[str, str]] = []
     for resource in pack.manifest["content"]["questionnaires"]:
         path = resource["path"]
+        if (resource["id"], path, resource["stage"]) in DECLARED_DATA_QUESTIONNAIRES:
+            continue
         if not path.startswith("questions/business/"):
             raise ValueError(f"questionnaire outside the business stage: {path}")
         document = yaml.safe_load(pack.files[path])
@@ -282,7 +314,7 @@ def main(argv: list[str] | None = None) -> int:
     pack_root = ROOT / "packs/banking"
     pack = load_pack(pack_root, common_root=ROOT / "common")
     common = load_pack(ROOT / "common")
-    if pack.manifest["metadata"]["id"] != "banking.financial-services" or pack.manifest["metadata"]["version"] != "0.1.0":
+    if pack.manifest["metadata"]["id"] != "banking.financial-services" or pack.manifest["metadata"]["version"] != "0.2.0":
         raise SystemExit("banking pack identity differs")
     if pack.files["contracts.lock.json"] != common.files["contracts.lock.json"] or pack.files["journey.yaml"] != common.files["journey.yaml"]:
         raise SystemExit("banking bindings are not byte copies of common.foundation")
@@ -340,8 +372,8 @@ def main(argv: list[str] | None = None) -> int:
     if findings != [(PINNED_FIXTURE, "outcome-evidence-refs", PINNED_VALUE)]:
         raise SystemExit("disallowed-data scan did not find exactly the one declared value in the one declared vector")
 
-    raw_hits = [(path, hit) for path, data in sorted(pack.files.items()) for hit in find_disallowed(data.decode("utf-8"))]
-    raw_hits += [(path, hit) for path in PACKET_OWNED_FILES for hit in find_disallowed((ROOT / path).read_text(encoding="utf-8"))]
+    raw_hits = [(path, hit) for path, data in sorted(pack.files.items()) for hit in find_disallowed_raw(data.decode("utf-8"))]
+    raw_hits += [(path, hit) for path in PACKET_OWNED_FILES for hit in find_disallowed_raw((ROOT / path).read_text(encoding="utf-8"))]
     if raw_hits != [(PINNED_FIXTURE, PINNED_VALUE)]:
         raise SystemExit("a card- or account-like literal exists outside the one declared vector")
 

@@ -39,6 +39,7 @@ def test_real_descriptor_inventory_is_closed() -> None:
         ("IND-001", "build-reproducible"),
         ("IND-001", "zero-bill"),
         ("IND-BANK-001", "pack"),
+        ("IND-BANK-002", "data-readiness"),
         ("IND-FIX-001", "ind-fix-001-regression"),
         ("IND-WG-001", "pack"),
         ("IND-WG-002", "data-readiness"),

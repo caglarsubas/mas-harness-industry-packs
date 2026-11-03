@@ -11,7 +11,7 @@ Everything in this slice is synthetic and illustrative. It holds no tenant, cust
 Two questionnaires in the `data-readiness` stage use closed response types only (string, boolean, number, choice):
 
 - `banking.data.sources`: the source classes in scope (`api`, `postgresql`, `events`, `files`), the accountable data owner and the source custodian (each one of the six banking ontology role ids), the approved classification labels, source evidence identifiers, and a confirmation that every bundled example is synthetic.
-- `banking.data.readiness-evidence`: expected and observed counts for required fields, duplicates, classification and provenance, the latest observation time, measurement evidence identifiers, the cross-source reconciliation confirmation, the readiness-policy evidence identifiers, the deterministic evaluator state, and the tenant's approval of the readiness policy.
+- `banking.data.readiness-evidence`: the expected observation count, the counts of observations with every required field, of duplicates, of classified observations and of provenanced observations, the latest observation time, measurement evidence identifiers, the cross-source reconciliation confirmation, the readiness-policy evidence identifiers, the deterministic evaluator state, and the tenant's approval of the readiness policy.
 
 The `files` option means:
 

@@ -1,0 +1,45 @@
+{
+  "apiVersion": "harness.planeon.ai/synthetic-dataset-lock/v1alpha1",
+  "kind": "SyntheticDatasetLock",
+  "id": "banking.data.dataset-lock",
+  "stage": "data-readiness",
+  "synthetic": true,
+  "algorithm": "SHA-256",
+  "members": [
+    {
+      "path": "data/api/product-catalogue.json",
+      "mediaType": "application/json",
+      "recordCount": 5,
+      "size": 1054,
+      "sha256": "be8aafee4f34bdaf7d82b281e1a84adb49427cc2909d9bde9b49fcc4d701ad4a"
+    },
+    {
+      "path": "data/events/transactions.jsonl",
+      "mediaType": "application/x-ndjson",
+      "recordCount": 5,
+      "size": 977,
+      "sha256": "e4a6cae2881f07ec14107d9b815d632e8675d84247a99e9da219901dd5839fc4"
+    },
+    {
+      "path": "data/files/product-terms.md",
+      "mediaType": "text/markdown",
+      "recordCount": 1,
+      "size": 999,
+      "sha256": "4a2bb31cb130ec532330f932b8ad080d47385f74f311abbec945c7f93ea2bdfe"
+    },
+    {
+      "path": "data/postgresql/accounts.csv",
+      "mediaType": "text/csv",
+      "recordCount": 4,
+      "size": 357,
+      "sha256": "c7820e40bedf2c4d8b623e3e2f291ea75f9022e62a1cb29654f3f0fbfaf0e05c"
+    },
+    {
+      "path": "data/postgresql/parties.csv",
+      "mediaType": "text/csv",
+      "recordCount": 4,
+      "size": 273,
+      "sha256": "1a2fc5e7983a75140b4354a5c46d4e6f391a32136c234f5579d76a23f7bfbd2b"
+    }
+  ]
+}

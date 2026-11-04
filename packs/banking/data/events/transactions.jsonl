@@ -1,0 +1,5 @@
+{"transactionId":"txn-0001","accountId":"acct-0001","transactionType":"incoming-transfer","amount":"250.00","currency":"EUR","bookingTime":"2026-01-15T11:40:00Z","valueTime":"2026-01-15T11:40:00Z"}
+{"transactionId":"txn-0002","accountId":"acct-0002","transactionType":"card-purchase","amount":"42.15","currency":"EUR","bookingTime":"2026-01-15T11:42:00Z","valueTime":"2026-01-15T11:42:00Z"}
+{"transactionId":"txn-0003","accountId":"acct-0003","transactionType":"outgoing-transfer","amount":"1200.00","currency":"USD","bookingTime":"2026-01-15T11:44:00Z","valueTime":"2026-01-15T11:45:00Z"}
+{"transactionId":"txn-0004","accountId":"acct-0004","transactionType":"account-fee","amount":"3.50","currency":"GBP","bookingTime":"2026-01-15T11:46:00Z","valueTime":"2026-01-15T11:46:00Z"}
+{"transactionId":"txn-0005","accountId":"acct-0001","transactionType":"outgoing-transfer","amount":"75.40","currency":"EUR","bookingTime":"2026-01-15T11:48:00Z","valueTime":"2026-01-15T11:48:00Z"}

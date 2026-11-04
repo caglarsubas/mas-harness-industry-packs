@@ -1,0 +1,36 @@
+apiVersion: harness.planeon.ai/questionnaire/v1alpha1
+kind: Questionnaire
+id: banking.data.sources
+stage: data-readiness
+title: Banking data source ownership and scope
+questions:
+  - id: data-source-class-scope
+    prompt: "Select each source class required by the accepted business scope. The files option means: Synthetic product terms and policy text written for this pack; not an institution document. Each tenant replaces it with its own approved sources."
+    responseType: choice
+    required: true
+    choices: [api, postgresql, events, files]
+    multiple: true
+  - id: data-owner-role
+    prompt: Select the accountable role for data-readiness decisions from the banking ontology roles.
+    responseType: choice
+    required: true
+    choices: [business-owner, domain-owner, risk-owner, compliance-owner, data-steward, evidence-approver]
+    multiple: false
+  - id: data-custodian-role
+    prompt: Select the role responsible for source custody and evidence collection from the banking ontology roles.
+    responseType: choice
+    required: true
+    choices: [business-owner, domain-owner, risk-owner, compliance-owner, data-steward, evidence-approver]
+    multiple: false
+  - id: data-classification-scope
+    prompt: State the approved classification labels in scope, by label only.
+    responseType: string
+    required: true
+  - id: source-evidence-refs
+    prompt: Provide stable local evidence identifiers for source ownership and inspection.
+    responseType: string
+    required: true
+  - id: synthetic-examples-confirmed
+    prompt: Confirm that every bundled example is synthetic and not a production observation.
+    responseType: boolean
+    required: true

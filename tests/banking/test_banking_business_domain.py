@@ -80,7 +80,7 @@ def test_sector_pack_is_closed_and_pinned_to_exact_common_foundation() -> None:
     common = load_pack(COMMON)
     assert report.accepted
     assert report.pack_id == "banking.financial-services"
-    assert report.pack_version == "0.1.0"
+    assert report.pack_version == "0.2.0"
     assert report.evidence == HANDLER.EVIDENCE
     assert pack.manifest["metadata"]["industry"] == "banking"
     assert pack.manifest["metadata"]["packKind"] == "SECTOR"
@@ -92,12 +92,16 @@ def test_sector_pack_is_closed_and_pinned_to_exact_common_foundation() -> None:
         "version": "1.0.0",
         "packDigest": "3cfea19e6e0a4a653d63622e250f40001b4f8221ebab18fa5bfc1601b8eddea3",
     }
-    for empty in ("rules", "readiness", "controls", "providerPreferences"):
+    for empty in ("controls", "providerPreferences"):
         assert pack.manifest["content"][empty] == []
+    assert [item["id"] for item in pack.manifest["content"]["rules"]] == ["banking.data.block-unready"]
+    assert [item["id"] for item in pack.manifest["content"]["readiness"]] == [
+        "banking.data.contract-binding", "banking.data.dataset-lock", "banking.data.readiness-policy",
+    ]
     assert pack.files["contracts.lock.json"] == common.files["contracts.lock.json"]
     assert pack.files["journey.yaml"] == common.files["journey.yaml"]
-    assert len(pack.files) == 17
-    assert len(pack.resource_ids) == 14
+    assert len(pack.files) == 38
+    assert len(pack.resource_ids) == 35
     assert not (pack.resource_ids & common.resource_ids)
 
 
@@ -272,7 +276,7 @@ def test_sector_index_and_archive_are_byte_reproducible() -> None:
     assert canonical_json_bytes(first_index) == canonical_json_bytes(second_index)
     assert first_archive == second_archive
     assert first_index["evidence"] == HANDLER.EVIDENCE
-    assert first_archive[0] == "banking.financial-services-0.1.0.tar.gz"
+    assert first_archive[0] == "banking.financial-services-0.2.0.tar.gz"
 
 
 def test_packet_handler_accepts_only_the_closed_banking_target(capsys: pytest.CaptureFixture[str]) -> None:
@@ -284,3 +288,91 @@ def test_packet_handler_accepts_only_the_closed_banking_target(capsys: pytest.Ca
     assert output["disallowedDataFindings"] == [["fixtures/answers/personal-data-in-answer.json", "outcome-evidence-refs"]]
     with pytest.raises(SystemExit, match="accepts only PACK=banking"):
         HANDLER.main(["white-goods"])
+
+
+def _hex_letters(count: int) -> str:
+    return "".join("abcdef"[(3 * index + 1) % 6] for index in range(count))
+
+
+def _hex_token_around(length: int, run: str) -> str:
+    """A lowercase hexadecimal token of exactly `length` characters whose only digits are `run`, delimited by hex letters."""
+    return "e" + run + "f" + _hex_letters(length - len(run) - 2)
+
+
+def test_raw_scan_finds_runs_glued_to_words_and_ignores_only_standalone_digest_tokens() -> None:
+    luhn_valid, _ = _luhn_pair()
+    # (a) a run glued directly to a word is still found by the raw scan.
+    for prefix in ("ref", "id", "code"):
+        assert HANDLER.find_disallowed_raw(f"{prefix}{luhn_valid}") == [luhn_valid]
+    # (b) inside a standalone lowercase 40- or 64-character token: ignored by the raw scan, found by the strict scan.
+    for length in (40, 64):
+        token = _hex_token_around(length, luhn_valid)
+        assert len(token) == length
+        for text in (f"digest {token} end", f'"{token}"', f"`{token}`"):
+            assert HANDLER.find_disallowed_raw(text) == []
+            assert HANDLER.find_disallowed(text) == [luhn_valid]
+    # (c) a non-hex letter glued to either end means the token is not a standalone digest.
+    token = _hex_token_around(64, luhn_valid)
+    for text in (f"g{token}", f"{token}Z"):
+        assert luhn_valid in HANDLER.find_disallowed_raw(text)
+    # (d) no uppercase exemption.
+    assert luhn_valid in HANDLER.find_disallowed_raw(f" {token.upper()} ")
+
+
+def test_raw_scan_reports_grouped_runs_that_straddle_a_digest_token() -> None:
+    luhn_valid, _ = _luhn_pair()
+    groups = [luhn_valid[index:index + 4] for index in range(0, 16, 4)]
+    grouped = " ".join(groups)
+    # (e) the last group is the first characters of a standalone 64-hex token, followed there by each hex letter.
+    for letter in "abcdef":
+        token = groups[3] + letter + _hex_letters(59)
+        assert len(token) == 64
+        assert HANDLER.find_disallowed_raw(f"{groups[0]} {groups[1]} {groups[2]} {token}") == [grouped]
+    # (e, mirror) the first group is the tail of a standalone 64-hex token.
+    token = _hex_letters(60) + groups[0]
+    assert len(token) == 64
+    assert HANDLER.find_disallowed_raw(f"{token} {groups[1]} {groups[2]} {groups[3]}") == [grouped]
+
+
+def test_raw_scan_exempts_only_exact_digest_lengths() -> None:
+    luhn_valid, luhn_invalid = _luhn_pair()
+    # (f) a bare space-delimited run is found, and so is a run inside a 39-, 41-, 63- or 65-character token.
+    assert HANDLER.find_disallowed_raw(f"value {luhn_valid} end") == [luhn_valid]
+    assert HANDLER.find_disallowed_raw(f"value {luhn_invalid} end") == []
+    for length in (39, 41, 63, 65):
+        token = _hex_token_around(length, luhn_valid)
+        assert len(token) == length
+        assert HANDLER.find_disallowed_raw(f" {token} ") == [luhn_valid]
+
+
+def test_optional_null_business_answer_keeps_the_decision() -> None:
+    questions = _questions()
+    for name in ("accepted-pilot.json", "missing-owner.json"):
+        value = _vector(name)
+        expected = HANDLER.evaluate_answer_set(copy.deepcopy(value), questions)
+        value["answers"]["institution-specific-claims"] = None
+        assert HANDLER.evaluate_answer_set(value, questions) == expected
+
+
+def test_cross_type_empty_business_answers_are_refused() -> None:
+    questions = _questions()
+    cases = (
+        ("primary-business-objective", "", "outside closed set"),
+        ("tenant-evidence-verified", [], "boolean answer"),
+        ("institution-specific-claims", [], "string answer"),
+    )
+    for key, empty, message in cases:
+        value = _vector("accepted-pilot.json")
+        value["answers"][key] = empty
+        with pytest.raises(ValueError, match=message):
+            HANDLER.evaluate_answer_set(value, questions)
+
+
+def test_undeclared_non_business_questionnaire_is_still_refused() -> None:
+    import dataclasses
+
+    pack = load_pack(PACK_ROOT, common_root=COMMON)
+    manifest = copy.deepcopy(pack.manifest)
+    manifest["content"]["questionnaires"].append({"id": "banking.data.undeclared", "stage": "data-readiness", "path": "questions/data/undeclared.yaml"})
+    with pytest.raises(ValueError, match="questionnaire outside the business stage"):
+        HANDLER.questionnaire_contract(dataclasses.replace(pack, manifest=manifest))

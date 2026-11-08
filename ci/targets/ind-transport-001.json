@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "harness.planeon.ai/make-target-descriptor/v1alpha1",
+  "packetId": "IND-TRANSPORT-001",
+  "targets": [
+    {
+      "name": "transport-bootstrap",
+      "acceptedVariables": {},
+      "argvTemplate": [["python3", "-m", "pytest", "tests/framework/test_dispatch.py"]]
+    }
+  ]
+}

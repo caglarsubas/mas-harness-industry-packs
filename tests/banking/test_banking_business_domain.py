@@ -80,7 +80,7 @@ def test_sector_pack_is_closed_and_pinned_to_exact_common_foundation() -> None:
     common = load_pack(COMMON)
     assert report.accepted
     assert report.pack_id == "banking.financial-services"
-    assert report.pack_version == "0.2.0"
+    assert report.pack_version == "0.3.0"
     assert report.evidence == HANDLER.EVIDENCE
     assert pack.manifest["metadata"]["industry"] == "banking"
     assert pack.manifest["metadata"]["packKind"] == "SECTOR"
@@ -92,16 +92,16 @@ def test_sector_pack_is_closed_and_pinned_to_exact_common_foundation() -> None:
         "version": "1.0.0",
         "packDigest": "3cfea19e6e0a4a653d63622e250f40001b4f8221ebab18fa5bfc1601b8eddea3",
     }
-    for empty in ("controls", "providerPreferences"):
-        assert pack.manifest["content"][empty] == []
-    assert [item["id"] for item in pack.manifest["content"]["rules"]] == ["banking.data.block-unready"]
+    assert pack.manifest["content"]["providerPreferences"] == []
+    assert [item["id"] for item in pack.manifest["content"]["controls"]] == ["banking.governance.contract-binding", "banking.governance.control-requirements", "banking.integrations.declaration-records", "banking.governance.waiver-policy", "banking.governance.autonomy-policy", "banking.governance.outcome-states", "banking.governance.ai-act-deployer-map"]
+    assert [item["id"] for item in pack.manifest["content"]["rules"]] == ["banking.data.block-unready", "banking.governance.block-unsafe-action"]
     assert [item["id"] for item in pack.manifest["content"]["readiness"]] == [
         "banking.data.contract-binding", "banking.data.dataset-lock", "banking.data.readiness-policy",
     ]
     assert pack.files["contracts.lock.json"] == common.files["contracts.lock.json"]
     assert pack.files["journey.yaml"] == common.files["journey.yaml"]
-    assert len(pack.files) == 38
-    assert len(pack.resource_ids) == 35
+    assert len(pack.files) == 79
+    assert len(pack.resource_ids) == 76
     assert not (pack.resource_ids & common.resource_ids)
 
 
@@ -276,7 +276,7 @@ def test_sector_index_and_archive_are_byte_reproducible() -> None:
     assert canonical_json_bytes(first_index) == canonical_json_bytes(second_index)
     assert first_archive == second_archive
     assert first_index["evidence"] == HANDLER.EVIDENCE
-    assert first_archive[0] == "banking.financial-services-0.2.0.tar.gz"
+    assert first_archive[0] == "banking.financial-services-0.3.0.tar.gz"
 
 
 def test_packet_handler_accepts_only_the_closed_banking_target(capsys: pytest.CaptureFixture[str]) -> None:

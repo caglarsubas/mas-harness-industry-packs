@@ -1,0 +1,5 @@
+account_id,holder_party_id,product_family,status,opened_date,observed_at
+acct-0001,party-0001,deposits,active,2025-03-01,2026-01-15T11:20:00Z
+acct-0002,party-0002,cards,active,2025-06-15,2026-01-15T11:21:00Z
+acct-0003,party-0003,commercial-lending,active,2025-09-01,2026-01-15T11:22:00Z
+acct-0004,party-0004,payments,dormant,2025-11-20,2026-01-15T11:23:00Z

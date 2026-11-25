@@ -68,10 +68,16 @@ IBAN_CANDIDATE = re.compile(r"(?<![A-Za-z0-9])[A-Z]{2}[0-9]{2}(?:[A-Z0-9]{11,30}
 DIGIT_RUN = re.compile(r"(?<![0-9])[0-9](?:[ -]?[0-9]){12,18}(?![0-9])")
 # Raw repository scan only (IB1-R1-3): a standalone lowercase hexadecimal token of exactly 40 or 64 characters.
 HEX_TOKEN = re.compile(r"(?<![A-Za-z0-9])(?:[0-9a-f]{64}|[0-9a-f]{40})(?![A-Za-z0-9])")
-# Banking 0.2.0 declares exactly these two data questionnaires; IND-BANK-002 owns their closure (ruling Q-IB2-B1).
+# Banking 0.3.0 declares exactly these two data questionnaires (IND-BANK-002 owns their closure, ruling Q-IB2-B1) and the four governance questionnaires below (IND-BANK-003 owns their closure).
 DECLARED_DATA_QUESTIONNAIRES = {
     ("banking.data.readiness-evidence", "questions/data/readiness.yaml", "data-readiness"),
     ("banking.data.sources", "questions/data/sources.yaml", "data-readiness"),
+}
+DECLARED_GOVERNANCE_QUESTIONNAIRES = {
+    ("banking.governance.applicability", "questions/governance/applicability.yaml", "governance-and-regulation"),
+    ("banking.governance.autonomy", "questions/governance/autonomy.yaml", "governance-and-regulation"),
+    ("banking.governance.waivers", "questions/governance/waivers.yaml", "governance-and-regulation"),
+    ("banking.integrations.declarations", "questions/integrations/declarations.yaml", "integration-readiness"),
 }
 
 
@@ -144,7 +150,7 @@ def questionnaire_contract(pack: ValidatedPack) -> tuple[dict[str, dict[str, Any
     texts: list[tuple[str, str]] = []
     for resource in pack.manifest["content"]["questionnaires"]:
         path = resource["path"]
-        if (resource["id"], path, resource["stage"]) in DECLARED_DATA_QUESTIONNAIRES:
+        if (resource["id"], path, resource["stage"]) in DECLARED_DATA_QUESTIONNAIRES | DECLARED_GOVERNANCE_QUESTIONNAIRES:
             continue
         if not path.startswith("questions/business/"):
             raise ValueError(f"questionnaire outside the business stage: {path}")
@@ -314,7 +320,7 @@ def main(argv: list[str] | None = None) -> int:
     pack_root = ROOT / "packs/banking"
     pack = load_pack(pack_root, common_root=ROOT / "common")
     common = load_pack(ROOT / "common")
-    if pack.manifest["metadata"]["id"] != "banking.financial-services" or pack.manifest["metadata"]["version"] != "0.2.0":
+    if pack.manifest["metadata"]["id"] != "banking.financial-services" or pack.manifest["metadata"]["version"] != "0.3.0":
         raise SystemExit("banking pack identity differs")
     if pack.files["contracts.lock.json"] != common.files["contracts.lock.json"] or pack.files["journey.yaml"] != common.files["journey.yaml"]:
         raise SystemExit("banking bindings are not byte copies of common.foundation")

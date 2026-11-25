@@ -1,0 +1,29 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-governance-vector/v1alpha1",
+  "kind": "IndustryGovernanceVector",
+  "id": "banking.governance.vector.fail-upload-not-acceptance",
+  "stage": "governance-and-regulation",
+  "synthetic": true,
+  "family": "outcome",
+  "summary": "A document upload receipt is offered as acceptance.",
+  "scenario": {
+    "claims": [
+      {
+        "state": "accepted",
+        "evidenceKind": "document-upload-receipt"
+      }
+    ]
+  },
+  "expectedDecision": {
+    "status": "BLOCKED",
+    "reasonCodes": [
+      "UPLOAD_IS_NOT_ACCEPTANCE"
+    ]
+  },
+  "evidence": {
+    "published": false,
+    "runtimeEvidence": false,
+    "assuranceEvidence": false,
+    "tenantAcceptance": false
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-governance-vector/v1alpha1",
+  "kind": "IndustryGovernanceVector",
+  "id": "banking.governance.vector.fail-waiver-missing-compensating-control",
+  "stage": "governance-and-regulation",
+  "synthetic": true,
+  "family": "waiver",
+  "summary": "The waiver names no compensating control.",
+  "scenario": {
+    "evaluationTime": "2026-01-15T12:00:00Z",
+    "waiver": {
+      "controlId": "banking.control.cap06-maker-checker",
+      "scopeId": "synthetic.case.waiver-scope-01",
+      "approvalRequestId": "synthetic.approval-request.waiver-01",
+      "approvalType": "WAIVER",
+      "justificationEvidenceIds": [
+        "synthetic.evidence.waiver-justification-01"
+      ],
+      "compensatingControlId": null,
+      "expiresAt": "2026-02-15T12:00:00Z",
+      "renewable": false
+    }
+  },
+  "expectedDecision": {
+    "status": "BLOCKED",
+    "reasonCodes": [
+      "WAIVER_MISSING_COMPENSATING_CONTROL"
+    ]
+  },
+  "evidence": {
+    "published": false,
+    "runtimeEvidence": false,
+    "assuranceEvidence": false,
+    "tenantAcceptance": false
+  }
+}

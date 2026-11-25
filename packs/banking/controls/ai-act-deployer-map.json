@@ -1,0 +1,99 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-deployer-duty-map/v1alpha1",
+  "kind": "IndustryDeployerDutyEvidenceMap",
+  "id": "banking.governance.ai-act-deployer-map",
+  "stage": "governance-and-regulation",
+  "contractStatus": "PACK_LOCAL_DATA_ONLY",
+  "candidateOnly": true,
+  "legalTextQuoted": false,
+  "applicabilityRuledBy": "TENANT_AUTHORIZED_ROLE",
+  "candidateHighRiskUses": [
+    {
+      "id": "candidate-use.creditworthiness-of-natural-persons",
+      "status": "CANDIDATE",
+      "evidenceSlot": "creditworthiness-use-in-scope"
+    }
+  ],
+  "entries": [
+    {
+      "id": "deployer-duty.use-per-instructions",
+      "candidateDuty": "Use the system in line with the provider's instructions for use.",
+      "candidateArticleReference": "Article 26(1)",
+      "status": "CANDIDATE",
+      "evidenceSlot": null,
+      "namedGap": "Provider instructions for use and the tenant's technical and organisational measures are tenant-held."
+    },
+    {
+      "id": "deployer-duty.human-oversight",
+      "candidateDuty": "Assign human oversight to roles with the competence, training and authority it needs.",
+      "candidateArticleReference": "Article 26(2)",
+      "status": "CANDIDATE",
+      "evidenceSlot": "banking.control.cap02-accountable-operator",
+      "namedGap": "Training and competence records of the assigned roles are tenant-held."
+    },
+    {
+      "id": "deployer-duty.input-data-relevance",
+      "candidateDuty": "Keep input data under the deployer's control relevant and sufficiently representative for the intended purpose.",
+      "candidateArticleReference": "Article 26(4)",
+      "status": "CANDIDATE",
+      "evidenceSlot": "banking.data.readiness-policy",
+      "namedGap": null
+    },
+    {
+      "id": "deployer-duty.monitoring-and-notification",
+      "candidateDuty": "Monitor operation and inform the provider and the relevant authority of risks and serious incidents.",
+      "candidateArticleReference": "Article 26(5)",
+      "status": "CANDIDATE",
+      "evidenceSlot": null,
+      "namedGap": "Operational monitoring and incident notification records are tenant-held."
+    },
+    {
+      "id": "deployer-duty.log-retention",
+      "candidateDuty": "Keep the logs the system generates under the deployer's control for the required period.",
+      "candidateArticleReference": "Article 26(6)",
+      "status": "CANDIDATE",
+      "evidenceSlot": "banking.control.cap07-durable-receipt",
+      "namedGap": "The retention period and the log store are tenant-held."
+    },
+    {
+      "id": "deployer-duty.worker-information",
+      "candidateDuty": "Inform workers' representatives and affected workers before workplace use.",
+      "candidateArticleReference": "Article 26(7)",
+      "status": "CANDIDATE",
+      "evidenceSlot": null,
+      "namedGap": "Workplace information records are tenant-held."
+    },
+    {
+      "id": "deployer-duty.affected-person-information",
+      "candidateDuty": "Inform natural persons that they are subject to the use of the system where it makes or assists decisions about them.",
+      "candidateArticleReference": "Article 26(11)",
+      "status": "CANDIDATE",
+      "evidenceSlot": null,
+      "namedGap": "Notices to affected persons are tenant-held."
+    },
+    {
+      "id": "deployer-duty.fundamental-rights-impact-assessment",
+      "candidateDuty": "Assess the impact on fundamental rights before first use for the candidate creditworthiness use.",
+      "candidateArticleReference": "Article 27",
+      "status": "CANDIDATE",
+      "evidenceSlot": "creditworthiness-use-in-scope",
+      "namedGap": "The assessment itself is tenant-held."
+    },
+    {
+      "id": "deployer-duty.explanation-of-decisions",
+      "candidateDuty": "Provide affected persons with an explanation of the role of the system in an individual decision on request.",
+      "candidateArticleReference": "Article 86",
+      "status": "CANDIDATE",
+      "evidenceSlot": null,
+      "namedGap": "Explanation procedures and records are tenant-held."
+    },
+    {
+      "id": "deployer-duty.ai-literacy",
+      "candidateDuty": "Take measures for a sufficient level of AI literacy of staff dealing with the system.",
+      "candidateArticleReference": "Article 4",
+      "status": "CANDIDATE",
+      "evidenceSlot": null,
+      "namedGap": "Literacy measures and records are tenant-held."
+    }
+  ]
+}

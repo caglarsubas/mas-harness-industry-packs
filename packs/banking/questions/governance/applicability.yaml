@@ -1,0 +1,34 @@
+apiVersion: harness.planeon.ai/questionnaire/v1alpha1
+kind: Questionnaire
+id: banking.governance.applicability
+stage: governance-and-regulation
+title: Banking candidate regulatory applicability evidence
+questions:
+  - id: governance-applicability-owner-role
+    prompt: Select the tenant role accountable for ruling on regulatory applicability.
+    responseType: choice
+    required: true
+    choices: [business-owner, domain-owner, risk-owner, compliance-owner, data-steward, evidence-approver]
+    multiple: false
+  - id: candidate-regulatory-themes
+    prompt: Select each candidate theme that an authorized tenant role must rule on for its own jurisdiction; the pack asserts none of them.
+    responseType: choice
+    required: true
+    choices: [risk-data-aggregation-and-reporting, ict-operational-resilience, ai-deployer-duties, personal-data-protection, payment-services, financial-crime-and-customer-due-diligence, model-risk-management]
+    multiple: true
+  - id: jurisdiction-scope-declared
+    prompt: Confirm that the tenant declared its jurisdiction and market scope in its own records, without the pack drawing any legal finding.
+    responseType: boolean
+    required: true
+  - id: creditworthiness-use-in-scope
+    prompt: Confirm whether a case in scope evaluates the creditworthiness of natural persons, a candidate high-risk use the tenant role rules on.
+    responseType: boolean
+    required: true
+  - id: applicability-evidence-refs
+    prompt: Provide stable local evidence identifiers for the tenant applicability ruling.
+    responseType: string
+    required: true
+  - id: tenant-applicability-review-complete
+    prompt: Confirm that an authorized tenant role completed the applicability review.
+    responseType: boolean
+    required: true

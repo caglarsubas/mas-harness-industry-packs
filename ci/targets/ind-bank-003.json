@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "harness.planeon.ai/make-target-descriptor/v1alpha1",
+  "packetId": "IND-BANK-003",
+  "targets": [
+    {
+      "name": "governance-integrations",
+      "acceptedVariables": {"PACK": {"const": "banking"}},
+      "argvTemplate": [["python3", "ci/handlers/ind_bank_003.py", {"variable": "PACK"}]]
+    },
+    {
+      "name": "readiness-evaluate",
+      "acceptedVariables": {"PACK": {"const": "banking"}},
+      "argvTemplate": [["python3", "ci/handlers/ind_bank_003.py", "readiness-evaluate", {"variable": "PACK"}]]
+    }
+  ]
+}

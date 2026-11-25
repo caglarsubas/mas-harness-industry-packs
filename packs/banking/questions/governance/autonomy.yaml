@@ -1,0 +1,68 @@
+apiVersion: harness.planeon.ai/questionnaire/v1alpha1
+kind: Questionnaire
+id: banking.governance.autonomy
+stage: governance-and-regulation
+title: Banking per-case autonomy and action boundary
+questions:
+  - id: case-declared-mode
+    prompt: Select the declared mode of the case (A1 evidence, A2 prepared action, A3 bounded execution).
+    responseType: choice
+    required: true
+    choices: [A1, A2, A3]
+    multiple: false
+  - id: case-preparation-scope
+    prompt: Select the separately defined preparation scope the case falls back to after a failed compatibility, capability or protected-policy check.
+    responseType: choice
+    required: true
+    choices: [A1, A2]
+    multiple: false
+  - id: child-modes-declared
+    prompt: Confirm that every child step declares its own mode; a missing child mode is never inherited from the summary.
+    responseType: boolean
+    required: true
+  - id: action-classes-in-scope
+    prompt: Select each action class the case uses.
+    responseType: choice
+    required: true
+    choices: [read_evidence, prepare_action, submit, task_update, approve_payment]
+    multiple: true
+  - id: accountable-operator-role
+    prompt: Select the accountable tenant operator role for actions in this case.
+    responseType: choice
+    required: true
+    choices: [business-owner, domain-owner, risk-owner, compliance-owner, data-steward, evidence-approver]
+    multiple: false
+  - id: policy-reference-id
+    prompt: Provide the stable local policy reference identifier for write actions.
+    responseType: string
+    required: false
+  - id: mutation-approval-reference-id
+    prompt: Provide the stable MUTATION ApprovalRequest identifier for write actions.
+    responseType: string
+    required: false
+  - id: required-approval-quorum
+    prompt: State the tenant-approved number of distinct approvers for write actions.
+    responseType: number
+    required: true
+  - id: durable-receipt-requirement-id
+    prompt: Provide the stable local requirement identifier for a durable action receipt.
+    responseType: string
+    required: false
+  - id: idempotency-requirement-id
+    prompt: Provide the stable local idempotency requirement identifier for writes.
+    responseType: string
+    required: false
+  - id: compensation-mode
+    prompt: Select how a write is compensated or independently outcome-reviewed.
+    responseType: choice
+    required: true
+    choices: [NOT_APPLICABLE, COMPENSATE, OUTCOME_REVIEW_ONLY]
+    multiple: false
+  - id: compensation-reference-id
+    prompt: Provide the stable compensation or outcome-review reference identifier.
+    responseType: string
+    required: false
+  - id: governance-evidence-complete
+    prompt: Confirm that every required governance answer is backed by tenant evidence.
+    responseType: boolean
+    required: true

@@ -1,0 +1,35 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-governance-vector/v1alpha1",
+  "kind": "IndustryGovernanceVector",
+  "id": "banking.governance.vector.ready-outcome-final",
+  "stage": "governance-and-regulation",
+  "synthetic": true,
+  "family": "outcome",
+  "summary": "Accepted, committed and final each carry their required evidence kind.",
+  "scenario": {
+    "claims": [
+      {
+        "state": "accepted",
+        "evidenceKind": "counterparty-acceptance-record"
+      },
+      {
+        "state": "committed",
+        "evidenceKind": "booking-commitment-record"
+      },
+      {
+        "state": "final",
+        "evidenceKind": "settlement-or-disbursement-record"
+      }
+    ]
+  },
+  "expectedDecision": {
+    "status": "READY",
+    "reasonCodes": []
+  },
+  "evidence": {
+    "published": false,
+    "runtimeEvidence": false,
+    "assuranceEvidence": false,
+    "tenantAcceptance": false
+  }
+}

@@ -1,0 +1,40 @@
+apiVersion: harness.planeon.ai/questionnaire/v1alpha1
+kind: Questionnaire
+id: banking.integrations.declarations
+stage: integration-readiness
+title: Banking synthetic integration profile declaration
+questions:
+  - id: integration-profile-scope
+    prompt: Select each synthetic integration profile the case uses (IP16 payments, IP17 reconciliation, IP18 reporting).
+    responseType: choice
+    required: true
+    choices: [IP16, IP17, IP18]
+    multiple: true
+  - id: integration-owner-role
+    prompt: Select the accountable tenant owner role for the integration.
+    responseType: choice
+    required: true
+    choices: [business-owner, domain-owner, risk-owner, compliance-owner, data-steward, evidence-approver]
+    multiple: false
+  - id: integration-custodian-role
+    prompt: Select the tenant role responsible for integration custody.
+    responseType: choice
+    required: true
+    choices: [business-owner, domain-owner, risk-owner, compliance-owner, data-steward, evidence-approver]
+    multiple: false
+  - id: scoped-access-reference-id
+    prompt: Provide only the stable identifier of the tenant's scoped access reference, never the protected value it refers to.
+    responseType: string
+    required: true
+  - id: scoped-access-approved
+    prompt: Confirm that tenant authority approved the declared access scope.
+    responseType: boolean
+    required: true
+  - id: integration-data-classification-scope
+    prompt: State the approved data classification labels without including tenant records.
+    responseType: string
+    required: true
+  - id: integration-evidence-refs
+    prompt: Provide stable local identifiers for integration inspection evidence.
+    responseType: string
+    required: true

@@ -1,0 +1,309 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-control-requirements/v1alpha1",
+  "kind": "IndustryControlRequirementRecordSet",
+  "id": "banking.governance.control-requirements",
+  "stage": "governance-and-regulation",
+  "contractStatus": "PACK_LOCAL_DATA_ONLY",
+  "publicKindStatus": {
+    "kindName": "ControlRequirement",
+    "status": "NOT_AVAILABLE_IN_BOUND_RELEASE"
+  },
+  "tenantPolicyRequired": true,
+  "controlClasses": [
+    "AUTOMATED",
+    "MANUAL",
+    "TECHNOLOGY_DEPENDENT"
+  ],
+  "requirements": [
+    {
+      "id": "banking.control.cap01-regulatory-applicability",
+      "capId": "CAP01",
+      "title": "An authorized tenant role rules on candidate regulatory applicability",
+      "controlClass": "MANUAL",
+      "ownerRole": "compliance-owner",
+      "applicabilityQuestionIds": [
+        "governance-applicability-owner-role",
+        "candidate-regulatory-themes",
+        "tenant-applicability-review-complete"
+      ],
+      "requiredEvidenceKinds": [
+        "tenant-applicability-ruling",
+        "scope-evidence"
+      ],
+      "appliesToActionCategories": [
+        "READ_ONLY",
+        "REVERSIBLE_WRITE",
+        "IRREVERSIBLE_WRITE",
+        "UNKNOWN_SIDE_EFFECT"
+      ],
+      "waiverEligible": false,
+      "freshnessRequirement": "TENANT_POLICY_DEFINED",
+      "promotionDisposition": "FRESH_PASS_REQUIRED"
+    },
+    {
+      "id": "banking.control.cap02-accountable-operator",
+      "capId": "CAP02",
+      "title": "Every case names an accountable operator role",
+      "controlClass": "MANUAL",
+      "ownerRole": "business-owner",
+      "applicabilityQuestionIds": [
+        "accountable-operator-role"
+      ],
+      "requiredEvidenceKinds": [
+        "role-assignment"
+      ],
+      "appliesToActionCategories": [
+        "READ_ONLY",
+        "REVERSIBLE_WRITE",
+        "IRREVERSIBLE_WRITE",
+        "UNKNOWN_SIDE_EFFECT"
+      ],
+      "waiverEligible": false,
+      "freshnessRequirement": "CURRENT_SCOPE",
+      "promotionDisposition": "FRESH_PASS_REQUIRED"
+    },
+    {
+      "id": "banking.control.cap03-declared-mode",
+      "capId": "CAP03",
+      "title": "Every case and child step declares its mode and the derived mode equals the declared mode",
+      "controlClass": "AUTOMATED",
+      "ownerRole": "risk-owner",
+      "applicabilityQuestionIds": [
+        "case-declared-mode",
+        "child-modes-declared"
+      ],
+      "requiredEvidenceKinds": [
+        "mode-declaration",
+        "derived-mode-check"
+      ],
+      "appliesToActionCategories": [
+        "READ_ONLY",
+        "REVERSIBLE_WRITE",
+        "IRREVERSIBLE_WRITE",
+        "UNKNOWN_SIDE_EFFECT"
+      ],
+      "waiverEligible": false,
+      "freshnessRequirement": "CURRENT_SCOPE",
+      "promotionDisposition": "FRESH_PASS_REQUIRED"
+    },
+    {
+      "id": "banking.control.cap04-action-class-closure",
+      "capId": "CAP04",
+      "title": "Every step names a closed action class; unknown classes and unknown side effects block",
+      "controlClass": "AUTOMATED",
+      "ownerRole": "risk-owner",
+      "applicabilityQuestionIds": [
+        "action-classes-in-scope"
+      ],
+      "requiredEvidenceKinds": [
+        "action-class-table-check"
+      ],
+      "appliesToActionCategories": [
+        "READ_ONLY",
+        "REVERSIBLE_WRITE",
+        "IRREVERSIBLE_WRITE",
+        "UNKNOWN_SIDE_EFFECT"
+      ],
+      "waiverEligible": false,
+      "freshnessRequirement": "CURRENT_SCOPE",
+      "promotionDisposition": "FRESH_PASS_REQUIRED"
+    },
+    {
+      "id": "banking.control.cap05-mutation-policy",
+      "capId": "CAP05",
+      "title": "Write actions bind an exact policy reference",
+      "controlClass": "AUTOMATED",
+      "ownerRole": "compliance-owner",
+      "applicabilityQuestionIds": [
+        "policy-reference-id"
+      ],
+      "requiredEvidenceKinds": [
+        "policy-reference"
+      ],
+      "appliesToActionCategories": [
+        "REVERSIBLE_WRITE",
+        "IRREVERSIBLE_WRITE"
+      ],
+      "waiverEligible": false,
+      "freshnessRequirement": "CURRENT_SCOPE",
+      "promotionDisposition": "FRESH_PASS_REQUIRED"
+    },
+    {
+      "id": "banking.control.cap06-maker-checker",
+      "capId": "CAP06",
+      "title": "Write actions carry an unexpired approved MUTATION request with a distinct approver quorum",
+      "controlClass": "AUTOMATED",
+      "ownerRole": "evidence-approver",
+      "applicabilityQuestionIds": [
+        "mutation-approval-reference-id",
+        "required-approval-quorum"
+      ],
+      "requiredEvidenceKinds": [
+        "approval-request",
+        "decision-quorum"
+      ],
+      "appliesToActionCategories": [
+        "REVERSIBLE_WRITE",
+        "IRREVERSIBLE_WRITE"
+      ],
+      "waiverEligible": true,
+      "freshnessRequirement": "UNEXPIRED_AT_DECISION",
+      "promotionDisposition": "FRESH_PASS_REQUIRED"
+    },
+    {
+      "id": "banking.control.cap07-durable-receipt",
+      "capId": "CAP07",
+      "title": "Write actions declare a durable receipt and idempotency",
+      "controlClass": "TECHNOLOGY_DEPENDENT",
+      "ownerRole": "data-steward",
+      "applicabilityQuestionIds": [
+        "durable-receipt-requirement-id",
+        "idempotency-requirement-id"
+      ],
+      "requiredEvidenceKinds": [
+        "receipt-requirement",
+        "idempotency-requirement"
+      ],
+      "appliesToActionCategories": [
+        "REVERSIBLE_WRITE",
+        "IRREVERSIBLE_WRITE"
+      ],
+      "waiverEligible": false,
+      "freshnessRequirement": "CURRENT_ACTION_CONTRACT",
+      "promotionDisposition": "FRESH_PASS_REQUIRED"
+    },
+    {
+      "id": "banking.control.cap08-compensation-review",
+      "capId": "CAP08",
+      "title": "Write actions declare compensation or independent outcome review",
+      "controlClass": "MANUAL",
+      "ownerRole": "domain-owner",
+      "applicabilityQuestionIds": [
+        "compensation-mode",
+        "compensation-reference-id"
+      ],
+      "requiredEvidenceKinds": [
+        "compensation-plan-or-outcome-review"
+      ],
+      "appliesToActionCategories": [
+        "REVERSIBLE_WRITE",
+        "IRREVERSIBLE_WRITE"
+      ],
+      "waiverEligible": true,
+      "freshnessRequirement": "CURRENT_ACTION_CONTRACT",
+      "promotionDisposition": "FRESH_PASS_REQUIRED"
+    },
+    {
+      "id": "banking.control.cap09-scoped-access",
+      "capId": "CAP09",
+      "title": "Integrations use approved scoped access references only",
+      "controlClass": "TECHNOLOGY_DEPENDENT",
+      "ownerRole": "data-steward",
+      "applicabilityQuestionIds": [
+        "scoped-access-reference-id",
+        "scoped-access-approved"
+      ],
+      "requiredEvidenceKinds": [
+        "access-reference",
+        "access-scope-approval"
+      ],
+      "appliesToActionCategories": [
+        "READ_ONLY",
+        "REVERSIBLE_WRITE",
+        "IRREVERSIBLE_WRITE"
+      ],
+      "waiverEligible": false,
+      "freshnessRequirement": "CURRENT_INTEGRATION_SCOPE",
+      "promotionDisposition": "FRESH_PASS_REQUIRED"
+    },
+    {
+      "id": "banking.control.cap10-profile-mode",
+      "capId": "CAP10",
+      "title": "A case's mode equals the maximum mode of every integration profile it uses",
+      "controlClass": "AUTOMATED",
+      "ownerRole": "risk-owner",
+      "applicabilityQuestionIds": [
+        "integration-profile-scope",
+        "case-declared-mode"
+      ],
+      "requiredEvidenceKinds": [
+        "profile-mode-check"
+      ],
+      "appliesToActionCategories": [
+        "READ_ONLY",
+        "REVERSIBLE_WRITE",
+        "IRREVERSIBLE_WRITE",
+        "UNKNOWN_SIDE_EFFECT"
+      ],
+      "waiverEligible": false,
+      "freshnessRequirement": "CURRENT_INTEGRATION_SCOPE",
+      "promotionDisposition": "FRESH_PASS_REQUIRED"
+    },
+    {
+      "id": "banking.control.cap11-failed-check-fallback",
+      "capId": "CAP11",
+      "title": "A failed compatibility, capability or protected-policy check disables affected execution and falls back to the preparation scope",
+      "controlClass": "TECHNOLOGY_DEPENDENT",
+      "ownerRole": "risk-owner",
+      "applicabilityQuestionIds": [
+        "case-preparation-scope"
+      ],
+      "requiredEvidenceKinds": [
+        "check-result",
+        "preparation-scope"
+      ],
+      "appliesToActionCategories": [
+        "READ_ONLY",
+        "REVERSIBLE_WRITE",
+        "IRREVERSIBLE_WRITE",
+        "UNKNOWN_SIDE_EFFECT"
+      ],
+      "waiverEligible": false,
+      "freshnessRequirement": "CURRENT_SCOPE",
+      "promotionDisposition": "FRESH_PASS_REQUIRED"
+    },
+    {
+      "id": "banking.control.cap12-outcome-evidence",
+      "capId": "CAP12",
+      "title": "An outcome state counts only with its required evidence kind",
+      "controlClass": "AUTOMATED",
+      "ownerRole": "evidence-approver",
+      "applicabilityQuestionIds": [
+        "governance-evidence-complete"
+      ],
+      "requiredEvidenceKinds": [
+        "outcome-state-evidence"
+      ],
+      "appliesToActionCategories": [
+        "REVERSIBLE_WRITE",
+        "IRREVERSIBLE_WRITE"
+      ],
+      "waiverEligible": false,
+      "freshnessRequirement": "CURRENT_SCOPE",
+      "promotionDisposition": "FRESH_PASS_REQUIRED"
+    },
+    {
+      "id": "banking.control.cap13-deployer-duty-evidence",
+      "capId": "CAP13",
+      "title": "Candidate AI deployer duties map to pack evidence slots or named tenant gaps",
+      "controlClass": "MANUAL",
+      "ownerRole": "compliance-owner",
+      "applicabilityQuestionIds": [
+        "creditworthiness-use-in-scope",
+        "applicability-evidence-refs"
+      ],
+      "requiredEvidenceKinds": [
+        "deployer-duty-evidence"
+      ],
+      "appliesToActionCategories": [
+        "READ_ONLY",
+        "REVERSIBLE_WRITE",
+        "IRREVERSIBLE_WRITE",
+        "UNKNOWN_SIDE_EFFECT"
+      ],
+      "waiverEligible": false,
+      "freshnessRequirement": "TENANT_POLICY_DEFINED",
+      "promotionDisposition": "FRESH_PASS_REQUIRED"
+    }
+  ]
+}

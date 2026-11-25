@@ -1,0 +1,48 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-governance-vector/v1alpha1",
+  "kind": "IndustryGovernanceVector",
+  "id": "banking.governance.vector.fail-profile-above-case",
+  "stage": "governance-and-regulation",
+  "synthetic": true,
+  "family": "autonomy",
+  "summary": "An A1 case uses the A2 payments profile.",
+  "scenario": {
+    "case": {
+      "caseId": "synthetic.case.fail-profile-above-case",
+      "declaredMode": "A1",
+      "preparationScope": "A1",
+      "profiles": [
+        "IP16"
+      ],
+      "checkResults": {
+        "compatibility": "PASS",
+        "capability": "PASS",
+        "protectedPolicy": "PASS"
+      },
+      "effectiveMode": "A1",
+      "steps": [
+        {
+          "stepId": "step-01",
+          "actionClass": "read_evidence",
+          "sideEffectCategory": "READ_ONLY",
+          "executor": "AGENT",
+          "enabled": true,
+          "write": null
+        }
+      ],
+      "children": []
+    }
+  },
+  "expectedDecision": {
+    "status": "BLOCKED",
+    "reasonCodes": [
+      "PROFILE_ABOVE_CASE"
+    ]
+  },
+  "evidence": {
+    "published": false,
+    "runtimeEvidence": false,
+    "assuranceEvidence": false,
+    "tenantAcceptance": false
+  }
+}

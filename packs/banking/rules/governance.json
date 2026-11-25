@@ -1,0 +1,46 @@
+{
+  "apiVersion": "harness.planeon.ai/pack-rule/v1alpha1",
+  "kind": "PackRule",
+  "id": "banking.governance.block-unsafe-action",
+  "stage": "governance-and-regulation",
+  "when": {
+    "any": [
+      {
+        "all": [
+          {
+            "in": [
+              "answers.case-declared-mode",
+              [
+                "A2",
+                "A3"
+              ]
+            ]
+          },
+          {
+            "eq": [
+              "answers.governance-evidence-complete",
+              false
+            ]
+          }
+        ]
+      },
+      {
+        "eq": [
+          "answers.child-modes-declared",
+          false
+        ]
+      },
+      {
+        "eq": [
+          "answers.tenant-applicability-review-complete",
+          false
+        ]
+      }
+    ]
+  },
+  "action": {
+    "type": "BLOCK_READINESS",
+    "target": "banking.governance.case-readiness",
+    "message": "A banking case stays blocked until its declared modes, write evidence and tenant applicability review are complete."
+  }
+}

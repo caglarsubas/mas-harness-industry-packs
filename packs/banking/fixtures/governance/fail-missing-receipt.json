@@ -1,0 +1,85 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-governance-vector/v1alpha1",
+  "kind": "IndustryGovernanceVector",
+  "id": "banking.governance.vector.fail-missing-receipt",
+  "stage": "governance-and-regulation",
+  "synthetic": true,
+  "family": "autonomy",
+  "summary": "A submit declares no durable receipt requirement.",
+  "scenario": {
+    "case": {
+      "caseId": "synthetic.case.fail-missing-receipt",
+      "declaredMode": "A2",
+      "preparationScope": "A1",
+      "profiles": [
+        "IP16"
+      ],
+      "checkResults": {
+        "compatibility": "PASS",
+        "capability": "PASS",
+        "protectedPolicy": "PASS"
+      },
+      "effectiveMode": "A2",
+      "steps": [
+        {
+          "stepId": "step-01",
+          "actionClass": "read_evidence",
+          "sideEffectCategory": "READ_ONLY",
+          "executor": "AGENT",
+          "enabled": true,
+          "write": null
+        },
+        {
+          "stepId": "step-02",
+          "actionClass": "prepare_action",
+          "sideEffectCategory": "READ_ONLY",
+          "executor": "AGENT",
+          "enabled": true,
+          "write": null
+        },
+        {
+          "stepId": "step-03",
+          "actionClass": "submit",
+          "sideEffectCategory": "IRREVERSIBLE_WRITE",
+          "executor": "HUMAN_ROLE",
+          "enabled": true,
+          "write": {
+            "policyReferenceId": "banking.policy.synthetic-write-policy",
+            "approval": {
+              "requestId": "synthetic.approval-request.case-01",
+              "approvalType": "MUTATION",
+              "status": "APPROVED",
+              "requesterRef": "synthetic.actor.maker-01",
+              "approverRefs": [
+                "synthetic.actor.checker-01",
+                "synthetic.actor.checker-02"
+              ],
+              "requiredQuorum": 2,
+              "decisionTime": "2026-01-15T12:00:00Z",
+              "expiresAt": "2026-01-16T12:00:00Z"
+            },
+            "receiptRequirementId": null,
+            "idempotencyRequirementId": "banking.requirement.idempotency",
+            "compensationMode": "OUTCOME_REVIEW_ONLY",
+            "compensationReferenceId": "banking.reference.synthetic-outcome-review",
+            "scopedAccessReferenceId": "banking.access-reference.synthetic-scope",
+            "taskScope": null
+          }
+        }
+      ],
+      "children": []
+    }
+  },
+  "expectedDecision": {
+    "status": "BLOCKED",
+    "reasonCodes": [
+      "MISSING_RECEIPT"
+    ]
+  },
+  "evidence": {
+    "published": false,
+    "runtimeEvidence": false,
+    "assuranceEvidence": false,
+    "tenantAcceptance": false
+  }
+}

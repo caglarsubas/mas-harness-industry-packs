@@ -2,8 +2,8 @@ apiVersion: harness.planeon.ai/industry-pack/v1alpha1
 kind: IndustryPack
 metadata:
   id: banking.financial-services
-  version: 0.2.0
-  title: Banking business objectives, accountable roles, glossary, ontology, KPI definitions, synthetic answer sets, and data readiness
+  version: 0.3.0
+  title: Banking business objectives, accountable roles, glossary, ontology, KPI definitions, synthetic answer sets, data readiness, and governance integrations
   industry: banking
   license: Apache-2.0
   packKind: SECTOR
@@ -37,10 +37,25 @@ content:
     - id: banking.data.sources
       stage: data-readiness
       path: questions/data/sources.yaml
+    - id: banking.governance.applicability
+      stage: governance-and-regulation
+      path: questions/governance/applicability.yaml
+    - id: banking.governance.autonomy
+      stage: governance-and-regulation
+      path: questions/governance/autonomy.yaml
+    - id: banking.governance.waivers
+      stage: governance-and-regulation
+      path: questions/governance/waivers.yaml
+    - id: banking.integrations.declarations
+      stage: integration-readiness
+      path: questions/integrations/declarations.yaml
   rules:
     - id: banking.data.block-unready
       stage: data-readiness
       path: rules/data-readiness.json
+    - id: banking.governance.block-unsafe-action
+      stage: governance-and-regulation
+      path: rules/governance.json
   readiness:
     - id: banking.data.contract-binding
       stage: data-readiness
@@ -58,7 +73,28 @@ content:
     - id: banking.domain.shapes
       stage: evidence-and-acceptance
       path: ontology/banking.shacl.ttl
-  controls: []
+  controls:
+    - id: banking.governance.contract-binding
+      stage: governance-and-regulation
+      path: controls/contract-binding.json
+    - id: banking.governance.control-requirements
+      stage: governance-and-regulation
+      path: controls/control-requirements.json
+    - id: banking.integrations.declaration-records
+      stage: integration-readiness
+      path: controls/integration-declarations.json
+    - id: banking.governance.waiver-policy
+      stage: governance-and-regulation
+      path: controls/waiver-policy.json
+    - id: banking.governance.autonomy-policy
+      stage: governance-and-regulation
+      path: controls/autonomy-policy.json
+    - id: banking.governance.outcome-states
+      stage: governance-and-regulation
+      path: controls/outcome-states.json
+    - id: banking.governance.ai-act-deployer-map
+      stage: governance-and-regulation
+      path: controls/ai-act-deployer-map.json
   providerPreferences: []
   fixtures:
     - id: banking.answers.accepted-pilot
@@ -133,3 +169,90 @@ content:
     - id: banking.readiness.warn-freshness
       stage: data-readiness
       path: fixtures/readiness/warn-freshness.json
+    - id: banking.governance.vector.fail-a1-submit-tool
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-a1-submit-tool.json
+    - id: banking.governance.vector.fail-a2-executes
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-a2-executes.json
+    - id: banking.governance.vector.fail-a3-after-failed-check
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-a3-after-failed-check.json
+    - id: banking.governance.vector.fail-a3-agent-submit
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-a3-agent-submit.json
+    - id: banking.governance.vector.fail-a3-approves-payment
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-a3-approves-payment.json
+    - id: banking.governance.vector.fail-active-waiver-promotion-blocked
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-active-waiver-promotion-blocked.json
+    - id: banking.governance.vector.fail-case-above-profile
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-case-above-profile.json
+    - id: banking.governance.vector.fail-child-mode-missing
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-child-mode-missing.json
+    - id: banking.governance.vector.fail-executor-mismatch
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-executor-mismatch.json
+    - id: banking.governance.vector.fail-expired-waiver
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-expired-waiver.json
+    - id: banking.governance.vector.fail-manifest-grant-field
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-manifest-grant-field.json
+    - id: banking.governance.vector.fail-missing-approval
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-missing-approval.json
+    - id: banking.governance.vector.fail-missing-compensation
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-missing-compensation.json
+    - id: banking.governance.vector.fail-missing-policy
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-missing-policy.json
+    - id: banking.governance.vector.fail-missing-receipt
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-missing-receipt.json
+    - id: banking.governance.vector.fail-mode-mismatch
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-mode-mismatch.json
+    - id: banking.governance.vector.fail-profile-above-case
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-profile-above-case.json
+    - id: banking.governance.vector.fail-readiness-flag-not-disbursement
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-readiness-flag-not-disbursement.json
+    - id: banking.governance.vector.fail-self-approval
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-self-approval.json
+    - id: banking.governance.vector.fail-submitted-not-won
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-submitted-not-won.json
+    - id: banking.governance.vector.fail-summary-broadens-child
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-summary-broadens-child.json
+    - id: banking.governance.vector.fail-unknown-side-effect
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-unknown-side-effect.json
+    - id: banking.governance.vector.fail-upload-not-acceptance
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-upload-not-acceptance.json
+    - id: banking.governance.vector.fail-waiver-missing-compensating-control
+      stage: governance-and-regulation
+      path: fixtures/governance/fail-waiver-missing-compensating-control.json
+    - id: banking.governance.vector.ready-a1-read-only
+      stage: governance-and-regulation
+      path: fixtures/governance/ready-a1-read-only.json
+    - id: banking.governance.vector.ready-a2-human-submit
+      stage: governance-and-regulation
+      path: fixtures/governance/ready-a2-human-submit.json
+    - id: banking.governance.vector.ready-a3-task-update
+      stage: governance-and-regulation
+      path: fixtures/governance/ready-a3-task-update.json
+    - id: banking.governance.vector.ready-downgrade-after-failed-check
+      stage: governance-and-regulation
+      path: fixtures/governance/ready-downgrade-after-failed-check.json
+    - id: banking.governance.vector.ready-outcome-final
+      stage: governance-and-regulation
+      path: fixtures/governance/ready-outcome-final.json

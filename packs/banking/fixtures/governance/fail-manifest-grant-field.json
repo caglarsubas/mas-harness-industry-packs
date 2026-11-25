@@ -1,0 +1,26 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-governance-vector/v1alpha1",
+  "kind": "IndustryGovernanceVector",
+  "id": "banking.governance.vector.fail-manifest-grant-field",
+  "stage": "governance-and-regulation",
+  "synthetic": true,
+  "family": "integrity",
+  "summary": "A manifest field that would grant data access is refused by the closed manifest schema (INV01).",
+  "scenario": {
+    "target": "pack.yaml",
+    "location": "metadata",
+    "addedField": "dataGrants"
+  },
+  "expectedDecision": {
+    "status": "BLOCKED",
+    "reasonCodes": [
+      "GRANT_FIELD_FORBIDDEN"
+    ]
+  },
+  "evidence": {
+    "published": false,
+    "runtimeEvidence": false,
+    "assuranceEvidence": false,
+    "tenantAcceptance": false
+  }
+}

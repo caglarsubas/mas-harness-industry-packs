@@ -1,0 +1,77 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-governance-vector/v1alpha1",
+  "kind": "IndustryGovernanceVector",
+  "id": "banking.governance.vector.fail-a3-after-failed-check",
+  "stage": "governance-and-regulation",
+  "synthetic": true,
+  "family": "autonomy",
+  "summary": "A failed capability check leaves the case at A3 with its task update still enabled (INV18).",
+  "scenario": {
+    "case": {
+      "caseId": "synthetic.case.fail-a3-after-failed-check",
+      "declaredMode": "A3",
+      "preparationScope": "A2",
+      "profiles": [
+        "IP17"
+      ],
+      "checkResults": {
+        "compatibility": "PASS",
+        "capability": "FAIL",
+        "protectedPolicy": "PASS"
+      },
+      "effectiveMode": "A3",
+      "steps": [
+        {
+          "stepId": "step-01",
+          "actionClass": "read_evidence",
+          "sideEffectCategory": "READ_ONLY",
+          "executor": "AGENT",
+          "enabled": true,
+          "write": null
+        },
+        {
+          "stepId": "step-02",
+          "actionClass": "task_update",
+          "sideEffectCategory": "REVERSIBLE_WRITE",
+          "executor": "AGENT",
+          "enabled": true,
+          "write": {
+            "policyReferenceId": "banking.policy.synthetic-write-policy",
+            "approval": {
+              "requestId": "synthetic.approval-request.case-01",
+              "approvalType": "MUTATION",
+              "status": "APPROVED",
+              "requesterRef": "synthetic.actor.maker-01",
+              "approverRefs": [
+                "synthetic.actor.checker-01",
+                "synthetic.actor.checker-02"
+              ],
+              "requiredQuorum": 2,
+              "decisionTime": "2026-01-15T12:00:00Z",
+              "expiresAt": "2026-01-16T12:00:00Z"
+            },
+            "receiptRequirementId": "banking.requirement.durable-receipt",
+            "idempotencyRequirementId": "banking.requirement.idempotency",
+            "compensationMode": "COMPENSATE",
+            "compensationReferenceId": "banking.reference.synthetic-compensation",
+            "scopedAccessReferenceId": "banking.access-reference.synthetic-scope",
+            "taskScope": "CASE_OWN_TASK"
+          }
+        }
+      ],
+      "children": []
+    }
+  },
+  "expectedDecision": {
+    "status": "BLOCKED",
+    "reasonCodes": [
+      "EXECUTION_NOT_DISABLED_AFTER_FAILED_CHECK"
+    ]
+  },
+  "evidence": {
+    "published": false,
+    "runtimeEvidence": false,
+    "assuranceEvidence": false,
+    "tenantAcceptance": false
+  }
+}

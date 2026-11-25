@@ -100,7 +100,7 @@ def _independent_luhn(digits: str) -> bool:
 def test_handler_accepts_only_banking_and_reports_closed_evidence(capsys: pytest.CaptureFixture[str]) -> None:
     assert HANDLER.main(["banking"]) == 0
     output = json.loads(capsys.readouterr().out)
-    assert output["packVersion"] == "0.2.0"
+    assert output["packVersion"] == "0.3.0"
     assert output["frameworkVersion"] == "0.1.1"
     assert output["retainedArtifacts"] is False
     assert output["scannerModule"] == "ind_bank_001_handler"

@@ -28,6 +28,9 @@ def _parser() -> argparse.ArgumentParser:
     package = commands.add_parser("package")
     package.add_argument("pack_root", type=Path)
     package.add_argument("--output", required=True, type=Path)
+    readiness_evaluate = commands.add_parser("readiness-evaluate")
+    readiness_evaluate.add_argument("pack_root", type=Path)
+    readiness_evaluate.add_argument("--input", required=True, type=Path)
     return parser
 
 
@@ -42,6 +45,16 @@ def main(argv: Sequence[str] | None = None) -> int:
             payload = write_index(arguments.pack_root, arguments.output)
             print(json.dumps({"accepted": True, "evidence": EVIDENCE, "indexDigest": payload["indexDigest"], "output": str(arguments.output)}, sort_keys=True, separators=(",", ":")))
             return 0
+        if arguments.command == "readiness-evaluate":
+            from .readiness import ReadinessInputError, evaluate, verdict_bytes
+
+            try:
+                verdict = evaluate(arguments.pack_root, arguments.input)
+            except ReadinessInputError as exc:
+                print(json.dumps({"accepted": False, "errors": [{"reason": "READINESS_INPUT_REFUSED", "message": str(exc)}], "evidence": EVIDENCE}, sort_keys=True, separators=(",", ":")))
+                return 1
+            sys.stdout.buffer.write(verdict_bytes(verdict) + b"\n")
+            return 0 if verdict["overallStatus"] == "READY" else 1
         output = package_pack(arguments.pack_root, arguments.output)
         print(json.dumps({"accepted": True, "evidence": EVIDENCE, "output": str(output)}, sort_keys=True, separators=(",", ":")))
         return 0

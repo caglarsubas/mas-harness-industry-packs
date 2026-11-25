@@ -40,6 +40,8 @@ def test_real_descriptor_inventory_is_closed() -> None:
         ("IND-001", "zero-bill"),
         ("IND-BANK-001", "pack"),
         ("IND-BANK-002", "data-readiness"),
+        ("IND-BANK-003", "governance-integrations"),
+        ("IND-BANK-003", "readiness-evaluate"),
         ("IND-FIX-001", "ind-fix-001-regression"),
         ("IND-TRANSPORT-001", "transport-bootstrap"),
         ("IND-WG-001", "pack"),

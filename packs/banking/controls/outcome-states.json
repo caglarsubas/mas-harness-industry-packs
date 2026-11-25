@@ -1,0 +1,48 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-outcome-states/v1alpha1",
+  "kind": "IndustryOutcomeStateSet",
+  "id": "banking.governance.outcome-states",
+  "stage": "governance-and-regulation",
+  "contractStatus": "PACK_LOCAL_DATA_ONLY",
+  "stateOrderRequired": true,
+  "states": [
+    {
+      "state": "accepted",
+      "order": 1,
+      "requiredEvidenceKind": "counterparty-acceptance-record",
+      "meaning": "The counterparty accepted the offer or instruction."
+    },
+    {
+      "state": "committed",
+      "order": 2,
+      "requiredEvidenceKind": "booking-commitment-record",
+      "meaning": "The institution booked a binding commitment."
+    },
+    {
+      "state": "final",
+      "order": 3,
+      "requiredEvidenceKind": "settlement-or-disbursement-record",
+      "meaning": "Funds settled or were disbursed."
+    }
+  ],
+  "negativeRules": [
+    {
+      "id": "submitted-is-not-won",
+      "claimedState": "accepted",
+      "insufficientEvidenceKind": "submission-receipt",
+      "reasonCode": "SUBMITTED_IS_NOT_WON"
+    },
+    {
+      "id": "upload-is-not-acceptance",
+      "claimedState": "accepted",
+      "insufficientEvidenceKind": "document-upload-receipt",
+      "reasonCode": "UPLOAD_IS_NOT_ACCEPTANCE"
+    },
+    {
+      "id": "readiness-flag-is-not-disbursement",
+      "claimedState": "final",
+      "insufficientEvidenceKind": "readiness-flag",
+      "reasonCode": "READINESS_FLAG_IS_NOT_DISBURSEMENT"
+    }
+  ]
+}

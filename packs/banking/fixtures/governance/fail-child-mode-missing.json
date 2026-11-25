@@ -1,0 +1,62 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-governance-vector/v1alpha1",
+  "kind": "IndustryGovernanceVector",
+  "id": "banking.governance.vector.fail-child-mode-missing",
+  "stage": "governance-and-regulation",
+  "synthetic": true,
+  "family": "autonomy",
+  "summary": "A child step carries no declared mode; it is never inherited from the summary.",
+  "scenario": {
+    "case": {
+      "caseId": "synthetic.case.fail-child-mode-missing",
+      "declaredMode": "A1",
+      "preparationScope": "A1",
+      "profiles": [
+        "IP18"
+      ],
+      "checkResults": {
+        "compatibility": "PASS",
+        "capability": "PASS",
+        "protectedPolicy": "PASS"
+      },
+      "effectiveMode": "A1",
+      "steps": [
+        {
+          "stepId": "step-01",
+          "actionClass": "read_evidence",
+          "sideEffectCategory": "READ_ONLY",
+          "executor": "AGENT",
+          "enabled": true,
+          "write": null
+        }
+      ],
+      "children": [
+        {
+          "childId": "synthetic.child.01",
+          "steps": [
+            {
+              "stepId": "step-02",
+              "actionClass": "read_evidence",
+              "sideEffectCategory": "READ_ONLY",
+              "executor": "AGENT",
+              "enabled": true,
+              "write": null
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "expectedDecision": {
+    "status": "BLOCKED",
+    "reasonCodes": [
+      "CHILD_MODE_MISSING"
+    ]
+  },
+  "evidence": {
+    "published": false,
+    "runtimeEvidence": false,
+    "assuranceEvidence": false,
+    "tenantAcceptance": false
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-governance-vector/v1alpha1",
+  "kind": "IndustryGovernanceVector",
+  "id": "banking.governance.vector.fail-readiness-flag-not-disbursement",
+  "stage": "governance-and-regulation",
+  "synthetic": true,
+  "family": "outcome",
+  "summary": "A readiness flag is offered as the final disbursement.",
+  "scenario": {
+    "claims": [
+      {
+        "state": "accepted",
+        "evidenceKind": "counterparty-acceptance-record"
+      },
+      {
+        "state": "committed",
+        "evidenceKind": "booking-commitment-record"
+      },
+      {
+        "state": "final",
+        "evidenceKind": "readiness-flag"
+      }
+    ]
+  },
+  "expectedDecision": {
+    "status": "BLOCKED",
+    "reasonCodes": [
+      "READINESS_FLAG_IS_NOT_DISBURSEMENT"
+    ]
+  },
+  "evidence": {
+    "published": false,
+    "runtimeEvidence": false,
+    "assuranceEvidence": false,
+    "tenantAcceptance": false
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-governance-vector/v1alpha1",
+  "kind": "IndustryGovernanceVector",
+  "id": "banking.governance.vector.fail-submitted-not-won",
+  "stage": "governance-and-regulation",
+  "synthetic": true,
+  "family": "outcome",
+  "summary": "A submission receipt is offered as acceptance.",
+  "scenario": {
+    "claims": [
+      {
+        "state": "accepted",
+        "evidenceKind": "submission-receipt"
+      }
+    ]
+  },
+  "expectedDecision": {
+    "status": "BLOCKED",
+    "reasonCodes": [
+      "SUBMITTED_IS_NOT_WON"
+    ]
+  },
+  "evidence": {
+    "published": false,
+    "runtimeEvidence": false,
+    "assuranceEvidence": false,
+    "tenantAcceptance": false
+  }
+}

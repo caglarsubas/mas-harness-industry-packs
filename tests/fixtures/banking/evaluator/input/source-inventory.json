@@ -1,0 +1,49 @@
+{
+  "apiVersion": "harness.planeon.ai/source-inventory/v1alpha1",
+  "kind": "SourceInventory",
+  "id": "banking.data.source-inventory",
+  "stage": "data-readiness",
+  "synthetic": true,
+  "sources": [
+    {
+      "id": "banking.source.api",
+      "sourceClass": "api",
+      "ownerRole": "domain-owner",
+      "custodianRole": "data-steward",
+      "classification": "internal-synthetic",
+      "dataPaths": ["data/api/product-catalogue.json"],
+      "evidenceIds": ["banking.evidence.api-inspection"],
+      "description": "Synthetic product and rate catalogue observations keyed by banking ontology product-family ids; rates are illustrative."
+    },
+    {
+      "id": "banking.source.events",
+      "sourceClass": "events",
+      "ownerRole": "domain-owner",
+      "custodianRole": "data-steward",
+      "classification": "restricted-synthetic",
+      "dataPaths": ["data/events/transactions.jsonl"],
+      "evidenceIds": ["banking.evidence.events-inspection"],
+      "description": "Synthetic transaction events with opaque transaction and account ids, small amounts and currency codes."
+    },
+    {
+      "id": "banking.source.files",
+      "sourceClass": "files",
+      "ownerRole": "domain-owner",
+      "custodianRole": "data-steward",
+      "classification": "internal-synthetic",
+      "dataPaths": ["data/files/product-terms.md"],
+      "evidenceIds": ["banking.evidence.files-inspection"],
+      "description": "Synthetic product terms and policy text written for this pack; not an institution document. Each tenant replaces it with its own approved sources."
+    },
+    {
+      "id": "banking.source.postgresql",
+      "sourceClass": "postgresql",
+      "ownerRole": "domain-owner",
+      "custodianRole": "data-steward",
+      "classification": "restricted-synthetic",
+      "dataPaths": ["data/postgresql/accounts.csv", "data/postgresql/parties.csv"],
+      "evidenceIds": ["banking.evidence.postgresql-inspection"],
+      "description": "Synthetic party and account records with opaque party and account ids; parties are roles or legal entities, never person records."
+    }
+  ]
+}

@@ -32,10 +32,11 @@ from planeon_industry_packs.package import archive_bytes, package_pack  # noqa: 
 PACK_ROOT = ROOT / "packs/banking"
 COMMON_ROOT = ROOT / "common"
 PACK_ID = "banking.financial-services"
-PACK_VERSION = "0.2.0"
-ARCHIVE_NAME = "banking.financial-services-0.2.0.tar.gz"
-PACK_FILE_COUNT = 38
-PACK_RESOURCE_COUNT = 35
+PACK_VERSION = "0.3.0"
+ARCHIVE_NAME = "banking.financial-services-0.3.0.tar.gz"
+PACK_FILE_COUNT = 79
+PACK_RESOURCE_COUNT = 76
+ASSESSMENT_VERSION = "0.2.0"
 COMMON_PACK_DIGEST = "3cfea19e6e0a4a653d63622e250f40001b4f8221ebab18fa5bfc1601b8eddea3"
 TOOLCHAIN_SHA256 = {
     "pyproject.toml": "331f31f6fbe122a860325e23256b95f2cdbfcffd82e3f95e3a0d99fde332b1ba",
@@ -141,7 +142,7 @@ READINESS_RULE = {
         "message": "Banking data readiness remains blocked until deterministic evidence passes under a tenant-approved policy.",
     },
 }
-RULE_IDS = ["banking.data.block-unready"]
+RULE_IDS = ["banking.data.block-unready", "banking.governance.block-unsafe-action"]
 READINESS_IDS = ["banking.data.contract-binding", "banking.data.dataset-lock", "banking.data.readiness-policy"]
 
 ROLE_IDS = ("business-owner", "domain-owner", "risk-owner", "compliance-owner", "data-steward", "evidence-approver")
@@ -664,7 +665,7 @@ def build_assessment(identifier: str, decision: dict[str, Any], detail: dict[str
     return {
         "apiVersion": "harness.planeon.ai/v1alpha1",
         "kind": "DataReadinessAssessment",
-        "metadata": {"id": identifier, "version": PACK_VERSION},
+        "metadata": {"id": identifier, "version": ASSESSMENT_VERSION},
         "spec": {
             "questionnaireSessionId": SESSION_ID,
             "overallStatus": "READY" if decision["status"] == "PASS" else "BLOCKED",
@@ -733,8 +734,8 @@ def check_manifest(pack: ValidatedPack, common: ValidatedPack) -> None:
         raise ValueError("banking bindings are not byte copies of common.foundation")
     if [item["id"] for item in content["rules"]] != RULE_IDS or [item["id"] for item in content["readiness"]] != READINESS_IDS:
         raise ValueError("rule or readiness ids differ")
-    if content["controls"] or content["providerPreferences"]:
-        raise ValueError("controls and provider preferences stay empty in banking 0.2.0")
+    if content["providerPreferences"] or [item["id"] for item in content["controls"]] != ["banking.governance.contract-binding", "banking.governance.control-requirements", "banking.integrations.declaration-records", "banking.governance.waiver-policy", "banking.governance.autonomy-policy", "banking.governance.outcome-states", "banking.governance.ai-act-deployer-map"]:
+        raise ValueError("provider preferences stay empty and controls are exactly the IND-BANK-003 set in banking 0.3.0")
     if len(pack.files) != PACK_FILE_COUNT or len(pack.resource_ids) != PACK_RESOURCE_COUNT:
         raise ValueError("banking file or resource inventory differs")
     for name, digest in TOOLCHAIN_SHA256.items():

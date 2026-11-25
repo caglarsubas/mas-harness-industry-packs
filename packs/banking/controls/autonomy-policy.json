@@ -1,0 +1,130 @@
+{
+  "apiVersion": "harness.planeon.ai/industry-autonomy-policy/v1alpha1",
+  "kind": "IndustryAutonomyPolicy",
+  "id": "banking.governance.autonomy-policy",
+  "stage": "governance-and-regulation",
+  "contractStatus": "PACK_LOCAL_DATA_ONLY",
+  "modes": [
+    {
+      "mode": "A1",
+      "rank": 1,
+      "label": "evidence"
+    },
+    {
+      "mode": "A2",
+      "rank": 2,
+      "label": "prepared action"
+    },
+    {
+      "mode": "A3",
+      "rank": 3,
+      "label": "bounded execution"
+    }
+  ],
+  "executorKinds": [
+    "AGENT",
+    "HUMAN_ROLE",
+    "AUTOMATED_SERVICE"
+  ],
+  "actionClasses": [
+    {
+      "actionClass": "read_evidence",
+      "sideEffectCategory": "READ_ONLY",
+      "agentModes": [
+        "A1",
+        "A2",
+        "A3"
+      ],
+      "executorWhenNotAgent": null,
+      "humanExecutorModes": [],
+      "approvalRequired": false,
+      "receiptRequirement": "SOURCE_RECEIPT",
+      "taskScope": null
+    },
+    {
+      "actionClass": "prepare_action",
+      "sideEffectCategory": "READ_ONLY",
+      "agentModes": [
+        "A2",
+        "A3"
+      ],
+      "executorWhenNotAgent": null,
+      "humanExecutorModes": [],
+      "approvalRequired": false,
+      "receiptRequirement": "NONE_DRAFT_HAS_NO_EXTERNAL_EFFECT",
+      "taskScope": null
+    },
+    {
+      "actionClass": "submit",
+      "sideEffectCategory": "IRREVERSIBLE_WRITE",
+      "agentModes": [],
+      "executorWhenNotAgent": "HUMAN_ROLE",
+      "humanExecutorModes": [
+        "A2",
+        "A3"
+      ],
+      "approvalRequired": true,
+      "receiptRequirement": "DURABLE_RECEIPT",
+      "taskScope": null
+    },
+    {
+      "actionClass": "task_update",
+      "sideEffectCategory": "REVERSIBLE_WRITE",
+      "agentModes": [
+        "A3"
+      ],
+      "executorWhenNotAgent": null,
+      "humanExecutorModes": [],
+      "approvalRequired": true,
+      "receiptRequirement": "DURABLE_RECEIPT",
+      "taskScope": "CASE_OWN_TASK"
+    },
+    {
+      "actionClass": "approve_payment",
+      "sideEffectCategory": "IRREVERSIBLE_WRITE",
+      "agentModes": [],
+      "executorWhenNotAgent": "HUMAN_ROLE",
+      "humanExecutorModes": [
+        "A1",
+        "A2",
+        "A3"
+      ],
+      "approvalRequired": true,
+      "receiptRequirement": "DURABLE_RECEIPT",
+      "taskScope": null
+    }
+  ],
+  "approvalType": "MUTATION",
+  "writeRules": [
+    "EXACT_POLICY_REFERENCE",
+    "UNEXPIRED_APPROVED_MUTATION_REQUEST",
+    "DISTINCT_APPROVER_QUORUM",
+    "DURABLE_RECEIPT",
+    "IDEMPOTENCY",
+    "SCOPED_ACCESS_REFERENCE",
+    "COMPENSATION_OR_OUTCOME_REVIEW"
+  ],
+  "preparationScopes": [
+    "A1",
+    "A2"
+  ],
+  "unknownActionDisposition": "BLOCK",
+  "effectiveModeDirection": "DOWN_ONLY",
+  "invariants": [
+    {
+      "id": "INV01",
+      "statement": "Installing a pack MUST NOT create data grants, execution rights or business authority.",
+      "packSideEnforcement": "closed manifest schema and closed governance record field sets"
+    },
+    {
+      "id": "INV03",
+      "statement": "The permitted action, executor, approval and derived mode MUST agree; a summary mode MUST NOT broaden child actions.",
+      "packSideEnforcement": "per-case and per-child derived mode, executor and approval checks"
+    },
+    {
+      "id": "INV18",
+      "statement": "A failed compatibility, capability or protected-policy check MUST disable affected execution; fallback MUST use a separately defined preparation scope.",
+      "packSideEnforcement": "effective mode falls to the case preparation scope and disables steps above it"
+    }
+  ]
+}

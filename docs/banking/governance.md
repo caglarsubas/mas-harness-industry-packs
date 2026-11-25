@@ -90,7 +90,8 @@ the tenant role's ruling.
 | deployer-duty.explanation-of-decisions | Article 86, candidate | none | yes |
 | deployer-duty.ai-literacy | Article 4, candidate | none | yes |
 
-The map's own `namedGap` text says what each gap is; the pack fills none of them.
+The map's own `namedGap` text says what each gap is. The pack closes no named gap: where a row names a pack evidence
+slot, the slot is the pack's contribution, and every gap marked "yes" stays tenant-side evidence.
 
 ## Readiness evaluator: two entry forms
 
@@ -102,6 +103,11 @@ The map's own `namedGap` text says what each gap is; the pack fills none of them
   pack's DataReadinessPolicy, prints the canonical verdict and exits 0 on READY, otherwise 1. A source whose members
   carry no record timestamps is observed as of the input snapshot (the latest observation in the input). It refuses a
   symbolic link, a non-regular file or a path that escapes the input directory, and it never imports `ci/`.
+- Limits of the tenant form: the input carries no evaluation time and no expected record counts. Freshness is
+  therefore measured against the newest observation in the input itself, not against the clock, so an input whose
+  sources are all equally old passes freshness. Completeness takes the expected count from the observed count, so it
+  cannot fall for records that are missing from the input. Clock-based staleness and missing records are the tenant's
+  own checks.
 
 The evaluator and `ci/handlers/ind_bank_002.py` agree on all nine readiness fixtures.
 
@@ -109,4 +115,6 @@ The evaluator and `ci/handlers/ind_bank_002.py` agree on all nine readiness fixt
 
 No legal applicability, approval, connector execution, endpoint or credential; no promotion; no held-out answers; no
 personal data; white goods, the dispatcher, the transport and the framework version are unchanged. Packet acceptance
-creates candidate and CI evidence only.
+creates candidate and CI evidence only. The tenant readiness evaluator does not detect clock-based staleness (freshness
+is measured against the newest observation in the input) or records missing from the input (completeness cannot fall
+for them).

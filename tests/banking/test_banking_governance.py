@@ -105,6 +105,21 @@ def test_nested_record_fields_are_closed(pack) -> None:
         HANDLER.check_record_sets(_with_file(pack, path, value))
 
 
+@pytest.mark.parametrize("name", sorted(HANDLER.BINDING_SCHEMA_PINS))
+@pytest.mark.parametrize("part", ["sha256", "path"])
+def test_contract_binding_refuses_a_schema_reference_off_its_pin(name: str, part: str, pack) -> None:
+    path = "controls/contract-binding.json"
+    value = json.loads(pack.files[path])
+    assert (value[name]["path"], value[name]["sha256"]) == HANDLER.BINDING_SCHEMA_PINS[name]
+    if part == "sha256":
+        digest = value[name]["sha256"]
+        value[name]["sha256"] = ("0" if digest[0] != "0" else "1") + digest[1:]
+    else:
+        value[name]["path"] = value[name]["path"].replace(".schema.json", "-other.schema.json")
+    with pytest.raises(HANDLER.Refusal, match="differs from its pin"):
+        HANDLER.check_record_sets(_with_file(pack, path, value))
+
+
 def test_fifth_undeclared_governance_questionnaire_is_refused_with_the_same_message(pack) -> None:
     manifest = copy.deepcopy(pack.manifest)
     manifest["content"]["questionnaires"].append(

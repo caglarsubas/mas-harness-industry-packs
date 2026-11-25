@@ -98,6 +98,16 @@ INVARIANTS = {
 }
 CONTRACTS_REPOSITORY = "mas-harness-contracts"
 CONTRACTS_COMMIT = "2146278a95344cd2a8e22596b2f315b46edffc88"
+# The three bound schemas at CONTRACTS_COMMIT, pinned by exact path and sha256 (the values harness-onion publishes for
+# the same commit, e.g. task-packets/IND-WG-003.yaml); the binding must name exactly these.
+BINDING_SCHEMA_PINS = {
+    "approvalRequestSchema": ("schemas/v1alpha1/lifecycle/approval-request.schema.json",
+                              "4fe8d214a920690008a4390919acebf797b0ab4e6c649a7a88e0882f3b2a1b27"),
+    "lifecycleCommonSchema": ("schemas/v1alpha1/lifecycle/common.schema.json",
+                              "dce5d8030eea3a19694511eb26513614dcc720ef4e0d650772131b14ed58f075"),
+    "compositionCommonSchema": ("schemas/v1alpha1/composition/common.schema.json",
+                                "11b55d3eafa8d87a90956345da0919f67478a7738d5ca118025904f8ff58b5f0"),
+}
 # INV01 (pack side): no record set may carry a grant, entitlement or authority field at any depth.
 AUTHORITY_TERMS = ("grant", "entitlement", "authority", "authorization", "permission")
 FORBIDDEN_PROMPT_TERMS = (
@@ -274,10 +284,12 @@ def check_record_sets(pack: ValidatedPack) -> dict[str, Any]:
         records[path] = value
 
     binding = records["controls/contract-binding.json"]
-    for name in ("approvalRequestSchema", "lifecycleCommonSchema", "compositionCommonSchema"):
+    for name, (pinned_path, pinned_sha) in BINDING_SCHEMA_PINS.items():
         ref = _closed(binding[name], SCHEMA_REF_FIELDS | {"status"}, name, optional=frozenset({"status"}))
         if len(ref["sha256"]) != 64:
             raise Refusal(f"schema reference digest is not exact: {name}")
+        if (ref["path"], ref["sha256"]) != (pinned_path, pinned_sha):
+            raise Refusal(f"schema reference differs from its pin: {name}")
     for item in binding["unavailablePublicKinds"]:
         _closed(item, KIND_STATUS_FIELDS, "unavailablePublicKinds")
     if binding["repository"] != CONTRACTS_REPOSITORY or binding["commit"] != CONTRACTS_COMMIT or binding["schemaBytesCopied"] is not False:

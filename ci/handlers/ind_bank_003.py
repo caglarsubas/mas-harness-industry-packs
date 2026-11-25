@@ -98,8 +98,8 @@ INVARIANTS = {
 }
 CONTRACTS_REPOSITORY = "mas-harness-contracts"
 CONTRACTS_COMMIT = "2146278a95344cd2a8e22596b2f315b46edffc88"
-# The three bound schemas at CONTRACTS_COMMIT, pinned by exact path and sha256 (the values harness-onion publishes for
-# the same commit, e.g. task-packets/IND-WG-003.yaml); the binding must name exactly these.
+# The three bound schemas at CONTRACTS_COMMIT, pinned by exact path and sha256 to the values in
+# packs/banking/controls/contract-binding.json; the binding must name exactly these.
 BINDING_SCHEMA_PINS = {
     "approvalRequestSchema": ("schemas/v1alpha1/lifecycle/approval-request.schema.json",
                               "4fe8d214a920690008a4390919acebf797b0ab4e6c649a7a88e0882f3b2a1b27"),

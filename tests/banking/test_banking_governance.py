@@ -105,6 +105,10 @@ def test_nested_record_fields_are_closed(pack) -> None:
         HANDLER.check_record_sets(_with_file(pack, path, value))
 
 
+def test_binding_schema_pins_name_the_three_bound_schemas() -> None:
+    assert sorted(HANDLER.BINDING_SCHEMA_PINS) == ["approvalRequestSchema", "compositionCommonSchema", "lifecycleCommonSchema"]
+
+
 @pytest.mark.parametrize("name", sorted(HANDLER.BINDING_SCHEMA_PINS))
 @pytest.mark.parametrize("part", ["sha256", "path"])
 def test_contract_binding_refuses_a_schema_reference_off_its_pin(name: str, part: str, pack) -> None:
